@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rooms — Mega Museum</title>
+<link rel="stylesheet" href="assets/styles.css"></head><body>
+<header class="header"><div class="container nav">
+  <a class="brand" href="/"><span class="dot"></span>Mega Museum</a>
+  <nav class="menu"><a class="active" href="/rooms.html">Rooms</a><a href="/how-to.html">How to Participate</a><a href="/about.html">About</a></nav>
+</div></header>
+<main class="container">
+  <h1>Rooms Directory</h1>
+  <p class="lead">A growing list of rooms, scenes, and proposals. (We’ll add cards here later.)</p>
+  <div class="grid cards" style="grid-template-columns:repeat(12,1fr)">
+    <article class="card" style="grid-column:span 6"><h3>Mega’s Hidden Rooms</h3><p>Absurd secret spaces that reveal when interacted with.</p></article>
+    <article class="card" style="grid-column:span 6"><h3>The Protocols of Peace</h3><p>A central hall exploring humanity’s blueprint for peace.</p></article>
+  </div>
+</main>
+<footer class="footer"><div class="container">© <span id="y"></span> Mega Museum</div></footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script src="assets/main.js" defer></script>
+</body></html>
