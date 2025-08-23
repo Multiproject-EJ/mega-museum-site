@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mega Museum — A Collaborative Story World</title>
+<meta name="description" content="Join the collaborative creation of the Mega Museum: rooms, mysteries, and evolving stories.">
+<link rel="stylesheet" href="assets/styles.css">
+</head><body>
+<header class="header"><div class="container nav">
+  <a class="brand" href="/"><span class="dot"></span>Mega Museum</a>
+  <nav class="menu">
+    <a href="/rooms.html">Rooms</a>
+    <a href="/how-to.html">How to Participate</a>
+    <a href="/about.html">About</a>
+  </nav>
+</div></header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <h1>Build the Museum, One Room at a Time</h1>
+      <p class="lead">A living, collaborative story. Suggest rooms, vote on plot twists, and help shape a sprawling narrative space.</p>
+      <div class="badges"><span class="badge">Open collaboration</span><span class="badge">Story polls</span><span class="badge">Evolving canon</span></div>
+      <div class="section"><a class="buy" href="/how-to.html">Start Contributing</a></div>
+    </div>
+    <div class="media"><!-- optional teaser video (YouTube embed later) --></div>
+  </section>
+
+  <section class="section grid cards" style="grid-template-columns:repeat(12,1fr)">
+    <a class="card" style="grid-column:span 4" href="/rooms.html"><h3>Rooms Directory</h3><p>Browse existing rooms and proposals.</p></a>
+    <a class="card" style="grid-column:span 4" href="/how-to.html"><h3>How to Participate</h3><p>Rules, formats, and contribution guidelines.</p></a>
+    <a class="card" style="grid-column:span 4" href="/about.html"><h3>About the Project</h3><p>Vision, credits, FAQs.</p></a>
+  </section>
+</main>
+
+<footer class="footer"><div class="container">© <span id="y"></span> Mega Museum</div></footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script src="assets/main.js" defer></script>
+</body></html>
