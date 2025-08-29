@@ -1,37 +1,119 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mega Museum — A Collaborative Story World</title>
-<meta name="description" content="Join the collaborative creation of the Mega Museum: rooms, mysteries, and evolving stories.">
-<link rel="stylesheet" href="assets/styles.css">
-</head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="/"><span class="dot"></span>Mega Museum</a>
-  <nav class="menu">
-    <a href="/rooms.html">Rooms</a>
-    <a href="/how-to.html">How to Participate</a>
-    <a href="/about.html">About</a>
-  </nav>
-</div></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mega-Museum — A Living VR Museum</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="description" content="Mega-Museum — a living, evolving VR museum you can help build." />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">MEGA-MUSEUM</a>
+    <nav>
+      <a href="#explore">Explore Rooms</a>
+      <a href="rooms.html">All Rooms</a>
+      <a href="how-to.html">VR & How-to</a>
+      <a class="btn small" href="about.html">About</a>
+      <a class="btn primary small" href="#co-create">Co-Create</a>
+    </nav>
+  </header>
 
-<main class="container">
-  <section class="hero">
-    <div>
-      <h1>Build the Museum, One Room at a Time</h1>
-      <p class="lead">A living, collaborative story. Suggest rooms, vote on plot twists, and help shape a sprawling narrative space.</p>
-      <div class="badges"><span class="badge">Open collaboration</span><span class="badge">Story polls</span><span class="badge">Evolving canon</span></div>
-      <div class="section"><a class="buy" href="/how-to.html">Start Contributing</a></div>
-    </div>
-    <div class="media"><!-- optional teaser video (YouTube embed later) --></div>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-wrap">
+        <p class="overline">A living, evolving art experiment</p>
+        <h1>The <span class="highlight">Mega-Museum</span><br/> is being built in public.</h1>
+        <p class="sub">Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next.</p>
+        <div class="cta">
+          <a class="btn primary" href="rooms.html">Enter VR Rooms</a>
+          <a class="btn ghost" href="#co-create">Co-Create with Us</a>
+        </div>
+        <div class="hero-marble" aria-hidden="true"></div>
+      </div>
+    </section>
 
-  <section class="section grid cards" style="grid-template-columns:repeat(12,1fr)">
-    <a class="card" style="grid-column:span 4" href="/rooms.html"><h3>Rooms Directory</h3><p>Browse existing rooms and proposals.</p></a>
-    <a class="card" style="grid-column:span 4" href="/how-to.html"><h3>How to Participate</h3><p>Rules, formats, and contribution guidelines.</p></a>
-    <a class="card" style="grid-column:span 4" href="/about.html"><h3>About the Project</h3><p>Vision, credits, FAQs.</p></a>
-  </section>
-</main>
+    <!-- TWO PILLARS -->
+    <section id="explore" class="pillars">
+      <article class="card pillar">
+        <div class="emoji">🕹️</div>
+        <h3>VR Rooms</h3>
+        <p>From sketch to space: walk early rooms now. Each one has a clear “status” tag — Prototype, In-Progress, or Live.</p>
+        <a class="btn inline" href="rooms.html">Browse Rooms →</a>
+      </article>
+      <article class="card pillar">
+        <div class="emoji">🗳️</div>
+        <h3>Co-Creation</h3>
+        <p>Vote in time-boxed polls, suggest new ideas, unlock future rooms. One open poll at a time — 10 total lined up.</p>
+        <a class="btn inline" href="#co-create">Open Co-Creation →</a>
+      </article>
+    </section>
 
-<footer class="footer"><div class="container">© <span id="y"></span> Mega Museum</div></footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-<script src="assets/main.js" defer></script>
-</body></html>
+    <!-- TIMELINE / ROAD -->
+    <section class="timeline">
+      <h2>Road to the Museum</h2>
+      <ul class="steps">
+        <li><span>Now</span> First prototype rooms online</li>
+        <li><span>Next</span> Community polls open (Round 1)</li>
+        <li><span>Soon</span> “Hidden Rooms” &amp; “Garden Spiral” scenes</li>
+        <li><span>Later</span> Full multi-floor VR tour + soundtrack</li>
+      </ul>
+    </section>
+
+    <!-- CO-CREATE (Password Gate) -->
+    <section id="co-create" class="cocreate">
+      <div class="card cocreate-card">
+        <h2>Co-Create the Mega-Museum</h2>
+        <p class="muted">Enter the shared password to access active polls and leave suggestions.</p>
+
+        <form id="gateForm" class="gate">
+          <label for="gatePassword">Password</label>
+          <input id="gatePassword" type="password" placeholder="Enter password" autocomplete="current-password" required />
+          <button class="btn primary" type="submit">Enter</button>
+          <p class="gate-hint">Friendly gate only — not a secure login.</p>
+        </form>
+
+        <div id="cocreateArea" class="hidden">
+          <div class="polls-head">
+            <h3>Community Polls</h3>
+            <p class="muted">Poll 1 is open. Others unlock later. Your vote is saved on this device.</p>
+          </div>
+
+          <div class="polls-grid" id="pollsGrid">
+            <!-- Polls injected by JS -->
+          </div>
+
+          <div class="suggest-box">
+            <h4>Suggest a Room or Feature</h4>
+            <textarea id="suggestInput" rows="4" placeholder="Pitch an idea — rooms, rides, puzzles, music, anything…"></textarea>
+            <button id="saveSuggest" class="btn">Save Note (local)</button>
+            <p class="muted small" id="suggestSavedMsg" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong>MEGA-MUSEUM</strong><br/>
+          A growing VR museum built in public.
+        </div>
+        <div class="foot-links">
+          <a href="rooms.html">Rooms</a>
+          <a href="how-to.html">How-to</a>
+          <a href="about.html">About</a>
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <p class="tiny">© <span id="year"></span> Mega-Museum. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
