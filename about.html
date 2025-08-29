@@ -1,17 +1,45 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About — Mega Museum</title>
-<link rel="stylesheet" href="assets/styles.css"></head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="/"><span class="dot"></span>Mega Museum</a>
-  <nav class="menu"><a href="/rooms.html">Rooms</a><a href="/how-to.html">How to Participate</a><a class="active" href="/about.html">About</a></nav>
-</div></header>
-<main class="container">
-  <h1>About the Project</h1>
-  <p class="lead">Mega Museum is a collaborative story world: a labyrinth of rooms, mysteries, and evolving tales built by the community.</p>
-  <p>Credits, inspirations, and guidelines will go here.</p>
-</main>
-<footer class="footer"><div class="container">© <span id="y"></span> Mega Museum</div></footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-<script src="assets/main.js" defer></script>
-</body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Mega-Museum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><span class="logo-circle">M</span> MEGA-MUSEUM</a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="rooms.html">All Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
+        </div>
+      </div>
+      <a href="creation.html">Creation Story</a>
+      <a href="about.html">About</a>
+      <a class="btn primary small" href="/#co-create">Co-Create</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap narrow">
+    <h1 class="page-title">About Mega-Museum</h1>
+    <p>The Mega-Museum is an evolving VR museum built in public — starting with small, honest prototypes. Instead of hiding the mess, we invite people to walk through it with us and help guide what grows next.</p>
+    <p>Our promise: clarity about what’s live vs. what’s rough; frequent, visible progress; and community votes that influence our next steps.</p>
+    <h3>Credits</h3>
+    <ul class="bullets">
+      <li>Concept & Direction — Mega-Museum team</li>
+      <li>VR sketching, illustration & scenes — ongoing</li>
+      <li>Music & sound — coming soon</li>
+    </ul>
+  </main>
+
+  <footer class="footer compact">
+    <p>© <span id="year"></span> Mega-Museum</p>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
