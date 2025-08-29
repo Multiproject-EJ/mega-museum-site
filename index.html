@@ -10,13 +10,22 @@
   <meta name="description" content="Mega-Museum — a living, evolving VR museum you can help build." />
 </head>
 <body>
+  <!-- NAV -->
   <header class="nav">
-    <a class="brand" href="/">MEGA-MUSEUM</a>
+    <a class="brand" href="/">
+      <span class="logo-circle">M</span> MEGA-MUSEUM
+    </a>
     <nav>
-      <a href="#explore">Explore Rooms</a>
-      <a href="rooms.html">All Rooms</a>
-      <a href="how-to.html">VR & How-to</a>
-      <a class="btn small" href="about.html">About</a>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="#explore">Explore Rooms</a>
+          <a href="rooms.html">All Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
+        </div>
+      </div>
+      <a href="creation.html">Creation Story</a>
+      <a href="about.html">About</a>
       <a class="btn primary small" href="#co-create">Co-Create</a>
     </nav>
   </header>
@@ -28,10 +37,21 @@
         <p class="overline">A living, evolving art experiment</p>
         <h1>The <span class="highlight">Mega-Museum</span><br/> is being built in public.</h1>
         <p class="sub">Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next.</p>
+
         <div class="cta">
           <a class="btn primary" href="rooms.html">Enter VR Rooms</a>
           <a class="btn ghost" href="#co-create">Co-Create with Us</a>
         </div>
+
+        <!-- quick join links under hero -->
+        <div class="quick-join">
+          <a href="#co-create">Kickstarter</a>
+          <span>·</span>
+          <a href="#co-create">Patreon</a>
+          <span>·</span>
+          <a href="#co-create">Newsletter & Social</a>
+        </div>
+
         <div class="hero-marble" aria-hidden="true"></div>
       </div>
     </section>
@@ -41,7 +61,7 @@
       <article class="card pillar">
         <div class="emoji">🕹️</div>
         <h3>VR Rooms</h3>
-        <p>From sketch to space: walk early rooms now. Each one has a clear “status” tag — Prototype, In-Progress, or Live.</p>
+        <p>From sketch to space: walk early rooms now. Each one has a clear status — Prototype, In-Progress, or Live.</p>
         <a class="btn inline" href="rooms.html">Browse Rooms →</a>
       </article>
       <article class="card pillar">
@@ -52,18 +72,18 @@
       </article>
     </section>
 
-    <!-- TIMELINE / ROAD -->
+    <!-- TIMELINE -->
     <section class="timeline">
       <h2>Road to the Museum</h2>
       <ul class="steps">
         <li><span>Now</span> First prototype rooms online</li>
         <li><span>Next</span> Community polls open (Round 1)</li>
         <li><span>Soon</span> “Hidden Rooms” &amp; “Garden Spiral” scenes</li>
-        <li><span>Later</span> Full multi-floor VR tour + soundtrack</li>
+        <li><span>Later</span> Multi-floor VR tour + soundtrack</li>
       </ul>
     </section>
 
-    <!-- CO-CREATE (Password Gate) -->
+    <!-- CO-CREATE -->
     <section id="co-create" class="cocreate">
       <div class="card cocreate-card">
         <h2>Co-Create the Mega-Museum</h2>
@@ -76,21 +96,63 @@
           <p class="gate-hint">Friendly gate only — not a secure login.</p>
         </form>
 
+        <!-- show these boxes even before unlocking -->
+        <div class="join-build public-join">
+          <h3>Ways to Join & Follow</h3>
+          <div class="join-grid">
+            <article class="card join">
+              <h4>🚀 Kickstarter</h4>
+              <p>Back the Mega-Museum’s big leaps. Early supporter perks & name in the credits.</p>
+              <a class="btn primary small" href="https://kickstarter.com" target="_blank">Join Kickstarter →</a>
+            </article>
+            <article class="card join">
+              <h4>🌟 Patreon</h4>
+              <p>Behind-the-scenes sketches, polls, and builder updates every month.</p>
+              <a class="btn primary small" href="https://patreon.com" target="_blank">Follow on Patreon →</a>
+            </article>
+            <article class="card join">
+              <h4>📧 Newsletter & Social</h4>
+              <p>Subscribe for progress drops, VR links, and new polls as they open.</p>
+              <a class="btn primary small" href="https://example.com/newsletter" target="_blank">Subscribe →</a>
+            </article>
+          </div>
+        </div>
+
+        <!-- unlocked area -->
         <div id="cocreateArea" class="hidden">
           <div class="polls-head">
             <h3>Community Polls</h3>
             <p class="muted">Poll 1 is open. Others unlock later. Your vote is saved on this device.</p>
           </div>
 
-          <div class="polls-grid" id="pollsGrid">
-            <!-- Polls injected by JS -->
-          </div>
+          <div class="polls-grid" id="pollsGrid"></div>
 
           <div class="suggest-box">
             <h4>Suggest a Room or Feature</h4>
             <textarea id="suggestInput" rows="4" placeholder="Pitch an idea — rooms, rides, puzzles, music, anything…"></textarea>
             <button id="saveSuggest" class="btn">Save Note (local)</button>
             <p class="muted small" id="suggestSavedMsg" aria-live="polite"></p>
+          </div>
+
+          <div class="join-build">
+            <h3>Other Ways to Join the Build</h3>
+            <div class="join-grid">
+              <article class="card join">
+                <h4>🚀 Kickstarter</h4>
+                <p>Back the Mega-Museum’s big leaps. Early supporter perks & name in the credits.</p>
+                <a class="btn primary small" href="https://kickstarter.com" target="_blank">Join Kickstarter →</a>
+              </article>
+              <article class="card join">
+                <h4>🌟 Patreon</h4>
+                <p>Behind-the-scenes sketches, polls, and builder updates every month.</p>
+                <a class="btn primary small" href="https://patreon.com" target="_blank">Follow on Patreon →</a>
+              </article>
+              <article class="card join">
+                <h4>📧 Newsletter & Social</h4>
+                <p>Subscribe for progress drops, VR links, and new polls as they open.</p>
+                <a class="btn primary small" href="https://example.com/newsletter" target="_blank">Subscribe →</a>
+              </article>
+            </div>
           </div>
         </div>
       </div>
@@ -100,14 +162,14 @@
     <footer class="footer">
       <div class="footer-inner">
         <div>
-          <strong>MEGA-MUSEUM</strong><br/>
+          <strong><span class="logo-circle">M</span> MEGA-MUSEUM</strong><br/>
           A growing VR museum built in public.
         </div>
         <div class="foot-links">
           <a href="rooms.html">Rooms</a>
           <a href="how-to.html">How-to</a>
+          <a href="creation.html">Creation Story</a>
           <a href="about.html">About</a>
-          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <p class="tiny">© <span id="year"></span> Mega-Museum. All rights reserved.</p>
