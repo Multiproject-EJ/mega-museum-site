@@ -1,20 +1,80 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rooms — Mega Museum</title>
-<link rel="stylesheet" href="assets/styles.css"></head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="/"><span class="dot"></span>Mega Museum</a>
-  <nav class="menu"><a class="active" href="/rooms.html">Rooms</a><a href="/how-to.html">How to Participate</a><a href="/about.html">About</a></nav>
-</div></header>
-<main class="container">
-  <h1>Rooms Directory</h1>
-  <p class="lead">A growing list of rooms, scenes, and proposals. (We’ll add cards here later.)</p>
-  <div class="grid cards" style="grid-template-columns:repeat(12,1fr)">
-    <article class="card" style="grid-column:span 6"><h3>Mega’s Hidden Rooms</h3><p>Absurd secret spaces that reveal when interacted with.</p></article>
-    <article class="card" style="grid-column:span 6"><h3>The Protocols of Peace</h3><p>A central hall exploring humanity’s blueprint for peace.</p></article>
-  </div>
-</main>
-<footer class="footer"><div class="container">© <span id="y"></span> Mega Museum</div></footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-<script src="assets/main.js" defer></script>
-</body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mega-Museum — Rooms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">MEGA-MUSEUM</a>
+    <nav>
+      <a href="/">Home</a>
+      <a class="btn small" href="how-to.html">VR & How-to</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap">
+    <h1 class="page-title">VR Rooms</h1>
+    <p class="muted">Walk early prototypes today. We label each room clearly so visitors know what to expect as things evolve.</p>
+
+    <div class="room-grid">
+      <!-- ROOM CARD -->
+      <article class="room card">
+        <div class="room-thumb placeholder">Hidden Rooms Hallway</div>
+        <div class="room-body">
+          <div class="room-top">
+            <h3>Hidden Rooms Hallway</h3>
+            <span class="badge proto">Prototype</span>
+          </div>
+          <p>A corridor that teases absurd secret doors. Tap hotspots to reveal evolving concepts.</p>
+          <div class="room-actions">
+            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Soon)</a>
+            <a class="btn ghost" href="#" aria-disabled="true">Sketch</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="room card">
+        <div class="room-thumb placeholder">Garden Spiral</div>
+        <div class="room-body">
+          <div class="room-top">
+            <h3>Garden Spiral</h3>
+            <span class="badge wip">In-Progress</span>
+          </div>
+          <p>A slow spiral up through floating gardens. Light, birdsong, and a gentle VR “lift”.</p>
+          <div class="room-actions">
+            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Soon)</a>
+            <a class="btn ghost" href="#" aria-disabled="true">Concept</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="room card">
+        <div class="room-thumb placeholder">Under the Moat</div>
+        <div class="room-body">
+          <div class="room-top">
+            <h3>Under the Moat</h3>
+            <span class="badge live">Live</span>
+          </div>
+          <p>Descend into the museum’s submerged docks. Echoes, lanterns, and quiet machinery.</p>
+          <div class="room-actions">
+            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Link)</a>
+            <a class="btn ghost" href="#" aria-disabled="true">Storyboard</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="muted small">Want to influence what ships next? <a href="/#co-create">Join the co-creation polls</a>.</p>
+  </main>
+
+  <footer class="footer compact">
+    <p>© <span id="year"></span> Mega-Museum</p>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
