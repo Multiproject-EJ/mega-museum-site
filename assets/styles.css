@@ -186,3 +186,18 @@ body{
 .footer .foot-links a:hover{color:var(--brand)}
 .footer .tiny{color:var(--muted); text-align:center; margin-top:8px}
 .footer.compact{background:transparent}
+
+/* ========== Stages (About page) ========== */
+.stages-grid{
+  display:grid; gap:18px;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  margin:10px 0 18px;
+}
+.stage .kicker{
+  display:inline-block; font-weight:800; font-size:.8rem; letter-spacing:.06em;
+  text-transform:uppercase; color:#155e75;
+  background:#ecfeff; border:1px solid #cffafe; border-radius:999px;
+  padding:4px 10px; margin-bottom:8px;
+}
+.checklist li{ margin:6px 0; }
+
