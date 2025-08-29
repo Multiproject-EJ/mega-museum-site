@@ -8,42 +8,72 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <meta name="description" content="The Mega-Museum Cinema — watch the co-creation story unfold in video form. Vote on what gets made next." />
 
-  <!-- Page-specific styles (kept here so you don't need to touch styles.css) -->
+  <!-- Page-specific styles -->
   <style>
     /* Hero teaser */
-    .creation-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:center;margin:10px 0 22px}
-    .creation-hero-art{border:1px solid var(--edge);border-radius:16px;overflow:hidden;background:#0b1220;box-shadow:0 12px 28px rgba(2,6,23,.12)}
-    .creation-hero-art img{display:block;width:100%;height:auto}
-    .creation-hero-copy h2{margin:0 0 6px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;background:#eef2ff;border:1px solid #c7d2fe;color:#1e3a8a;font-size:.85rem}
+    .creation-hero{
+      display:grid; grid-template-columns:1.1fr 1fr; gap:18px; align-items:center; margin:10px 0 22px;
+    }
+    .creation-hero-copy h2{ margin:0 0 6px; }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{
+      display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700;
+      background:#eef2ff; border:1px solid #c7d2fe; color:#1e3a8a; font-size:.85rem;
+    }
+
+    /* Light frame so your PNG glow shows nicely */
+    .creation-hero-art{
+      border:1px solid var(--edge);
+      border-radius:16px;
+      overflow:hidden;
+      background:radial-gradient(140% 140% at 80% 0%, #ffffff 0%, #f6f9ff 45%, #eef2ff 100%);
+      padding:12px;                 /* soft border space */
+      box-shadow:0 12px 28px rgba(2,6,23,.12);
+    }
+    .creation-hero-art img{
+      display:block; width:100%; height:auto;
+      border-radius:12px;           /* match the frame curve */
+    }
 
     /* Cinema player + episodes */
-    .cinema{margin:8px 0 24px}
-    .nowplay{padding:0}
-    .player{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--edge);background:#000}
-    .player::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
-    .player > .embed, .player > .poster{
-      position:absolute;inset:0;width:100%;height:100%;border:0;display:block
+    .cinema{ margin:8px 0 24px; }
+    .nowplay{ padding:0; }
+    .player{
+      position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--edge); background:#000;
     }
-    .player .poster{object-fit:cover;opacity:.9}
-    .player .hint{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.9);border:1px solid var(--edge);border-radius:10px;padding:6px 10px;font-weight:700}
-    .nowplay-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px}
-    .episodes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .episode{padding:0;overflow:hidden}
-    .episode .thumb{height:140px;display:block;background:#0b1220;color:#cbd5e1;display:flex;align-items:center;justify-content:center}
-    .episode .body{padding:12px}
-    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.75rem;font-weight:800;border:1px solid var(--edge)}
-    .tag.open{background:#ecfeff;border-color:#cffafe;color:#155e75}
-    .tag.lock{background:#f8fafc;color:#6b7280}
-    .episodes-grid .btn{margin-top:8px}
+    .player::before{ content:""; display:block; padding-top:56.25%; } /* 16:9 */
+    .player > .embed, .player > .poster{
+      position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
+    }
+    .player .poster{ object-fit:cover; opacity:.9; }
+    .player .hint{
+      position:absolute; left:10px; bottom:10px; background:rgba(255,255,255,.9);
+      border:1px solid var(--edge); border-radius:10px; padding:6px 10px; font-weight:700;
+    }
+    .nowplay-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px; }
+    .episodes-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+    .episode{ padding:0; overflow:hidden; }
+    .episode .thumb{
+      height:140px; display:flex; align-items:center; justify-content:center;
+      background:#0b1220; color:#cbd5e1; font-weight:800;
+    }
+    .episode .body{ padding:12px; }
+    .tag{ display:inline-block; padding:4px 8px; border-radius:999px; font-size:.75rem; font-weight:800; border:1px solid var(--edge); }
+    .tag.open{ background:#ecfeff; border-color:#cffafe; color:#155e75; }
+    .tag.lock{ background:#f8fafc; color:#6b7280; }
+    .episodes-grid .btn{ margin-top:8px; }
 
     /* Stages */
-    .stages-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));margin:10px 0 18px}
-    .stage .kicker{display:inline-block;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#155e75;background:#ecfeff;border:1px solid #cffafe;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+    .stages-grid{
+      display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); margin:10px 0 18px;
+    }
+    .stage .kicker{
+      display:inline-block; font-weight:800; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
+      color:#155e75; background:#ecfeff; border:1px solid #cffafe; border-radius:999px; padding:4px 10px; margin-bottom:8px;
+    }
 
     @media (max-width: 900px){
-      .creation-hero{grid-template-columns:1fr}
+      .creation-hero{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -110,7 +140,7 @@
       </article>
 
       <div class="episodes-grid">
-        <!-- Episode cards: replace data-src with your real embed URL (YouTube/Vimeo) or MP4 file -->
+        <!-- Episode cards: set data-src to your real embed URL -->
         <article class="card episode" data-src="https://www.youtube.com/embed/VIDEO_ID_HERE">
           <div class="thumb">Episode 001</div>
           <div class="body">
@@ -226,7 +256,9 @@
           alert('Add your real video link in creation.html → data-src="https://www.youtube.com/embed/YOUR_ID"');
           return;
         }
-        player.innerHTML = '<iframe class="embed" src="'+src+'" title="Mega-Museum video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        player.innerHTML =
+          '<iframe class="embed" src="'+src+'" title="Mega-Museum video" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
       }
 
       episodes.forEach(btn=>{
