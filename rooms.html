@@ -9,10 +9,18 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="/">MEGA-MUSEUM</a>
+    <a class="brand" href="/"><span class="logo-circle">M</span> MEGA-MUSEUM</a>
     <nav>
-      <a href="/">Home</a>
-      <a class="btn small" href="how-to.html">VR & How-to</a>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="rooms.html">All Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
+        </div>
+      </div>
+      <a href="creation.html">Creation Story</a>
+      <a href="about.html">About</a>
+      <a class="btn primary small" href="/#co-create">Co-Create</a>
     </nav>
   </header>
 
@@ -21,7 +29,6 @@
     <p class="muted">Walk early prototypes today. We label each room clearly so visitors know what to expect as things evolve.</p>
 
     <div class="room-grid">
-      <!-- ROOM CARD -->
       <article class="room card">
         <div class="room-thumb placeholder">Hidden Rooms Hallway</div>
         <div class="room-body">
@@ -44,7 +51,7 @@
             <h3>Garden Spiral</h3>
             <span class="badge wip">In-Progress</span>
           </div>
-          <p>A slow spiral up through floating gardens. Light, birdsong, and a gentle VR “lift”.</p>
+          <p>A slow spiral up through floating gardens. Light, birdsong, and a gentle VR lift.</p>
           <div class="room-actions">
             <a class="btn primary" href="#" aria-disabled="true">Open Scene (Soon)</a>
             <a class="btn ghost" href="#" aria-disabled="true">Concept</a>
