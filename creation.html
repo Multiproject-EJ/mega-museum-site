@@ -3,47 +3,241 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Creation Story — Mega-Museum</title>
+  <title>Creation Story — Mega-Museum Cinema</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="description" content="The Mega-Museum Cinema — watch the co-creation story unfold in video form. Vote on what gets made next." />
+
+  <!-- Page-specific styles (kept here so you don't need to touch styles.css) -->
+  <style>
+    /* Hero teaser */
+    .creation-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:center;margin:10px 0 22px}
+    .creation-hero-art{border:1px solid var(--edge);border-radius:16px;overflow:hidden;background:#0b1220;box-shadow:0 12px 28px rgba(2,6,23,.12)}
+    .creation-hero-art img{display:block;width:100%;height:auto}
+    .creation-hero-copy h2{margin:0 0 6px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;background:#eef2ff;border:1px solid #c7d2fe;color:#1e3a8a;font-size:.85rem}
+
+    /* Cinema player + episodes */
+    .cinema{margin:8px 0 24px}
+    .nowplay{padding:0}
+    .player{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--edge);background:#000}
+    .player::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
+    .player > .embed, .player > .poster{
+      position:absolute;inset:0;width:100%;height:100%;border:0;display:block
+    }
+    .player .poster{object-fit:cover;opacity:.9}
+    .player .hint{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.9);border:1px solid var(--edge);border-radius:10px;padding:6px 10px;font-weight:700}
+    .nowplay-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px}
+    .episodes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .episode{padding:0;overflow:hidden}
+    .episode .thumb{height:140px;display:block;background:#0b1220;color:#cbd5e1;display:flex;align-items:center;justify-content:center}
+    .episode .body{padding:12px}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.75rem;font-weight:800;border:1px solid var(--edge)}
+    .tag.open{background:#ecfeff;border-color:#cffafe;color:#155e75}
+    .tag.lock{background:#f8fafc;color:#6b7280}
+    .episodes-grid .btn{margin-top:8px}
+
+    /* Stages */
+    .stages-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));margin:10px 0 18px}
+    .stage .kicker{display:inline-block;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#155e75;background:#ecfeff;border:1px solid #cffafe;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+
+    @media (max-width: 900px){
+      .creation-hero{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
+  <!-- NAV -->
   <header class="nav">
-  <a class="brand" href="/">
-    <span class="logo-circle">M</span>
-    <span class="brand-text">MEGA-MUSEUM</span>
-  </a>
-  <nav>
-    <div class="dropdown">
-      <button class="dropbtn">Visit the Museum ▾</button>
-      <div class="dropdown-content">
-        <a href="#explore">Explore Rooms</a>
-        <a href="rooms.html">All Rooms</a>
-        <a href="how-to.html">VR & How-to</a>
+    <a class="brand" href="/"><span class="logo-circle">M</span><span class="brand-text">MEGA-MUSEUM</span></a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="rooms.html">Explore Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
+        </div>
       </div>
-    </div>
-    <a href="creation.html">Creation Story</a>
-    <a href="about.html">About</a>
-    <a class="btn primary small" href="#co-create">Co-Create</a>
-  </nav>
-</header>
+      <a href="creation.html">Creation Story</a>
+      <a href="about.html">About</a>
+      <a class="btn primary small" href="/#co-create">Co-Create</a>
+    </nav>
+  </header>
 
   <main class="page-wrap narrow">
-    <h1 class="page-title">The Creation Story</h1>
-    <p>The Mega-Museum began as sketches and wild ideas. This page documents the journey: from the first prototype rooms to immersive VR worlds.</p>
+    <h1 class="page-title">The Creation Story — Cinema</h1>
+    <p>This page is the <strong>showroom</strong> for the co-creation story. While the museum rooms evolve in VR, the story itself is released here as a <strong>video series (Stage 1)</strong>. Some rooms overlap with the story, others don’t — that’s part of the fun.</p>
 
-    <h3>Chapter 1 — The Founding Stone</h3>
-    <p>How the first blueprint was drawn and shared with the world.</p>
+    <!-- Teaser -->
+    <section class="creation-hero card">
+      <div class="creation-hero-copy">
+        <h2 style="margin:0 0 8px">The Trio Is Taking Shape</h2>
+        <p>Three main characters are being defined with the community. Vote on their <em>clothes</em>, <em>accessories</em>, <em>face structure</em>, and <em>names</em> — and watch them become canon in the episodes below.</p>
+        <div class="chips" style="margin:12px 0 16px">
+          <span class="chip">Clothes</span>
+          <span class="chip">Accessories</span>
+          <span class="chip">Face Structure</span>
+          <span class="chip">Names</span>
+        </div>
+        <a class="btn primary" href="/#co-create">Vote in Co-Creation →</a>
+      </div>
 
-    <h3>Chapter 2 — Hidden Rooms</h3>
-    <p>Early sketches of corridors filled with absurd secret doors.</p>
+      <figure class="creation-hero-art">
+        <img src="assets/img/creation/characters-teaser.png"
+             alt="Mega-Museum teaser: three mystery character silhouettes beneath the museum dome." />
+        <figcaption class="muted small" style="padding:8px 10px">Teaser art — help decide what becomes canon.</figcaption>
+      </figure>
+    </section>
 
-    <h3>More chapters soon…</h3>
+    <!-- Cinema player -->
+    <section class="cinema">
+      <article class="card nowplay">
+        <div class="nowplay-head">
+          <div>
+            <div class="overline">Stage 1 — Video Series</div>
+            <h2 style="margin:4px 0 0">Now Playing</h2>
+            <p class="muted" style="margin:6px 0 0">Click an episode below to load it here. Videos live on YouTube/Vimeo or as MP4s.</p>
+          </div>
+          <a class="btn ghost" href="/#co-create">Suggest a Scene</a>
+        </div>
+
+        <div class="player" id="player">
+          <!-- Poster until an episode is chosen -->
+          <img class="poster" src="assets/img/creation/characters-teaser.png" alt="Mega-Museum — select an episode to play" />
+          <div class="hint">Select an episode below</div>
+        </div>
+      </article>
+
+      <div class="episodes-grid">
+        <!-- Episode cards: replace data-src with your real embed URL (YouTube/Vimeo) or MP4 file -->
+        <article class="card episode" data-src="https://www.youtube.com/embed/VIDEO_ID_HERE">
+          <div class="thumb">Episode 001</div>
+          <div class="body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <h4 style="margin:0">Founding Stone (Animatic)</h4>
+              <span class="tag open">Open</span>
+            </div>
+            <p class="muted small">How the museum idea crystallized. Early animatic cut.</p>
+            <button class="btn small play">Play</button>
+          </div>
+        </article>
+
+        <article class="card episode" data-src="">
+          <div class="thumb">Episode 002</div>
+          <div class="body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <h4 style="margin:0">Hidden Rooms Tease</h4>
+              <span class="tag lock">Soon</span>
+            </div>
+            <p class="muted small">Corridors, secrets, and absurd doors.</p>
+            <button class="btn small" disabled>Locked</button>
+          </div>
+        </article>
+
+        <article class="card episode" data-src="">
+          <div class="thumb">Episode 003</div>
+          <div class="body">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <h4 style="margin:0">Under the Moat</h4>
+              <span class="tag lock">Soon</span>
+            </div>
+            <p class="muted small">Lanterns, machinery, and quiet echoes.</p>
+            <button class="btn small" disabled>Locked</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3-Stage Long-Term Plan -->
+    <h2>Long-Term Plan — 3 Stages</h2>
+    <section class="stages-grid">
+      <article class="card stage">
+        <div class="kicker">Stage 1 (Now)</div>
+        <h3>3D Comic Animation (Video Series)</h3>
+        <p>A stylized 3D-comic look built from our VR sketches — bold shapes, hand-drawn vibes, quick iteration. Short episodes released here.</p>
+        <ul class="bullets">
+          <li>Design language: graphic silhouettes</li>
+          <li>Rapid animatics → scene polish</li>
+          <li>Community votes drive choices</li>
+        </ul>
+      </article>
+
+      <article class="card stage">
+        <div class="kicker">Stage 2</div>
+        <h3>Stop-Motion Film</h3>
+        <p>Tactile, handmade animation with miniatures and puppets — either via <strong>3D-printed fabrication</strong> or <strong>commissioned stop-motion artists</strong>.</p>
+        <ul class="bullets">
+          <li>Puppet turnarounds & color keys</li>
+          <li>Modular sets & props</li>
+          <li>Frame-by-frame animation, comp & grade</li>
+        </ul>
+      </article>
+
+      <article class="card stage">
+        <div class="kicker">Stage 3</div>
+        <h3>Real Movie (Hybrid Live-Action)</h3>
+        <p>A cinematic, world-scale story blending practical builds, miniatures, and selective VFX. The museum becomes a place you can both visit and watch unfold.</p>
+        <ul class="bullets">
+          <li>VR previz → practical → VFX polish</li>
+          <li>Festival cut + online release</li>
+          <li>Soundtrack & score</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Join boxes -->
+    <div class="join-build">
+      <h3>Join the Build</h3>
+      <div class="join-grid">
+        <article class="card join">
+          <h4>🚀 Kickstarter</h4>
+          <p>Back the big leaps. Early supporter perks & name in the credits.</p>
+          <a class="btn primary small" href="https://kickstarter.com" target="_blank">Join Kickstarter →</a>
+        </article>
+        <article class="card join">
+          <h4>🌟 Patreon</h4>
+          <p>Behind-the-scenes sketches, polls, and builder updates every month.</p>
+          <a class="btn primary small" href="https://patreon.com" target="_blank">Follow on Patreon →</a>
+        </article>
+        <article class="card join">
+          <h4>📧 Newsletter & Social</h4>
+          <p>Subscribe for progress drops, new episodes, and polls as they open.</p>
+          <a class="btn primary small" href="https://example.com/newsletter" target="_blank">Subscribe →</a>
+        </article>
+      </div>
+    </div>
+
+    <p class="muted small" style="margin-top:14px">Want to influence the next chapter? <a href="/#co-create">Vote in Co-Creation</a>.</p>
   </main>
 
   <footer class="footer compact">
     <p>© <span id="year"></span> Mega-Museum</p>
   </footer>
+
+  <!-- Tiny inline script for the playlist -->
+  <script>
+    (function(){
+      const player = document.getElementById('player');
+      const episodes = Array.from(document.querySelectorAll('.episode .play'));
+
+      function load(src){
+        if(!src || src.includes('VIDEO_ID_HERE')){
+          alert('Add your real video link in creation.html → data-src="https://www.youtube.com/embed/YOUR_ID"');
+          return;
+        }
+        player.innerHTML = '<iframe class="embed" src="'+src+'" title="Mega-Museum video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+      }
+
+      episodes.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const card = btn.closest('.episode');
+          load(card.getAttribute('data-src'));
+          window.scrollTo({ top: player.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
 
   <script src="assets/main.js"></script>
 </body>
