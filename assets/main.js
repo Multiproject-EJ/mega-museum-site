@@ -1,23 +1,19 @@
-/* ======= Small helpers ======= */
+/* ======= Helpers ======= */
 const $ = (q,root=document)=>root.querySelector(q);
 const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
 
 /* Footer year */
-(function(){ const y=$("#year"); if(y) y.textContent = new Date().getFullYear(); })();
+(() => { const y=$("#year"); if(y) y.textContent = new Date().getFullYear(); })();
 
 /* ======= Password Gate + Polls ======= */
-/**
- * Friendly, front-end-only password.
- * Change here when you want a new shared code.
- */
-const MEGA_PASSWORD = "MEGA2025";
+/** Friendly, front-end-only password (change whenever you like) */
+const MEGA_PASSWORD = "MEGA2025"; // <— change here if needed
 
 const gateForm = $("#gateForm");
 const gatePassword = $("#gatePassword");
 const coArea = $("#cocreateArea");
 
 if (gateForm) {
-  // Auto-open if previously unlocked this device
   const unlocked = localStorage.getItem("mega_cocreate_unlocked")==="1";
   if (unlocked) {
     gateForm.classList.add("hidden");
@@ -42,10 +38,8 @@ if (gateForm) {
 
 /* ======= Polls ======= */
 const POLL_COUNT = 10;
-// Poll 1 open now; others locked/coming later.
-const OPEN_POLLS = [1]; // e.g., make [1,2] later
+const OPEN_POLLS = [1]; // open poll IDs
 
-// Define Poll 1 question + choices; others get placeholders
 const POLL_DATA = [
   {
     id: 1,
@@ -58,17 +52,14 @@ const POLL_DATA = [
       "Floating Forest Village (new)"
     ]
   },
-  // The rest are stubs; you can rename freely
   ...Array.from({length: POLL_COUNT-1}, (_,i)=>({
     id: i+2, title: `Poll ${i+2} — Coming Soon`, options: ["A","B","C"]
   }))
 ];
 
-// Build polls UI
 function initPolls() {
   const grid = $("#pollsGrid");
   if (!grid) return;
-
   grid.innerHTML = "";
 
   POLL_DATA.forEach(p => {
@@ -76,12 +67,10 @@ function initPolls() {
     const votedKey = `mega_poll_${p.id}_vote`;
     const resultsKey = `mega_poll_${p.id}_results`;
 
-    // load results from localStorage (device-only demo)
     let results = JSON.parse(localStorage.getItem(resultsKey) || "[]");
     if (!Array.isArray(results) || results.length !== p.options.length) {
       results = Array.from({length: p.options.length},()=>0);
     }
-
     const votedIndex = parseInt(localStorage.getItem(votedKey) || "-1", 10);
 
     const el = document.createElement("article");
@@ -104,24 +93,19 @@ function initPolls() {
 
       const row = document.createElement("div");
       row.className = "choice";
-      row.innerHTML = `
-        <span>${label}</span>
-        <button ${(!isOpen || votedIndex>=0) ? "disabled" : ""}>Vote</button>
-      `;
+      row.innerHTML = `<span>${label}</span>
+        <button ${(!isOpen || votedIndex>=0) ? "disabled" : ""}>Vote</button>`;
 
       const bar = document.createElement("div");
       bar.className = "bar";
       bar.innerHTML = `<div class="fill" style="width:${percent}%"></div>`;
 
       row.querySelector("button").addEventListener("click", ()=>{
-        if (!isOpen) return;
-        if (votedIndex >= 0) return;
-
-        // add one vote locally
+        if (!isOpen || votedIndex >= 0) return;
         results[idx] += 1;
         localStorage.setItem(resultsKey, JSON.stringify(results));
         localStorage.setItem(votedKey, String(idx));
-        initPolls(); // re-render to show bars
+        initPolls();
       });
 
       choicesWrap.appendChild(row);
@@ -131,13 +115,9 @@ function initPolls() {
     grid.appendChild(el);
   });
 }
+if (coArea && !coArea.classList.contains("hidden")) { initPolls(); }
 
-// If already unlocked on load, render polls immediately
-if (coArea && !coArea.classList.contains("hidden")) {
-  initPolls();
-}
-
-/* Suggestions — local note only (nice placeholder) */
+/* Suggestions — local note only */
 const saveBtn = $("#saveSuggest");
 if (saveBtn) {
   saveBtn.addEventListener("click", ()=>{
