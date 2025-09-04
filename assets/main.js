@@ -19,7 +19,8 @@ const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
 const MEGA_PASSWORD = "MEGA2025";
 
 /** Google Apps Script Web App URL (set in Step 3 below) */
-const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/PASTE_DEPLOYMENT_ID/exec";
+const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID/exec";
+
 
 /** Give this static site an anonymous device/session id */
 function getSessionId(){
