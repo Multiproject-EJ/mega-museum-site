@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <meta name="description" content="The Mega-Museum Cinema — watch the co-creation story unfold in video form. Vote on what gets made next." />
 
-  <!-- Page-specific styles -->
+  <!-- Page-specific styles (kept here to keep this page self-contained) -->
   <style>
-    /* Hero teaser */
+    /* ---------- Teaser / hero ---------- */
     .creation-hero{
       display:grid; grid-template-columns:1.1fr 1fr; gap:18px; align-items:center; margin:10px 0 22px;
     }
@@ -35,7 +35,22 @@
       border-radius:12px;           /* match the frame curve */
     }
 
-    /* Cinema player + episodes */
+    /* Mini character card (MASU) */
+    .char-mini-grid{ display:flex; flex-wrap:wrap; gap:12px; margin:12px 0 14px; }
+    .char-card{
+      display:flex; align-items:center; gap:10px; padding:10px 12px;
+      border:1px solid var(--edge); border-radius:14px;
+      background:radial-gradient(140% 140% at 80% 0%, #ffffff 0%, #f6f9ff 45%, #eef2ff 100%);
+      box-shadow:0 4px 14px rgba(2,6,23,.06);
+    }
+    .char-card .avatar{
+      width:64px; height:64px; border-radius:12px; border:1px solid var(--edge);
+      background:#fff; padding:6px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+    }
+    .char-card .avatar img{ display:block; max-width:100%; max-height:100%; object-fit:contain; }
+    .char-card .name{ font-weight:800; line-height:1.2; }
+
+    /* ---------- Cinema player + episodes ---------- */
     .cinema{ margin:8px 0 24px; }
     .nowplay{ padding:0; }
     .player{
@@ -63,10 +78,8 @@
     .tag.lock{ background:#f8fafc; color:#6b7280; }
     .episodes-grid .btn{ margin-top:8px; }
 
-    /* Stages */
-    .stages-grid{
-      display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); margin:10px 0 18px;
-    }
+    /* ---------- Stages ---------- */
+    .stages-grid{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); margin:10px 0 18px; }
     .stage .kicker{
       display:inline-block; font-weight:800; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
       color:#155e75; background:#ecfeff; border:1px solid #cffafe; border-radius:999px; padding:4px 10px; margin-bottom:8px;
@@ -104,12 +117,27 @@
       <div class="creation-hero-copy">
         <h2 style="margin:0 0 8px">The Trio Is Taking Shape</h2>
         <p>Three main characters are being defined with the community. Vote on their <em>clothes</em>, <em>accessories</em>, <em>face structure</em>, and <em>names</em> — and watch them become canon in the episodes below.</p>
-        <div class="chips" style="margin:12px 0 16px">
+
+        <div class="chips" style="margin:12px 0 10px">
           <span class="chip">Clothes</span>
           <span class="chip">Accessories</span>
           <span class="chip">Face Structure</span>
           <span class="chip">Names</span>
         </div>
+
+        <!-- MASU mini card -->
+        <div class="char-mini-grid">
+          <div class="char-card">
+            <div class="avatar">
+              <img src="assets/img/characters/masu.png" alt="MASU — main character concept" loading="lazy">
+            </div>
+            <div class="meta">
+              <div class="name">MASU</div>
+              <div class="muted small">Main character — concept</div>
+            </div>
+          </div>
+        </div>
+
         <a class="btn primary" href="/#co-create">Vote in Co-Creation →</a>
       </div>
 
