@@ -3,181 +3,160 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mega-Museum — A Living VR Museum</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Mega-Museum — A living, evolving art experiment</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
-  <meta name="description" content="Mega-Museum — a living, evolving VR museum you can help build." />
+  <meta name="description" content="Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next." />
 </head>
 <body>
+
   <!-- NAV -->
- <header class="nav">
-  <a class="brand" href="/">
-    <span class="logo-circle">M</span>
-    <span class="brand-text">MEGA-MUSEUM</span>
-  </a>
-  <nav>
-<div class="dropdown">
-  <button class="dropbtn">Visit the Museum ▾</button>
-  <div class="dropdown-content">
-    <a href="rooms.html">Explore Rooms</a>
-    <a href="how-to.html"> & How-to</a>
-  </div>
-</div>
-
-    </div>
-    <a href="creation.html">Creation Story</a>
-    <a href="about.html">About</a>
-    <a class="btn primary small" href="#co-create">Co-Create</a>
-  </nav>
-</header>
-
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-wrap">
-        <p class="overline">A living, evolving art experiment</p>
-        <h1>The <span class="highlight">Mega-Museum</span><br/> is being built in public.</h1>
-        <p class="sub">Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next.</p>
-
-        <div class="cta">
-          <a class="btn primary" href="rooms.html">Enter VR Rooms</a>
-          <a class="btn ghost" href="#co-create">Co-Create with Us</a>
+  <header class="nav">
+    <a class="brand" href="/"><span class="logo-circle">M</span><span class="brand-text">MEGA-MUSEUM</span></a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="rooms.html">Explore Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
         </div>
-
-        <!-- quick join links under hero -->
-        <div class="quick-join">
-          <a href="#co-create">Kickstarter</a>
-          <span>·</span>
-          <a href="#co-create">Patreon</a>
-          <span>·</span>
-          <a href="#co-create">Newsletter & Social</a>
-        </div>
-
-        <div class="hero-marble" aria-hidden="true"></div>
       </div>
-    </section>
+      <a href="creation.html">Creation Story</a>
+      <a href="about.html">About</a>
+      <a class="btn primary small" href="/#co-create">Co-Create</a>
+    </nav>
+  </header>
 
-    <!-- TWO PILLARS -->
-    <section id="explore" class="pillars">
-      <article class="card pillar">
-        <div class="emoji">🕹️</div>
-        <h3>Explore Rooms</h3>
-        <p>From sketch to space: walk early rooms now. Each one has a clear status — Prototype, In-Progress, or Live.</p>
-        <a class="btn inline" href="rooms.html">Explore Rooms →</a>
-      </article>
-      <article class="card pillar">
-        <div class="emoji">🗳️</div>
-        <h3>Co-Creation</h3>
-        <p>Vote in time-boxed polls, suggest new ideas, unlock future rooms. One open poll at a time — 10 total lined up.</p>
-        <a class="btn inline" href="#co-create">Open Co-Creation →</a>
-      </article>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="overline">A living, evolving art experiment</div>
+      <h1>The <span class="highlight">Mega-Museum</span><br/> is being built in public.</h1>
+      <p class="sub">Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next.</p>
 
-    <!-- TIMELINE -->
-    <section class="timeline">
-      <h2>Road to the Museum</h2>
-      <ul class="steps">
-        <li><span>Now</span> First prototype rooms online</li>
-        <li><span>Next</span> Community polls open (Round 1)</li>
-        <li><span>Soon</span> “Hidden Rooms” &amp; “Garden Spiral” scenes</li>
-        <li><span>Later</span> Multi-floor VR tour + soundtrack</li>
-      </ul>
-    </section>
+      <div class="cta">
+        <a class="btn" href="rooms.html">Explore Rooms →</a>
+        <a class="btn primary" href="/#co-create">Co-Create with Us</a>
+      </div>
 
-    <!-- CO-CREATE -->
-    <section id="co-create" class="cocreate">
-      <div class="card cocreate-card">
-        <h2>Co-Create the Mega-Museum</h2>
-        <p class="muted">Enter the shared password to access active polls and leave suggestions.</p>
+      <p class="quick-join">
+        <a href="https://kickstarter.com" target="_blank">Kickstarter</a> ·
+        <a href="https://patreon.com" target="_blank">Patreon</a> ·
+        <a href="https://example.com/newsletter" target="_blank">Newsletter &amp; Social</a>
+      </p>
 
-        <form id="gateForm" class="gate">
-          <label for="gatePassword">Password</label>
-          <input id="gatePassword" type="password" placeholder="Enter password" autocomplete="current-password" required />
-          <button class="btn primary" type="submit">Enter</button>
-          <p class="gate-hint">Friendly gate only — not a secure login.</p>
-        </form>
+      <div class="hero-marble" aria-hidden="true"></div>
+    </div>
+  </section>
 
-        <!-- show these boxes even before unlocking -->
-        <div class="join-build public-join">
-          <h3>Ways to Join & Follow</h3>
-          <div class="join-grid">
-            <article class="card join">
-              <h4>🚀 Kickstarter</h4>
-              <p>Back the Mega-Museum’s big leaps. Early supporter perks & name in the credits.</p>
-              <a class="btn primary small" href="https://kickstarter.com" target="_blank">Join Kickstarter →</a>
-            </article>
-            <article class="card join">
-              <h4>🌟 Patreon</h4>
-              <p>Behind-the-scenes sketches, polls, and builder updates every month.</p>
-              <a class="btn primary small" href="https://patreon.com" target="_blank">Follow on Patreon →</a>
-            </article>
-            <article class="card join">
-              <h4>📧 Newsletter & Social</h4>
-              <p>Subscribe for progress drops, VR links, and new polls as they open.</p>
-              <a class="btn primary small" href="https://example.com/newsletter" target="_blank">Subscribe →</a>
-            </article>
-          </div>
+  <!-- PILLARS -->
+  <section class="pillars">
+    <article class="card pillar">
+      <div class="emoji">🕹️</div>
+      <h3>Explore Rooms</h3>
+      <p>From sketch to space: walk early rooms now. Each one has a clear status — Prototype, In-Progress, or Live.</p>
+      <a class="btn inline" href="rooms.html">Explore Rooms →</a>
+    </article>
+
+    <article class="card pillar">
+      <div class="emoji">📊</div>
+      <h3>Co-Creation</h3>
+      <p>Vote in time-boxed polls, suggest new ideas, unlock future rooms. One open poll at a time — 10 total lined up.</p>
+      <a class="btn inline" href="/#co-create">Open Co-Creation →</a>
+    </article>
+  </section>
+
+  <!-- CHARACTERS SECTION (before voting) -->
+  <section class="characters" id="characters">
+    <div class="char-wrap card">
+      <div class="char-copy">
+        <h2>Meet the Characters</h2>
+        <p>We’re developing <strong>three main characters</strong> for the Mega-Museum world. Help define their look and identity — your votes shape what becomes canon.</p>
+
+        <div class="chips">
+          <span class="chip">Clothes</span>
+          <span class="chip">Accessories</span>
+          <span class="chip">Face Structure</span>
+          <span class="chip">Names</span>
         </div>
 
-        <!-- unlocked area -->
-        <div id="cocreateArea" class="hidden">
-          <div class="polls-head">
-            <h3>Community Polls</h3>
-            <p class="muted">Poll 1 is open. Others unlock later. Your vote is saved on this device.</p>
-          </div>
-
-          <div class="polls-grid" id="pollsGrid"></div>
-
-          <div class="suggest-box">
-            <h4>Suggest a Room or Feature</h4>
-            <textarea id="suggestInput" rows="4" placeholder="Pitch an idea — rooms, rides, puzzles, music, anything…"></textarea>
-            <button id="saveSuggest" class="btn">Save Note (local)</button>
-            <p class="muted small" id="suggestSavedMsg" aria-live="polite"></p>
-          </div>
-
-          <div class="join-build">
-            <h3>Other Ways to Join the Build</h3>
-            <div class="join-grid">
-              <article class="card join">
-                <h4>🚀 Kickstarter</h4>
-                <p>Back the Mega-Museum’s big leaps. Early supporter perks & name in the credits.</p>
-                <a class="btn primary small" href="https://kickstarter.com" target="_blank">Join Kickstarter →</a>
-              </article>
-              <article class="card join">
-                <h4>🌟 Patreon</h4>
-                <p>Behind-the-scenes sketches, polls, and builder updates every month.</p>
-                <a class="btn primary small" href="https://patreon.com" target="_blank">Follow on Patreon →</a>
-              </article>
-              <article class="card join">
-                <h4>📧 Newsletter & Social</h4>
-                <p>Subscribe for progress drops, VR links, and new polls as they open.</p>
-                <a class="btn primary small" href="https://example.com/newsletter" target="_blank">Subscribe →</a>
-              </article>
+        <!-- Mini card(s) e.g., MASU -->
+        <div class="char-mini-grid">
+          <div class="char-card">
+            <div class="avatar">
+              <img src="assets/img/characters/masu.png" alt="MASU — main character concept" loading="lazy">
+            </div>
+            <div class="meta">
+              <div class="name">MASU</div>
+              <div class="muted small">Main character — concept</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div>
-          <strong><span class="logo-circle">M</span> MEGA-MUSEUM</strong><br/>
-          A growing VR museum built in public.
-        </div>
-        <div class="foot-links">
-          <a href="rooms.html">Rooms</a>
-          <a href="how-to.html">How-to</a>
-          <a href="creation.html">Creation Story</a>
-          <a href="about.html">About</a>
+        <div class="cta">
+          <a class="btn primary" href="/#co-create">Vote in Co-Creation →</a>
+          <a class="btn ghost" href="creation.html">Read the Creation Story</a>
         </div>
       </div>
-      <p class="tiny">© <span id="year"></span> Mega-Museum. All rights reserved.</p>
-    </footer>
-  </main>
+
+      <div class="char-media">
+        <!-- Use your teaser here, or replace with another image -->
+        <img src="assets/img/creation/characters-teaser.png" alt="Three mystery character silhouettes — Mega-Museum teaser">
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTIONAL TIMELINE -->
+  <section class="timeline">
+    <h2>How it works</h2>
+    <ul class="steps">
+      <li><span>Sketch</span> We drop early rooms and concepts — rough but walkable.</li>
+      <li><span>Vote</span> The community votes on what to refine, add, rename, or remove.</li>
+      <li><span>Upgrade</span> Rooms progress: Prototype → In-Progress → Live. Characters lock in.</li>
+      <li><span>Release</span> Selected scenes become part of the video series in the Creation Story.</li>
+    </ul>
+  </section>
+
+  <!-- CO-CREATE (polls) -->
+  <section class="cocreate" id="co-create">
+    <article class="card cocreate-card">
+      <h2>Co-Create with Us</h2>
+      <p class="muted">Enter the collaborator gate to access the live polls. It’s a friendly password — same for everyone.</p>
+
+      <!-- Gate -->
+      <form class="gate" id="gateForm" autocomplete="off">
+        <label for="gatePassword">Collaborator password</label>
+        <input id="gatePassword" type="password" placeholder="Enter password" required />
+        <button class="btn primary">Unlock</button>
+        <p class="gate-hint small">Once unlocked on this device, polls stay open.</p>
+      </form>
+
+      <!-- Polls area -->
+      <div id="cocreateArea" class="hidden">
+        <div class="polls-head">
+          <h3>Open Polls</h3>
+          <span class="muted small">Vote once per poll on this device. Results update live on your screen.</span>
+        </div>
+        <div class="polls-grid" id="pollsGrid"><!-- main.js renders here --></div>
+
+        <!-- Suggestions -->
+        <div class="suggest-box">
+          <h4>Have an idea?</h4>
+          <p class="muted small">Drop a quick suggestion. It saves locally for now — we’ll add syncing later.</p>
+          <textarea id="suggestInput" rows="4" placeholder="Pitch a room, a gag, a character tweak..."></textarea>
+          <div class="cta">
+            <button class="btn" id="saveSuggest" type="button">Save Note</button>
+            <span class="muted small" id="suggestSavedMsg" style="margin-left:8px"></span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer compact">
+    <div class="tiny">© <span id="year"></span> Mega-Museum</div>
+  </footer>
 
   <script src="assets/main.js"></script>
 </body>
