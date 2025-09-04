@@ -1,44 +1,48 @@
 /* =========================================================
-   Mega-Museum — main.js
-   - All polls open
-   - Optional thumbnails + lightbox
-   - Sends votes to Google Sheets Web App
+   Mega-Museum — main.js (v2)
+   - Footer year
+   - Friendly password gate
+   - All polls OPEN with optional thumbnails + lightbox
+   - Saves suggestions locally
+   - Sends votes to Google Sheets Web App (token-protected)
    ========================================================= */
 
+/* ---------- tiny helpers ---------- */
 const $  = (q,root=document)=>root.querySelector(q);
 const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
 
 /* Footer year */
-(() => { const y=$("#year"); if(y) y.textContent = new Date().getFullYear(); })();
+(() => { const y=$("#year"); if (y) y.textContent = new Date().getFullYear(); })();
 
-/* ---------------------------------------------------------
+/* ========================================================
    0) SETTINGS — EDIT THESE
-   --------------------------------------------------------- */
+   ======================================================== */
 
-/** Front-end only password (friendly gate) */
+/** Front-end only “friendly” password (gate the co-create area) */
 const MEGA_PASSWORD = "MEGA2025";
 
-/** Google Apps Script Web App URL (set in Step 3 below) */
-const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID/exec";
+/** Google Apps Script Web App URL (after you deploy, paste it here) */
+const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/PASTE_DEPLOYMENT_ID/exec";
 
+/** Shared token (set the same value in Apps Script → Script Properties → TOKEN) */
+const SHEETS_TOKEN = "CHANGE_ME_TO_A_LONG_RANDOM_STRING";
 
-/** Give this static site an anonymous device/session id */
+/** Per-device session id so you can de-dupe in Sheets if you ever want */
 function getSessionId(){
   let id = localStorage.getItem("mega_session_id");
   if (!id) {
-    const rand = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
-                 ("mm-" + Date.now().toString(36) + Math.random().toString(36).slice(2,8));
-    id = rand;
+    id = (crypto && crypto.randomUUID) ? crypto.randomUUID()
+                                       : ("mm-" + Date.now().toString(36) + Math.random().toString(36).slice(2,10));
     localStorage.setItem("mega_session_id", id);
   }
   return id;
 }
 
-/* ---------------------------------------------------------
-   1) POLL DATA — you can change text & add images
-   - Put poll images in: assets/img/polls/...
-   - Thumbnails are optional; if a file is missing it just hides.
-   --------------------------------------------------------- */
+/* ========================================================
+   1) POLL DATA — edit text, add/remove polls, add thumbnails
+   Put images under: assets/img/polls/...
+   Thumbnails are optional; missing files auto-hide.
+   ======================================================== */
 
 const POLL_DATA = [
   {
@@ -91,7 +95,7 @@ const POLL_DATA = [
   {
     id: 8,
     title: "Museum map — navigation",
-    options: ["Spiral up", "Hub and spokes", "Hidden shortcuts"]
+    options: ["Spiral up", "Hub & spokes", "Hidden shortcuts"]
   },
   {
     id: 9,
@@ -110,16 +114,16 @@ const POLL_DATA = [
   }
 ];
 
-/* ---------------------------------------------------------
-   2) GATE (friendly password)
-   --------------------------------------------------------- */
+/* ========================================================
+   2) FRIENDLY PASSWORD GATE
+   ======================================================== */
 
 const gateForm = $("#gateForm");
 const gatePassword = $("#gatePassword");
 const coArea = $("#cocreateArea");
 
 if (gateForm) {
-  const unlocked = localStorage.getItem("mega_cocreate_unlocked")==="1";
+  const unlocked = localStorage.getItem("mega_cocreate_unlocked") === "1";
   if (unlocked) {
     gateForm.classList.add("hidden");
     coArea.classList.remove("hidden");
@@ -141,24 +145,24 @@ if (gateForm) {
   });
 }
 
-/* ---------------------------------------------------------
-   3) POLLS — build UI, handle votes, thumbnails + lightbox
-   --------------------------------------------------------- */
+/* ========================================================
+   3) POLLS — render, vote, thumbnails + lightbox
+   ======================================================== */
 
-function initPolls() {
+function initPolls(){
   const grid = $("#pollsGrid");
   if (!grid) return;
 
   grid.innerHTML = "";
 
   POLL_DATA.forEach(p => {
-    const votedKey = `mega_poll_${p.id}_vote`;
+    const votedKey   = `mega_poll_${p.id}_vote`;
     const resultsKey = `mega_poll_${p.id}_results`;
 
-    // local (device) results to animate bars instantly
+    // local per-device results so bars animate instantly
     let results = JSON.parse(localStorage.getItem(resultsKey) || "[]");
     if (!Array.isArray(results) || results.length !== p.options.length) {
-      results = Array.from({length: p.options.length},()=>0);
+      results = Array.from({length: p.options.length}, () => 0);
     }
     const votedIndex = parseInt(localStorage.getItem(votedKey) || "-1", 10);
 
@@ -192,7 +196,7 @@ function initPolls() {
       card.appendChild(thumbs);
     }
 
-    // choices
+    // choices + bars
     const choicesWrap = document.createElement("div");
     choicesWrap.className = "choices";
 
@@ -214,13 +218,13 @@ function initPolls() {
       row.querySelector("button").addEventListener("click", ()=>{
         if (votedIndex >= 0) return; // already voted on this poll
 
-        // Update local UI
+        // 1) Update local UI
         results[idx] += 1;
         localStorage.setItem(resultsKey, JSON.stringify(results));
         localStorage.setItem(votedKey, String(idx));
-        initPolls(); // re-render
+        initPolls(); // re-render to lock buttons + update bars
 
-        // Fire-and-forget: send to Google Sheets
+        // 2) Fire-and-forget send to Google Sheets
         sendVoteToSheets({
           poll_id: p.id,
           poll_title: p.title,
@@ -242,19 +246,19 @@ function initPolls() {
   });
 }
 
-// Auto-render if already unlocked
+// If gate already unlocked, render polls immediately
 if (coArea && !coArea.classList.contains("hidden")) {
   initPolls();
 }
 
-/* ---------------------------------------------------------
-   4) Suggestions — local note only
-   --------------------------------------------------------- */
+/* ========================================================
+   4) Suggestions — local note only (saved in localStorage)
+   ======================================================== */
 
 const saveBtn = $("#saveSuggest");
 if (saveBtn) {
   saveBtn.addEventListener("click", ()=>{
-    const ta = $("#suggestInput");
+    const ta  = $("#suggestInput");
     const msg = $("#suggestSavedMsg");
     const txt = (ta.value || "").trim();
     if (!txt) { msg.textContent = "Please write something first."; return; }
@@ -267,9 +271,9 @@ if (saveBtn) {
   });
 }
 
-/* ---------------------------------------------------------
+/* ========================================================
    5) Lightbox (for poll thumbnails)
-   --------------------------------------------------------- */
+   ======================================================== */
 
 function ensureLightbox(){
   let lb = $("#lb");
@@ -297,7 +301,7 @@ function ensureLightbox(){
   document.addEventListener("keydown", (e)=>{
     if (!lb.classList.contains("open")) return;
     if (e.key === "Escape") lb.classList.remove("open");
-    if (e.key === "ArrowLeft") lb.querySelector(".lb-prev").click();
+    if (e.key === "ArrowLeft")  lb.querySelector(".lb-prev").click();
     if (e.key === "ArrowRight") lb.querySelector(".lb-next").click();
   });
 
@@ -322,20 +326,29 @@ function openLightbox(list, startIdx=0){
   lb.classList.add("open");
 }
 
-/* ---------------------------------------------------------
+/* ========================================================
    6) Send vote to Google Sheets (fire-and-forget)
-   --------------------------------------------------------- */
+   ======================================================== */
+
 function sendVoteToSheets(payload){
   try {
     if (!SHEETS_WEBAPP_URL || SHEETS_WEBAPP_URL.includes("PASTE_DEPLOYMENT_ID")) return;
+    // include shared token
+    const body = JSON.stringify({ ...payload, token: SHEETS_TOKEN });
+
+    // Use no-cors so we don't need response headers from Apps Script
     fetch(SHEETS_WEBAPP_URL, {
       method: "POST",
-      mode: "no-cors",              // avoids CORS issues; we don't need the response
+      mode: "no-cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      body
     });
   } catch (err) {
     // ignore network errors; UI already updated locally
     console.warn("Sheet send failed", err);
   }
 }
+
+/* ========================================================
+   End of file
+   ======================================================== */
