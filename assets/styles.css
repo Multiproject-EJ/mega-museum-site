@@ -40,7 +40,6 @@ body{
   display:flex; align-items:center; gap:8px;
   font-weight:800; text-decoration:none; color:var(--ink);
 }
-.brand-text{ font-weight:800; letter-spacing:.8px; }
 
 /* Circle M logo */
 .logo-circle{
