@@ -151,7 +151,7 @@
     </section>
 
     <!-- Cinema player -->
-    <section class="cinema">
+    <section class="cinema" id="cinema">
       <article class="card nowplay">
         <div class="nowplay-head">
           <div>
@@ -210,7 +210,7 @@
     </section>
 
     <!-- 3-Stage Long-Term Plan -->
-    <h2>Long-Term Plan — 3 Stages</h2>
+    <h2 id="plan">Long-Term Plan — 3 Stages</h2>
     <section class="stages-grid">
       <article class="card stage">
         <div class="kicker">Stage 1 (Now)</div>
@@ -271,8 +271,84 @@
     <p class="muted small" style="margin-top:14px">Want to influence the next chapter? <a href="/#co-create">Access Free Login</a>.</p>
   </main>
 
-  <footer class="footer compact">
-    <p>© <span id="year"></span> Mega-Museum</p>
+  <footer class="mega-footer">
+    <div class="mega-footer__inner">
+      <div class="mega-footer__brand">
+        <a class="mega-footer__logo" href="/" aria-label="Mega-Museum home">
+          <span class="logo-circle">M</span>
+          <span class="mega-footer__logotype">
+            <span>Mega-Museum</span>
+            <span class="mega-footer__tagline">VR Gallery &amp; Storyverse</span>
+          </span>
+        </a>
+        <p>An evolving virtual museum built with the community. Walk rooms in-progress, vote on what becomes canon, and follow the story as it unfolds in VR.</p>
+        <ul class="mega-footer__meta">
+          <li><strong>VR HQ:</strong> Persistent Cloud Gallery</li>
+          <li><strong>Email:</strong> <a href="mailto:hello@mega-museum.xyz">hello@mega-museum.xyz</a></li>
+          <li><strong>Community:</strong> <a href="https://discord.com/invite/megagallery" target="_blank" rel="noopener">Join the Builder Hub</a></li>
+        </ul>
+        <div class="mega-footer__cta">
+          <a class="btn primary" href="/#co-create">Free Login</a>
+          <a class="btn ghost" href="how-to.html">Book a VR Tour</a>
+        </div>
+      </div>
+
+      <div class="mega-footer__grid">
+        <section class="mega-footer__col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="rooms.html">Explore Prototype Rooms</a></li>
+            <li><a href="how-to.html">VR &amp; How-to</a></li>
+            <li><a href="about.html">Visitor FAQ</a></li>
+            <li><a href="mailto:hello@mega-museum.xyz?subject=Schedule%20a%20VR%20Tour">Schedule a VR Tour</a></li>
+          </ul>
+        </section>
+        <section class="mega-footer__col">
+          <h4>VR Experiences</h4>
+          <ul>
+            <li><a href="creation.html#cinema">Creation Story Episodes</a></li>
+            <li><a href="game.html">War Games Arena</a></li>
+            <li><a href="/#co-create">Community Polling Hub</a></li>
+            <li><a href="index.html#characters">Character Profiles</a></li>
+          </ul>
+        </section>
+        <section class="mega-footer__col">
+          <h4>Programs &amp; Labs</h4>
+          <ul>
+            <li><a href="mailto:hello@mega-museum.xyz?subject=Builder%20Residency">Builder Residency</a></li>
+            <li><a href="/#co-create">Live Vote Calendar</a></li>
+            <li><a href="mailto:hello@mega-museum.xyz?subject=Volunteer%20Test%20Pilot">Volunteer Test Pilots</a></li>
+            <li><a href="creation.html#plan">Storyverse Roadmap</a></li>
+          </ul>
+        </section>
+        <section class="mega-footer__col">
+          <h4>Support &amp; Partners</h4>
+          <ul>
+            <li><a href="https://kickstarter.com" target="_blank" rel="noopener">Kickstarter</a></li>
+            <li><a href="https://patreon.com" target="_blank" rel="noopener">Patreon</a></li>
+            <li><a href="mailto:partners@mega-museum.xyz">Sponsor a Room</a></li>
+            <li><a href="mailto:hello@mega-museum.xyz?subject=Press%20Inquiry">Press &amp; Media</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="mega-footer__divider"></div>
+    <div class="mega-footer__badges">
+      <span>Immersive Arts Fund</span>
+      <span>Indie VR Collective</span>
+      <span>Digital Heritage Network</span>
+      <span>Storyverse Labs</span>
+    </div>
+
+    <div class="mega-footer__bottom">
+      <div>© <span id="year"></span> Mega-Museum. Built with the community.</div>
+      <nav>
+        <a href="#">Privacy</a>
+        <a href="#">Community Guidelines</a>
+        <a href="mailto:hello@mega-museum.xyz?subject=Press%20Inquiry">Contact</a>
+      </nav>
+    </div>
   </footer>
 
   <!-- Tiny inline script for the playlist -->
