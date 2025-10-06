@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game — Mega-Museum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="description" content="Play the interactive Mega-Museum web game and help shape the future of the museum world." />
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="/"><span class="logo-circle">M</span><span class="brand-text">MEGA-MUSEUM</span></a>
+    <nav>
+      <div class="dropdown">
+        <button class="dropbtn">Visit the Museum ▾</button>
+        <div class="dropdown-content">
+          <a href="rooms.html">Explore Rooms</a>
+          <a href="how-to.html">VR & How-to</a>
+        </div>
+      </div>
+      <a href="creation.html">Creation Story</a>
+      <a href="game.html">Game</a>
+      <a href="about.html">About</a>
+      <a class="btn primary small" href="/#co-create">Co-Create</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap narrow">
+    <h1 class="page-title">Mega-Museum Game</h1>
+    <p>The Mega-Museum game is where our world becomes playable. We’re building a browser-based adventure that lets you wander
+      through evolving rooms, meet characters in motion, and influence the story in real time.</p>
+    <p class="muted">This page will become the hub for playtests, patch notes, and behind-the-scenes dev logs as the experience comes
+      online. Check back soon to jump into the first interactive build.</p>
+
+    <section class="card" style="margin-top:24px;">
+      <h2>Be first to play</h2>
+      <p>Want to know when the prototype launches? Join the co-creation crew so you can test the game, drop feedback, and help
+        decide which mechanics ship.</p>
+      <a class="btn primary" href="/#co-create">Join the Co-Creation Polls</a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer compact">
+    <div class="tiny">© <span id="year"></span> Mega-Museum</div>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
