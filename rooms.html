@@ -30,54 +30,137 @@
     <h1 class="page-title">VR Rooms</h1>
     <p class="muted">Walk early prototypes today. We label each room clearly so visitors know what to expect as things evolve.</p>
 
-    <div class="room-grid">
-      <article class="room card">
-        <div class="room-thumb placeholder">Hidden Rooms Hallway</div>
-        <div class="room-body">
-          <div class="room-top">
-            <h3>Hidden Rooms Hallway</h3>
-            <span class="badge proto">Prototype</span>
-          </div>
-          <p>A corridor that teases absurd secret doors. Tap hotspots to reveal evolving concepts.</p>
-          <div class="room-actions">
-            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Soon)</a>
-            <a class="btn ghost" href="#" aria-disabled="true">Sketch</a>
-          </div>
-        </div>
-      </article>
+    <section class="floor-map" aria-labelledby="floor-map-title">
+      <div class="floor-map__intro">
+        <h2 id="floor-map-title">Interactive Floor Map</h2>
+        <p>Flip between floors to peek at how each gallery connects. Tap a room zone to highlight it, preview the story beat, and then launch the Mental Canvas sketch without ever leaving the page.</p>
+      </div>
 
-      <article class="room card">
-        <div class="room-thumb placeholder">Garden Spiral</div>
-        <div class="room-body">
-          <div class="room-top">
-            <h3>Garden Spiral</h3>
-            <span class="badge wip">In-Progress</span>
-          </div>
-          <p>A slow spiral up through floating gardens. Light, birdsong, and a gentle VR lift.</p>
-          <div class="room-actions">
-            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Soon)</a>
-            <a class="btn ghost" href="#" aria-disabled="true">Concept</a>
-          </div>
-        </div>
-      </article>
+      <div class="floor-map__controls" role="tablist" aria-label="Museum floors">
+        <button class="floor-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="floor-1" id="floor-1-tab" data-floor-target="floor-1">Ground Floor</button>
+        <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-2" id="floor-2-tab" data-floor-target="floor-2">Upper Gallery</button>
+        <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-3" id="floor-3-tab" data-floor-target="floor-3">Deep Archive</button>
+      </div>
 
-      <article class="room card">
-        <div class="room-thumb placeholder">Under the Moat</div>
-        <div class="room-body">
-          <div class="room-top">
-            <h3>Under the Moat</h3>
-            <span class="badge live">Live</span>
-          </div>
-          <p>Descend into the museum’s submerged docks. Echoes, lanterns, and quiet machinery.</p>
-          <div class="room-actions">
-            <a class="btn primary" href="#" aria-disabled="true">Open Scene (Link)</a>
-            <a class="btn ghost" href="#" aria-disabled="true">Storyboard</a>
+      <div class="floor-plan is-active" id="floor-1" role="tabpanel" aria-labelledby="floor-1-tab" tabindex="0" data-floor-label="Ground Floor">
+        <div class="floor-plan__visual" data-popup-id="floor-1-popup">
+          <img src="assets/img/floorplans/floor-1.svg" alt="Ground floor layout featuring foyer, hallway, and archive." loading="lazy" />
+          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:33; --room-height:30;" data-room="hidden-hallway" data-title="Hidden Rooms Hallway" data-status="Prototype" data-state="prototype" data-thumb="Hidden Rooms" data-description="A corridor that teases absurd secret doors. Each hidden alcove evolves weekly based on community input." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="50" data-pop-y="32" data-pop-anchor="center" aria-controls="floor-1-popup" aria-expanded="false">
+            <span class="map-room__name">Hidden Rooms Hallway</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:50; --room-y:22; --room-width:13; --room-height:12;" data-room="entrance-foyer" data-title="Entrance Foyer" data-status="Concept" data-state="concept" data-thumb="Foyer" data-description="A light-filled welcome rotunda introducing the storyverse characters and current polls." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="64" data-pop-y="18" data-pop-anchor="right" aria-controls="floor-1-popup" aria-expanded="false">
+            <span class="map-room__name">Entrance Foyer</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:22; --room-y:56; --room-width:14; --room-height:26;" data-room="archive-nook" data-title="Archive Nook" data-status="Sketch" data-state="sketch" data-thumb="Archive" data-description="Tucked under the stairs, this nook lets visitors browse early lore documents and voice notes." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="32" data-pop-y="68" data-pop-anchor="left" aria-controls="floor-1-popup" aria-expanded="false">
+            <span class="map-room__name">Archive Nook</span>
+          </button>
+
+          <div class="floor-plan__popup" id="floor-1-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-1-popup-title" aria-describedby="floor-1-popup-description">
+            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-1-popup-status floor-1-popup-description" aria-labelledby="floor-1-popup-title">
+              <div class="floor-plan__popup-thumb" id="floor-1-popup-thumb" aria-hidden="true"></div>
+              <div class="floor-plan__popup-body">
+                <div class="floor-plan__popup-top">
+                  <h3 class="floor-plan__popup-title" id="floor-1-popup-title"></h3>
+                  <span class="floor-plan__popup-badge" id="floor-1-popup-badge" hidden></span>
+                </div>
+                <p class="floor-plan__popup-status" id="floor-1-popup-status"></p>
+                <p class="floor-plan__popup-description" id="floor-1-popup-description"></p>
+                <div class="floor-plan__popup-actions">
+                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
-      </article>
+      </div>
+
+      <div class="floor-plan" id="floor-2" role="tabpanel" aria-labelledby="floor-2-tab" tabindex="0" hidden data-floor-label="Upper Gallery">
+        <div class="floor-plan__visual" data-popup-id="floor-2-popup">
+          <img src="assets/img/floorplans/floor-2.svg" alt="Upper gallery layout with garden spiral, loft, and sound lab." loading="lazy" />
+          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:28; --room-height:32;" data-room="garden-spiral" data-title="Garden Spiral" data-status="In Progress" data-state="progress" data-thumb="Garden" data-description="A slow spiral through floating gardens with ambient storytelling beats and interactive pollen trails." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="28" data-pop-anchor="left" aria-controls="floor-2-popup" aria-expanded="false">
+            <span class="map-room__name">Garden Spiral</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:78; --room-y:32; --room-width:18; --room-height:18;" data-room="artist-loft" data-title="Artist Loft" data-status="Storyboard" data-state="storyboard" data-thumb="Loft" data-description="Peek at resident builders sketching live scenes and remixing audience prompts." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
+            <span class="map-room__name">Artist Loft</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:78; --room-y:68; --room-width:20; --room-height:20;" data-room="sound-lab" data-title="Sound Lab" data-status="Prototype" data-state="prototype" data-thumb="Sound" data-description="Test spatial audio experiments and vote on which soundscapes anchor the main exhibition." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="82" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
+            <span class="map-room__name">Sound Lab</span>
+          </button>
+
+          <div class="floor-plan__popup" id="floor-2-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-2-popup-title" aria-describedby="floor-2-popup-description">
+            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-2-popup-status floor-2-popup-description" aria-labelledby="floor-2-popup-title">
+              <div class="floor-plan__popup-thumb" id="floor-2-popup-thumb" aria-hidden="true"></div>
+              <div class="floor-plan__popup-body">
+                <div class="floor-plan__popup-top">
+                  <h3 class="floor-plan__popup-title" id="floor-2-popup-title"></h3>
+                  <span class="floor-plan__popup-badge" id="floor-2-popup-badge" hidden></span>
+                </div>
+                <p class="floor-plan__popup-status" id="floor-2-popup-status"></p>
+                <p class="floor-plan__popup-description" id="floor-2-popup-description"></p>
+                <div class="floor-plan__popup-actions">
+                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="floor-plan" id="floor-3" role="tabpanel" aria-labelledby="floor-3-tab" tabindex="0" hidden data-floor-label="Deep Archive">
+        <div class="floor-plan__visual" data-popup-id="floor-3-popup">
+          <img src="assets/img/floorplans/floor-3.svg" alt="Deep archive layout showcasing the vault, bay, and underwater docks." loading="lazy" />
+          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:30; --room-height:30;" data-room="vault" data-title="Lore Vault" data-status="Concept" data-state="concept" data-thumb="Vault" data-description="A climate-controlled vault storing relics and mysteries yet to be voted canon." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="36" data-pop-y="30" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
+            <span class="map-room__name">Lore Vault</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:28; --room-y:70; --room-width:18; --room-height:20;" data-room="submersible-bay" data-title="Submersible Bay" data-status="Prototype" data-state="prototype" data-thumb="Bay" data-description="Launch autonomous pods to scout future underwater expansions of the museum." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="82" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
+            <span class="map-room__name">Submersible Bay</span>
+          </button>
+          <button class="map-room" type="button" style="--room-x:78; --room-y:36; --room-width:20; --room-height:22;" data-room="under-moat" data-title="Under the Moat" data-status="Live" data-state="live" data-thumb="Moat" data-description="Descend into the museum’s submerged docks. Echoes, lanterns, and quiet machinery guide the tour." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-3-popup" aria-expanded="false">
+            <span class="map-room__name">Under the Moat</span>
+          </button>
+
+          <div class="floor-plan__popup" id="floor-3-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-3-popup-title" aria-describedby="floor-3-popup-description">
+            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-3-popup-status floor-3-popup-description" aria-labelledby="floor-3-popup-title">
+              <div class="floor-plan__popup-thumb" id="floor-3-popup-thumb" aria-hidden="true"></div>
+              <div class="floor-plan__popup-body">
+                <div class="floor-plan__popup-top">
+                  <h3 class="floor-plan__popup-title" id="floor-3-popup-title"></h3>
+                  <span class="floor-plan__popup-badge" id="floor-3-popup-badge" hidden></span>
+                </div>
+                <p class="floor-plan__popup-status" id="floor-3-popup-status"></p>
+                <p class="floor-plan__popup-description" id="floor-3-popup-description"></p>
+                <div class="floor-plan__popup-actions">
+                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="scene-modal" id="sceneModal" aria-hidden="true">
+      <div class="scene-modal__backdrop" data-close="true"></div>
+      <div class="scene-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="scene-modal-title" tabindex="-1">
+        <button class="scene-modal__close" type="button" data-close="true" aria-label="Close Mental Canvas viewer">×</button>
+        <div class="scene-modal__body">
+          <div class="scene-modal__header">
+            <p class="scene-modal__kicker" id="scene-modal-status"></p>
+            <h3 class="scene-modal__title" id="scene-modal-title"></h3>
+          </div>
+          <div class="scene-modal__viewer">
+            <iframe id="scene-modal-frame" title="Mental Canvas preview" src="" allowfullscreen loading="lazy"></iframe>
+            <p class="scene-modal__fallback">If the interactive preview doesn't load, <a id="scene-modal-link" href="https://www.mentalcanvas.net/f3jccxbfejj" target="_blank" rel="noopener">open the Mental Canvas scene in a new tab</a>.</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <p class="muted small">Want to influence what ships next? <a href="/#co-create">Join the Free Login polls</a>.</p>
   </main>
 
   <footer class="mega-footer">
@@ -160,6 +243,263 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll('.floor-tab');
+      const panels = document.querySelectorAll('.floor-plan');
+      const panelControllers = new Map();
+
+      const modal = document.getElementById('sceneModal');
+      const modalDialog = modal.querySelector('.scene-modal__dialog');
+      const modalFrame = document.getElementById('scene-modal-frame');
+      const modalTitle = document.getElementById('scene-modal-title');
+      const modalStatus = document.getElementById('scene-modal-status');
+      const modalLink = document.getElementById('scene-modal-link');
+      const closeButtons = modal.querySelectorAll('[data-close]');
+      let lastFocusedElement = null;
+
+      function openScene(url, title, status) {
+        if (!url) return;
+        modalFrame.src = url;
+        modalTitle.textContent = title || 'Mental Canvas Scene';
+        modalStatus.textContent = status || '';
+        modalLink.href = url;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+        modalDialog.focus();
+      }
+
+      function closeScene() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        modalFrame.src = '';
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
+        }
+      }
+
+      closeButtons.forEach((button) => {
+        button.addEventListener('click', closeScene);
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target.dataset && event.target.dataset.close === 'true') {
+          closeScene();
+        }
+      });
+
+      modal.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeScene();
+        }
+      });
+
+      panels.forEach((panel) => {
+        const popup = panel.querySelector('.floor-plan__popup');
+        const popupCard = panel.querySelector('.floor-plan__popup-card');
+        const popupThumb = panel.querySelector('.floor-plan__popup-thumb');
+        const popupBadge = panel.querySelector('.floor-plan__popup-badge');
+        const popupStatus = panel.querySelector('.floor-plan__popup-status');
+        const popupTitle = panel.querySelector('.floor-plan__popup-title');
+        const popupDescription = panel.querySelector('.floor-plan__popup-description');
+        const popupLaunch = panel.querySelector('.floor-plan__launch');
+        const popupLink = panel.querySelector('[data-open-new]');
+        const popupClose = panel.querySelector('[data-close-popup]');
+        const rooms = panel.querySelectorAll('.map-room');
+        let activeRoom = null;
+
+        function hidePopup(options = {}) {
+          if (popup.hidden) {
+            return;
+          }
+          popup.hidden = true;
+          popup.setAttribute('aria-hidden', 'true');
+          popup.style.removeProperty('--popup-x');
+          popup.style.removeProperty('--popup-y');
+          delete popup.dataset.anchor;
+          panel.classList.remove('floor-plan--has-selection');
+          popupCard.dataset.url = '';
+          popupCard.dataset.title = '';
+          popupCard.dataset.status = '';
+          popupThumb.textContent = '';
+          popupThumb.removeAttribute('data-state');
+          popupBadge.textContent = '';
+          popupBadge.removeAttribute('data-state');
+          popupBadge.hidden = true;
+          popupLaunch.dataset.url = '';
+          popupLaunch.dataset.title = '';
+          popupLaunch.dataset.status = '';
+          popupLink.href = 'https://www.mentalcanvas.net/f3jccxbfejj';
+          popupStatus.textContent = '';
+          popupTitle.textContent = '';
+          popupDescription.textContent = '';
+          if (activeRoom) {
+            activeRoom.classList.remove('is-active');
+            activeRoom.setAttribute('aria-expanded', 'false');
+            if (options.focusRoom) {
+              activeRoom.focus();
+            }
+            activeRoom = null;
+          }
+        }
+
+        function showPopup(roomButton) {
+          if (!roomButton) {
+            return;
+          }
+          if (activeRoom === roomButton && !popup.hidden) {
+            hidePopup();
+            return;
+          }
+          if (activeRoom && activeRoom !== roomButton) {
+            activeRoom.classList.remove('is-active');
+            activeRoom.setAttribute('aria-expanded', 'false');
+          }
+
+          activeRoom = roomButton;
+          activeRoom.classList.add('is-active');
+          activeRoom.setAttribute('aria-expanded', 'true');
+
+          const statusParts = [];
+          const status = roomButton.dataset.status || '';
+          const floorLabel = panel.dataset.floorLabel || '';
+          if (status) statusParts.push(status);
+          if (floorLabel) statusParts.push(floorLabel);
+          popupStatus.textContent = statusParts.join(' • ');
+          popupTitle.textContent = roomButton.dataset.title || 'Prototype Room';
+          popupDescription.textContent = roomButton.dataset.description || '';
+
+          const sceneUrl = roomButton.dataset.url || 'https://www.mentalcanvas.net/f3jccxbfejj';
+          const thumbLabel = roomButton.dataset.thumb || popupTitle.textContent || 'Room';
+          popupThumb.textContent = thumbLabel;
+          if (roomButton.dataset.state) {
+            popupThumb.dataset.state = roomButton.dataset.state;
+          } else {
+            popupThumb.removeAttribute('data-state');
+          }
+          popupBadge.hidden = !status;
+          popupBadge.textContent = status;
+          if (roomButton.dataset.state) {
+            popupBadge.dataset.state = roomButton.dataset.state;
+          } else {
+            popupBadge.removeAttribute('data-state');
+          }
+          popupCard.dataset.url = sceneUrl;
+          popupCard.dataset.title = popupTitle.textContent;
+          popupCard.dataset.status = popupStatus.textContent;
+          popupLaunch.dataset.url = sceneUrl;
+          popupLaunch.dataset.title = popupTitle.textContent;
+          popupLaunch.dataset.status = popupStatus.textContent;
+          popupLink.href = sceneUrl;
+
+          const popX = roomButton.dataset.popX;
+          const popY = roomButton.dataset.popY;
+          popup.style.setProperty('--popup-x', popX ? `${popX}%` : '50%');
+          popup.style.setProperty('--popup-y', popY ? `${popY}%` : '50%');
+          const anchor = roomButton.dataset.popAnchor || 'center';
+          popup.dataset.anchor = anchor;
+
+          popup.hidden = false;
+          popup.setAttribute('aria-hidden', 'false');
+          panel.classList.add('floor-plan--has-selection');
+          popupCard.focus();
+        }
+
+        rooms.forEach((roomButton) => {
+          roomButton.addEventListener('click', () => {
+            showPopup(roomButton);
+          });
+
+          roomButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              showPopup(roomButton);
+            }
+          });
+        });
+
+        popupLaunch.addEventListener('click', () => {
+          const url = popupLaunch.dataset.url;
+          if (!url) {
+            return;
+          }
+          lastFocusedElement = popupLaunch;
+          openScene(url, popupLaunch.dataset.title, popupLaunch.dataset.status);
+        });
+
+        popupCard.addEventListener('click', (event) => {
+          if (event.target.closest('.floor-plan__popup-actions')) {
+            return;
+          }
+          const url = popupCard.dataset.url;
+          if (!url) {
+            return;
+          }
+          lastFocusedElement = popupCard;
+          openScene(url, popupCard.dataset.title, popupCard.dataset.status);
+        });
+
+        popupCard.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            const url = popupCard.dataset.url;
+            if (!url) {
+              return;
+            }
+            lastFocusedElement = popupCard;
+            openScene(url, popupCard.dataset.title, popupCard.dataset.status);
+          }
+        });
+
+        popupClose.addEventListener('click', () => {
+          hidePopup({ focusRoom: true });
+        });
+
+        panel.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !popup.hidden) {
+            event.stopPropagation();
+            hidePopup({ focusRoom: true });
+          }
+        });
+
+        hidePopup();
+        panelControllers.set(panel.id, {
+          hide: () => hidePopup()
+        });
+      });
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const targetId = tab.getAttribute('data-floor-target');
+          if (!targetId) {
+            return;
+          }
+
+          panelControllers.forEach((controller) => controller.hide());
+
+          tabs.forEach((otherTab) => {
+            const isActive = otherTab === tab;
+            otherTab.classList.toggle('is-active', isActive);
+            otherTab.setAttribute('aria-selected', String(isActive));
+          });
+
+          panels.forEach((panel) => {
+            const matches = panel.id === targetId;
+            panel.classList.toggle('is-active', matches);
+            if (matches) {
+              panel.removeAttribute('hidden');
+              panel.focus();
+            } else {
+              panel.setAttribute('hidden', '');
+            }
+          });
+        });
+      });
+    })();
+  </script>
   <script src="assets/main.js"></script>
 </body>
 </html>

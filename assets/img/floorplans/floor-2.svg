@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="floor2-field" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f5f3ff" />
+      <stop offset="100%" stop-color="#e9d5ff" />
+    </linearGradient>
+    <linearGradient id="floor2-hall" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#ede9fe" />
+      <stop offset="100%" stop-color="#c7d2fe" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="52" fill="url(#floor2-field)" />
+  <g transform="translate(100 70)">
+    <rect x="0" y="0" width="1000" height="660" rx="42" fill="#ffffff" stroke="#312e81" stroke-width="14" />
+    <rect x="70" y="70" width="860" height="520" fill="#f8f5ff" stroke="#312e81" stroke-width="10" />
+
+    <g fill="none" stroke="#312e81" stroke-width="8">
+      <rect x="190" y="140" width="620" height="380" />
+      <rect x="330" y="200" width="340" height="260" />
+      <rect x="70" y="260" width="120" height="180" />
+      <rect x="810" y="260" width="120" height="180" />
+      <rect x="430" y="70" width="140" height="80" />
+      <rect x="430" y="520" width="140" height="70" />
+    </g>
+
+    <rect x="330" y="200" width="340" height="260" fill="url(#floor2-hall)" />
+    <path d="M330 330h340" stroke="#4338ca" stroke-width="10" />
+    <path d="M500 200v260" stroke="#4338ca" stroke-width="10" />
+
+    <g fill="none" stroke="#4338ca" stroke-width="6">
+      <rect x="330" y="200" width="170" height="130" rx="10" />
+      <rect x="500" y="200" width="170" height="130" rx="10" />
+      <rect x="330" y="330" width="170" height="130" rx="10" />
+      <rect x="500" y="330" width="170" height="130" rx="10" />
+      <path d="M330 265h-60" />
+      <path d="M330 395h-60" />
+      <path d="M670 265h60" />
+      <path d="M670 395h60" />
+      <path d="M500 200v-50" />
+      <path d="M500 460v60" />
+    </g>
+
+    <g fill="none" stroke="#312e81" stroke-width="6">
+      <rect x="190" y="140" width="120" height="70" />
+      <rect x="310" y="140" width="120" height="70" />
+      <rect x="430" y="140" width="120" height="70" />
+      <rect x="550" y="140" width="120" height="70" />
+      <rect x="670" y="140" width="120" height="70" />
+      <rect x="190" y="450" width="120" height="70" />
+      <rect x="310" y="450" width="120" height="70" />
+      <rect x="430" y="450" width="120" height="70" />
+      <rect x="550" y="450" width="120" height="70" />
+      <rect x="670" y="450" width="120" height="70" />
+      <rect x="70" y="260" width="120" height="60" />
+      <rect x="70" y="320" width="120" height="60" />
+      <rect x="70" y="380" width="120" height="60" />
+      <rect x="810" y="260" width="120" height="60" />
+      <rect x="810" y="320" width="120" height="60" />
+      <rect x="810" y="380" width="120" height="60" />
+    </g>
+
+    <g fill="#a855f7">
+      <rect x="190" y="140" width="620" height="36" />
+      <rect x="190" y="484" width="620" height="36" />
+      <rect x="70" y="260" width="120" height="24" />
+      <rect x="70" y="416" width="120" height="24" />
+      <rect x="810" y="260" width="120" height="24" />
+      <rect x="810" y="416" width="120" height="24" />
+    </g>
+
+    <g fill="#312e81" font-family="'Inter', sans-serif" font-size="26" font-weight="600" text-anchor="middle" opacity="0.65">
+      <text x="500" y="314">Garden Spiral</text>
+      <text x="740" y="250">Artist Loft</text>
+      <text x="740" y="430">Sound Lab</text>
+    </g>
+  </g>
+</svg>

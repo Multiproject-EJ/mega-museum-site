@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="floor1-field" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <linearGradient id="floor1-corridor" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="52" fill="url(#floor1-field)" />
+  <g transform="translate(100 70)">
+    <rect x="0" y="0" width="1000" height="660" rx="42" fill="#ffffff" stroke="#0f172a" stroke-width="14" />
+    <rect x="70" y="70" width="860" height="520" fill="#f8fafc" stroke="#0f172a" stroke-width="10" />
+
+    <g fill="none" stroke="#0f172a" stroke-width="8">
+      <rect x="180" y="150" width="640" height="360" />
+      <rect x="300" y="210" width="400" height="240" />
+      <rect x="420" y="70" width="160" height="80" />
+      <rect x="420" y="520" width="160" height="70" />
+      <rect x="70" y="260" width="110" height="180" />
+      <rect x="820" y="260" width="110" height="180" />
+    </g>
+
+    <rect x="300" y="210" width="400" height="240" fill="url(#floor1-corridor)" />
+    <rect x="180" y="150" width="640" height="360" fill="none" stroke="#94a3b8" stroke-width="6" stroke-dasharray="32 18" />
+
+    <g fill="#0f172a">
+      <rect x="496" y="150" width="8" height="360" />
+      <rect x="300" y="326" width="400" height="8" />
+      <rect x="180" y="246" width="120" height="8" />
+      <rect x="180" y="402" width="120" height="8" />
+      <rect x="700" y="246" width="120" height="8" />
+      <rect x="700" y="402" width="120" height="8" />
+      <rect x="480" y="70" width="8" height="80" />
+      <rect x="480" y="520" width="8" height="70" />
+    </g>
+
+    <g fill="none" stroke="#0f172a" stroke-width="6">
+      <rect x="180" y="150" width="120" height="60" />
+      <rect x="300" y="150" width="120" height="60" />
+      <rect x="420" y="150" width="120" height="60" />
+      <rect x="540" y="150" width="120" height="60" />
+      <rect x="660" y="150" width="120" height="60" />
+      <rect x="180" y="450" width="120" height="60" />
+      <rect x="300" y="450" width="120" height="60" />
+      <rect x="420" y="450" width="120" height="60" />
+      <rect x="540" y="450" width="120" height="60" />
+      <rect x="660" y="450" width="120" height="60" />
+      <rect x="70" y="260" width="110" height="60" />
+      <rect x="70" y="320" width="110" height="60" />
+      <rect x="70" y="380" width="110" height="60" />
+      <rect x="820" y="260" width="110" height="60" />
+      <rect x="820" y="320" width="110" height="60" />
+      <rect x="820" y="380" width="110" height="60" />
+    </g>
+
+    <g fill="#94a3b8">
+      <rect x="70" y="200" width="110" height="16" />
+      <rect x="70" y="484" width="110" height="16" />
+      <rect x="820" y="200" width="110" height="16" />
+      <rect x="820" y="484" width="110" height="16" />
+      <rect x="420" y="70" width="160" height="16" />
+      <rect x="420" y="574" width="160" height="16" />
+    </g>
+
+    <g fill="#0f172a" font-family="'Inter', sans-serif" font-size="28" font-weight="600" text-anchor="middle" opacity="0.65">
+      <text x="500" y="340">Hidden Rooms Hallway</text>
+      <text x="500" y="108">Entrance Foyer</text>
+      <text x="220" y="352">Archive Nook</text>
+    </g>
+  </g>
+</svg>
