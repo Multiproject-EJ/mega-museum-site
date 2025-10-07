@@ -27,9 +27,31 @@ body{
 
 /* ========== Top nav ========== */
 .nav{
-  position:sticky; top:0; z-index:60;
+  position:relative; z-index:60;
   display:flex; align-items:center; justify-content:center; gap:28px;
   padding:20px clamp(22px, 4vw, 60px);
+  background:rgba(15,23,42,.45);
+  border-bottom:1px solid rgba(148,163,184,.25);
+  backdrop-filter:blur(14px) saturate(160%);
+  transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+}
+
+.nav:hover,
+.nav:focus-within{
+  background:rgba(15,23,42,.55);
+  border-bottom:1px solid rgba(148,163,184,.35);
+  backdrop-filter:blur(16px) saturate(180%);
+}
+
+.has-hero .nav{
+  position:absolute; left:0; right:0; top:0;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  backdrop-filter:blur(0px) saturate(120%);
+}
+
+.has-hero .nav:hover,
+.has-hero .nav:focus-within{
   background:rgba(15,23,42,.45);
   border-bottom:1px solid rgba(148,163,184,.25);
   backdrop-filter:blur(14px) saturate(160%);
