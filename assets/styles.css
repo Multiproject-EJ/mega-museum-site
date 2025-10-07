@@ -27,50 +27,74 @@ body{
 
 /* ========== Top nav ========== */
 .nav{
-  position:sticky; top:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 22px;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:saturate(180%) blur(10px);
-  border-bottom:1px solid var(--edge);
+  position:sticky; top:0; z-index:60;
+  display:flex; align-items:center; justify-content:center; gap:28px;
+  padding:20px clamp(22px, 4vw, 60px);
+  background:rgba(15,23,42,.45);
+  border-bottom:1px solid rgba(148,163,184,.25);
+  backdrop-filter:blur(14px) saturate(160%);
 }
 
 /* Brand (logo + wordmark) */
 .brand{
-  display:flex; align-items:center; gap:8px;
-  font-weight:800; text-decoration:none; color:var(--ink);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  font-weight:800; text-decoration:none; color:#fff;
+  position:relative;
 }
 
 /* Circle M logo */
 .logo-circle{
   display:inline-flex; align-items:center; justify-content:center;
-  width:28px; height:28px; border-radius:50%;
-  background:var(--brand); color:#fff; font-weight:800; font-size:.95rem;
-  box-shadow:0 2px 6px rgba(2,6,23,.15);
+  width:36px; height:36px; border-radius:50%;
+  background:var(--brand); color:#fff; font-weight:800; font-size:1.05rem;
+  box-shadow:0 6px 25px rgba(14,165,233,.25);
 }
 
-/* Nav links */
-.nav nav a{
-  margin-left:14px; text-decoration:none; color:var(--ink); font-weight:600;
+.nav__group{
+  display:flex; align-items:center; gap:18px;
 }
-.nav nav a:hover{color:var(--brand)}
+.nav__group a,
+.dropbtn{
+  text-decoration:none; color:#fff; font-weight:700; letter-spacing:.02em;
+  position:relative;
+}
+.nav__group a::after,
+.dropbtn::after{
+  content:""; position:absolute; left:0; bottom:-6px; width:100%; height:2px;
+  background:linear-gradient(90deg, rgba(14,165,233,.8), rgba(30,64,175,.9));
+  transform:scaleX(0); transform-origin:left; transition:transform .2s ease;
+}
+.nav__group a:hover::after,
+.dropbtn:hover::after{transform:scaleX(1);}
+.nav__group a:hover,
+.dropbtn:hover{color:#fff;}
+.nav__group--right .btn{border-color:rgba(255,255,255,.35); background:rgba(14,165,233,.12); color:#fff;}
+.nav__group--right .btn:hover{background:rgba(14,165,233,.2);}
+
+.dropbtn{
+  background:transparent; border:none; cursor:pointer;
+  font:inherit; padding:8px 0;
+}
+
+@media (max-width: 900px){
+  .nav{flex-wrap:wrap; gap:16px; padding:18px 20px;}
+  .brand{order:-1;}
+  .nav__group{width:100%; justify-content:center; gap:14px;}
+  .nav__group--right{margin-bottom:4px;}
+}
 
 /* Dropdown */
 .dropdown{ position:relative; display:inline-block; }
-.dropbtn{
-  background:transparent; border:none; cursor:pointer;
-  font:inherit; color:var(--ink); font-weight:700; padding:8px 12px;
-}
-.dropbtn:hover{ color:var(--brand); }
 .dropdown-content{
-  display:none; position:absolute; background:#fff; min-width:200px;
-  border:1px solid var(--edge); border-radius:12px;
-  box-shadow:0 8px 16px rgba(2,6,23,.12); z-index:1000;
+  display:none; position:absolute; background:rgba(15,23,42,.95); min-width:220px;
+  border:1px solid rgba(148,163,184,.25); border-radius:14px;
+  box-shadow:0 20px 40px rgba(15,23,42,.45); z-index:1000;
+  padding:10px 0;
 }
 .dropdown-content a{
-  display:block; padding:10px 14px; color:var(--ink); text-decoration:none;
+  display:block; padding:10px 18px; color:#fff; text-decoration:none; font-weight:600;
 }
-.dropdown-content a:hover{ background:#f1f5f9; color:var(--brand) }
+.dropdown-content a:hover{ background:rgba(30,64,175,.35); }
 .dropdown:hover .dropdown-content{ display:block; }
 
 /* ========== Buttons ========== */
@@ -90,25 +114,45 @@ body{
 .btn.small{padding:8px 12px; font-size:.92rem}
 
 /* ========== Hero ========== */
-.hero{ padding:80px 22px 40px; }
-.hero-wrap{ max-width:1100px; margin:0 auto; position:relative; }
-.hero h1{ font-size: clamp(2rem, 4vw, 4rem); line-height:1.05; margin:0 0 12px; }
+.hero{
+  position:relative; padding:160px 22px 120px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.hero-video{
+  position:absolute; inset:0;
+  z-index:0; overflow:hidden;
+}
+.hero-video::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(15,23,42,.25) 0%, rgba(15,23,42,.55) 55%, rgba(15,23,42,.88) 100%);
+}
+.hero-video video{
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(120%);
+  transition:filter .4s ease;
+}
+.hero-wrap{
+  max-width:1100px; margin:0 auto; position:relative; z-index:1;
+  color:#fff;
+}
+.hero h1{ font-size: clamp(2.5rem, 6vw, 4.6rem); line-height:1.02; margin:0 0 16px; text-transform:uppercase; }
 .highlight{
-  background:linear-gradient(90deg, var(--brand), var(--accent));
+  background:linear-gradient(90deg, rgba(14,165,233,1), rgba(59,130,246,1));
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.sub{max-width:720px; color:var(--muted); font-size:1.12rem}
-.cta{display:flex; gap:12px; margin-top:18px}
-.quick-join{margin-top:10px; color:var(--muted)}
-.quick-join a{color:var(--brand); text-decoration:none}
+.sub{max-width:720px; color:rgba(255,255,255,.82); font-size:1.14rem}
+.cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
+.cta .btn{background:rgba(15,23,42,.6); border-color:rgba(255,255,255,.3); color:#fff;}
+.cta .btn.primary{background:linear-gradient(135deg, rgba(14,165,233,.2), rgba(30,64,175,.5)); border-color:rgba(14,165,233,.4); color:#fff;}
+.cta .btn:hover{background:rgba(15,23,42,.75);}
+.quick-join{margin-top:20px; color:rgba(255,255,255,.75)}
+.quick-join a{color:#fff; text-decoration:none; font-weight:600}
 .quick-join a:hover{text-decoration:underline}
 
-.hero-marble{
-  position:absolute; right:-40px; top:-30px; width:260px; height:260px;
-  background:radial-gradient(circle at 30% 30%, #fff 0%, #eef2ff 50%, #dbeafe 100%);
-  border-radius:50%; filter:blur(0.5px);
-  box-shadow: inset 0 40px 60px rgba(30,64,175,.08), 0 28px 60px rgba(2,6,23,.08);
-}
+header.nav:hover + .hero .hero-video video,
+header.nav:focus-within + .hero .hero-video video{ filter:blur(8px) saturate(80%); }
+.hero .overline{color:rgba(255,255,255,.7)}
 
 /* ========== Pillars / Cards ========== */
 .pillars{

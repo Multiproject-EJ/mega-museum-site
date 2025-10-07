@@ -13,8 +13,7 @@
 
   <!-- NAV -->
   <header class="nav">
-    <a class="brand" href="/" aria-label="Mega-Museum home"><span class="logo-circle">M</span></a>
-    <nav>
+    <nav class="nav__group nav__group--left" aria-label="Primary navigation">
       <div class="dropdown">
         <button class="dropbtn">Visit the Museum ▾</button>
         <div class="dropdown-content">
@@ -23,6 +22,9 @@
         </div>
       </div>
       <a href="creation.html">Creation Story</a>
+    </nav>
+    <a class="brand" href="/" aria-label="Mega-Museum home"><span class="logo-circle">M</span></a>
+    <nav class="nav__group nav__group--right" aria-label="Secondary navigation">
       <a href="game.html">War Games</a>
       <a href="about.html">About</a>
       <a class="btn primary small" href="/#co-create">Free Login</a>
@@ -31,6 +33,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-video" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="assets/img/creation/characters-teaser.png">
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="hero-wrap">
       <div class="overline">A living, evolving art experiment</div>
       <h1>The <span class="highlight">Mega-Museum</span><br/> is being built in public.</h1>
@@ -47,7 +54,6 @@
         <a href="https://example.com/newsletter" target="_blank">Newsletter &amp; Social</a>
       </p>
 
-      <div class="hero-marble" aria-hidden="true"></div>
     </div>
   </section>
 
