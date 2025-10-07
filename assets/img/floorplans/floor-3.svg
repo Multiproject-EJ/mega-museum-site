@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="floor3-field" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="floor3-core" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="52" fill="url(#floor3-field)" />
+  <g transform="translate(100 70)">
+    <rect x="0" y="0" width="1000" height="660" rx="42" fill="#0f172a" stroke="#cbd5f5" stroke-width="14" />
+    <rect x="70" y="70" width="860" height="520" fill="#111c2d" stroke="#cbd5f5" stroke-width="10" />
+
+    <g fill="none" stroke="#cbd5f5" stroke-width="8">
+      <rect x="190" y="140" width="620" height="380" />
+      <rect x="320" y="210" width="360" height="240" rx="16" />
+      <rect x="430" y="70" width="140" height="80" />
+      <rect x="430" y="520" width="140" height="70" />
+      <rect x="70" y="260" width="120" height="180" />
+      <rect x="810" y="260" width="120" height="180" />
+    </g>
+
+    <rect x="320" y="210" width="360" height="240" rx="16" fill="url(#floor3-core)" />
+    <circle cx="500" cy="330" r="96" fill="#1f2937" stroke="#38bdf8" stroke-width="12" />
+    <path d="M320 330h-130" stroke="#38bdf8" stroke-width="10" />
+    <path d="M680 330h130" stroke="#38bdf8" stroke-width="10" />
+    <path d="M500 210v-70" stroke="#38bdf8" stroke-width="10" />
+    <path d="M500 450v90" stroke="#38bdf8" stroke-width="10" />
+
+    <g fill="none" stroke="#38bdf8" stroke-width="6">
+      <rect x="320" y="210" width="180" height="120" rx="12" />
+      <rect x="500" y="210" width="180" height="120" rx="12" />
+      <rect x="320" y="330" width="180" height="120" rx="12" />
+      <rect x="500" y="330" width="180" height="120" rx="12" />
+      <path d="M320 270h-70" />
+      <path d="M320 390h-70" />
+      <path d="M680 270h70" />
+      <path d="M680 390h70" />
+      <path d="M500 210v-40" />
+      <path d="M500 450v60" />
+    </g>
+
+    <g fill="none" stroke="#cbd5f5" stroke-width="6">
+      <rect x="190" y="140" width="120" height="70" />
+      <rect x="310" y="140" width="120" height="70" />
+      <rect x="430" y="140" width="120" height="70" />
+      <rect x="550" y="140" width="120" height="70" />
+      <rect x="670" y="140" width="120" height="70" />
+      <rect x="190" y="450" width="120" height="70" />
+      <rect x="310" y="450" width="120" height="70" />
+      <rect x="430" y="450" width="120" height="70" />
+      <rect x="550" y="450" width="120" height="70" />
+      <rect x="670" y="450" width="120" height="70" />
+      <rect x="70" y="260" width="120" height="60" />
+      <rect x="70" y="320" width="120" height="60" />
+      <rect x="70" y="380" width="120" height="60" />
+      <rect x="810" y="260" width="120" height="60" />
+      <rect x="810" y="320" width="120" height="60" />
+      <rect x="810" y="380" width="120" height="60" />
+    </g>
+
+    <g fill="#38bdf8" opacity="0.6">
+      <rect x="70" y="312" width="120" height="76" rx="10" />
+      <rect x="810" y="286" width="120" height="76" rx="10" />
+      <rect x="430" y="520" width="140" height="70" rx="10" />
+    </g>
+
+    <g fill="#cbd5f5" font-family="'Inter', sans-serif" font-size="26" font-weight="600" text-anchor="middle" opacity="0.7">
+      <text x="500" y="324">Lore Vault</text>
+      <text x="500" y="356">Core Chamber</text>
+      <text x="290" y="360">Submersible Bay</text>
+      <text x="770" y="320">Under the Moat</text>
+    </g>
+  </g>
+</svg>
