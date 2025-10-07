@@ -1,0 +1,34 @@
+<svg width="480" height="360" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gameBg" x1="40" y1="30" x2="420" y2="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ecfeff" />
+      <stop offset="1" stop-color="#cffafe" />
+    </linearGradient>
+    <linearGradient id="gameGlow" x1="140" y1="110" x2="360" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.7" />
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.4" />
+    </linearGradient>
+    <filter id="glow" x="0" y="0" width="480" height="360" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="24" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="480" height="360" rx="42" fill="url(#gameBg)" />
+  <g filter="url(#glow)">
+    <circle cx="240" cy="188" r="118" fill="url(#gameGlow)" />
+    <rect x="162" y="120" width="156" height="116" rx="30" fill="#0ea5e9" fill-opacity="0.85" />
+    <rect x="182" y="140" width="116" height="76" rx="20" fill="#0f172a" fill-opacity="0.9" />
+    <circle cx="204" cy="234" r="18" fill="#f1f5f9" />
+    <circle cx="276" cy="234" r="18" fill="#f1f5f9" />
+    <path d="M204 226v16" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+    <path d="M196 234h16" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+    <path d="M268 234h16" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+    <path d="M276 226v16" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+    <circle cx="232" cy="178" r="18" fill="#38bdf8" />
+    <path d="M226 178l8-6v12l-8-6z" fill="#f8fafc" />
+  </g>
+  <path d="M64 78c22 12 46 32 90 26 70-10 90-54 150-44 54 8 70 56 132 66" stroke="#0ea5e9" stroke-opacity="0.25" stroke-width="8" stroke-linecap="round" />
+</svg>

@@ -1,0 +1,28 @@
+<svg width="480" height="360" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="voteGradient" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7ed" />
+      <stop offset="1" stop-color="#fee2e2" />
+    </linearGradient>
+    <linearGradient id="voteCard" x1="80" y1="80" x2="360" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fef3c7" />
+      <stop offset="1" stop-color="#fbcfe8" />
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="480" height="360" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(190,24,93,0.28)" />
+    </filter>
+  </defs>
+  <rect width="480" height="360" rx="42" fill="url(#voteGradient)" />
+  <g filter="url(#shadow)">
+    <rect x="84" y="70" width="312" height="220" rx="28" fill="white" fill-opacity="0.86" />
+    <rect x="104" y="92" width="272" height="180" rx="20" fill="url(#voteCard)" />
+    <rect x="124" y="116" width="152" height="28" rx="14" fill="#1f2937" fill-opacity="0.16" />
+    <rect x="124" y="166" width="192" height="28" rx="14" fill="#1f2937" fill-opacity="0.16" />
+    <rect x="124" y="216" width="132" height="28" rx="14" fill="#1f2937" fill-opacity="0.16" />
+    <circle cx="340" cy="130" r="22" fill="#f97316" />
+    <path d="M330 130l8.5 8.5L350 127" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="340" cy="180" r="22" fill="#f87171" fill-opacity="0.4" />
+    <circle cx="340" cy="230" r="22" fill="#f87171" fill-opacity="0.2" />
+  </g>
+  <path d="M60 292c48 28 120 50 180 18 78-42 136 14 180 0" stroke="#f97316" stroke-opacity="0.3" stroke-width="6" stroke-linecap="round" />
+</svg>
