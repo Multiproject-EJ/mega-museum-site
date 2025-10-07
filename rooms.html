@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
 </head>
-<body>
+<body class="has-hero rooms-page">
   <header class="nav">
     <nav class="nav__group nav__group--left" aria-label="Primary navigation">
       <div class="dropdown">
@@ -28,137 +28,145 @@
     </nav>
   </header>
 
-  <main class="page-wrap">
-    <h1 class="page-title">VR Rooms</h1>
-    <p class="muted">Walk early prototypes today. We label each room clearly so visitors know what to expect as things evolve.</p>
-
-    <section class="floor-map" aria-labelledby="floor-map-title">
-      <div class="floor-map__intro">
-        <h2 id="floor-map-title">Interactive Floor Map</h2>
-        <p>Flip between floors to peek at how each gallery connects. Tap a room zone to highlight it, preview the story beat, and then launch the Mental Canvas sketch without ever leaving the page.</p>
-      </div>
-
-      <div class="floor-map__controls" role="tablist" aria-label="Museum floors">
-        <button class="floor-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="floor-1" id="floor-1-tab" data-floor-target="floor-1">Ground Floor</button>
-        <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-2" id="floor-2-tab" data-floor-target="floor-2">Upper Gallery</button>
-        <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-3" id="floor-3-tab" data-floor-target="floor-3">Deep Archive</button>
-      </div>
-
-      <div class="floor-plan is-active" id="floor-1" role="tabpanel" aria-labelledby="floor-1-tab" tabindex="0" data-floor-label="Ground Floor">
-        <div class="floor-plan__visual" data-popup-id="floor-1-popup">
-          <img src="assets/img/floorplans/floor-1.svg" alt="Ground floor layout featuring foyer, hallway, and archive." loading="lazy" />
-          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:33; --room-height:30;" data-room="hidden-hallway" data-title="Hidden Rooms Hallway" data-status="Prototype" data-state="prototype" data-thumb="Hidden Rooms" data-description="A corridor that teases absurd secret doors. Each hidden alcove evolves weekly based on community input." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="50" data-pop-y="32" data-pop-anchor="center" aria-controls="floor-1-popup" aria-expanded="false">
-            <span class="map-room__name">Hidden Rooms Hallway</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:50; --room-y:22; --room-width:13; --room-height:12;" data-room="entrance-foyer" data-title="Entrance Foyer" data-status="Concept" data-state="concept" data-thumb="Foyer" data-description="A light-filled welcome rotunda introducing the storyverse characters and current polls." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="64" data-pop-y="18" data-pop-anchor="right" aria-controls="floor-1-popup" aria-expanded="false">
-            <span class="map-room__name">Entrance Foyer</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:22; --room-y:56; --room-width:14; --room-height:26;" data-room="archive-nook" data-title="Archive Nook" data-status="Sketch" data-state="sketch" data-thumb="Archive" data-description="Tucked under the stairs, this nook lets visitors browse early lore documents and voice notes." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="32" data-pop-y="68" data-pop-anchor="left" aria-controls="floor-1-popup" aria-expanded="false">
-            <span class="map-room__name">Archive Nook</span>
-          </button>
-
-          <div class="floor-plan__popup" id="floor-1-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-1-popup-title" aria-describedby="floor-1-popup-description">
-            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
-            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-1-popup-status floor-1-popup-description" aria-labelledby="floor-1-popup-title">
-              <div class="floor-plan__popup-thumb" id="floor-1-popup-thumb" aria-hidden="true"></div>
-              <div class="floor-plan__popup-body">
-                <div class="floor-plan__popup-top">
-                  <h3 class="floor-plan__popup-title" id="floor-1-popup-title"></h3>
-                  <span class="floor-plan__popup-badge" id="floor-1-popup-badge" hidden></span>
-                </div>
-                <p class="floor-plan__popup-status" id="floor-1-popup-status"></p>
-                <p class="floor-plan__popup-description" id="floor-1-popup-description"></p>
-                <div class="floor-plan__popup-actions">
-                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
-                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="floor-plan" id="floor-2" role="tabpanel" aria-labelledby="floor-2-tab" tabindex="0" hidden data-floor-label="Upper Gallery">
-        <div class="floor-plan__visual" data-popup-id="floor-2-popup">
-          <img src="assets/img/floorplans/floor-2.svg" alt="Upper gallery layout with garden spiral, loft, and sound lab." loading="lazy" />
-          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:28; --room-height:32;" data-room="garden-spiral" data-title="Garden Spiral" data-status="In Progress" data-state="progress" data-thumb="Garden" data-description="A slow spiral through floating gardens with ambient storytelling beats and interactive pollen trails." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="28" data-pop-anchor="left" aria-controls="floor-2-popup" aria-expanded="false">
-            <span class="map-room__name">Garden Spiral</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:78; --room-y:32; --room-width:18; --room-height:18;" data-room="artist-loft" data-title="Artist Loft" data-status="Storyboard" data-state="storyboard" data-thumb="Loft" data-description="Peek at resident builders sketching live scenes and remixing audience prompts." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
-            <span class="map-room__name">Artist Loft</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:78; --room-y:68; --room-width:20; --room-height:20;" data-room="sound-lab" data-title="Sound Lab" data-status="Prototype" data-state="prototype" data-thumb="Sound" data-description="Test spatial audio experiments and vote on which soundscapes anchor the main exhibition." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="82" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
-            <span class="map-room__name">Sound Lab</span>
-          </button>
-
-          <div class="floor-plan__popup" id="floor-2-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-2-popup-title" aria-describedby="floor-2-popup-description">
-            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
-            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-2-popup-status floor-2-popup-description" aria-labelledby="floor-2-popup-title">
-              <div class="floor-plan__popup-thumb" id="floor-2-popup-thumb" aria-hidden="true"></div>
-              <div class="floor-plan__popup-body">
-                <div class="floor-plan__popup-top">
-                  <h3 class="floor-plan__popup-title" id="floor-2-popup-title"></h3>
-                  <span class="floor-plan__popup-badge" id="floor-2-popup-badge" hidden></span>
-                </div>
-                <p class="floor-plan__popup-status" id="floor-2-popup-status"></p>
-                <p class="floor-plan__popup-description" id="floor-2-popup-description"></p>
-                <div class="floor-plan__popup-actions">
-                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
-                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="floor-plan" id="floor-3" role="tabpanel" aria-labelledby="floor-3-tab" tabindex="0" hidden data-floor-label="Deep Archive">
-        <div class="floor-plan__visual" data-popup-id="floor-3-popup">
-          <img src="assets/img/floorplans/floor-3.svg" alt="Deep archive layout showcasing the vault, bay, and underwater docks." loading="lazy" />
-          <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:30; --room-height:30;" data-room="vault" data-title="Lore Vault" data-status="Concept" data-state="concept" data-thumb="Vault" data-description="A climate-controlled vault storing relics and mysteries yet to be voted canon." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="36" data-pop-y="30" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
-            <span class="map-room__name">Lore Vault</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:28; --room-y:70; --room-width:18; --room-height:20;" data-room="submersible-bay" data-title="Submersible Bay" data-status="Prototype" data-state="prototype" data-thumb="Bay" data-description="Launch autonomous pods to scout future underwater expansions of the museum." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="82" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
-            <span class="map-room__name">Submersible Bay</span>
-          </button>
-          <button class="map-room" type="button" style="--room-x:78; --room-y:36; --room-width:20; --room-height:22;" data-room="under-moat" data-title="Under the Moat" data-status="Live" data-state="live" data-thumb="Moat" data-description="Descend into the museum’s submerged docks. Echoes, lanterns, and quiet machinery guide the tour." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-3-popup" aria-expanded="false">
-            <span class="map-room__name">Under the Moat</span>
-          </button>
-
-          <div class="floor-plan__popup" id="floor-3-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-3-popup-title" aria-describedby="floor-3-popup-description">
-            <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
-            <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-3-popup-status floor-3-popup-description" aria-labelledby="floor-3-popup-title">
-              <div class="floor-plan__popup-thumb" id="floor-3-popup-thumb" aria-hidden="true"></div>
-              <div class="floor-plan__popup-body">
-                <div class="floor-plan__popup-top">
-                  <h3 class="floor-plan__popup-title" id="floor-3-popup-title"></h3>
-                  <span class="floor-plan__popup-badge" id="floor-3-popup-badge" hidden></span>
-                </div>
-                <p class="floor-plan__popup-status" id="floor-3-popup-status"></p>
-                <p class="floor-plan__popup-description" id="floor-3-popup-description"></p>
-                <div class="floor-plan__popup-actions">
-                  <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
-                  <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
+  <main>
+    <section class="page-hero page-hero--rooms" aria-labelledby="rooms-hero-title">
+      <div class="page-hero__content">
+        <p class="page-hero__kicker">Explore VR prototypes</p>
+        <h1 class="page-hero__title" id="rooms-hero-title">VR Rooms</h1>
+        <p class="page-hero__subtitle">Walk early prototypes today. We label each room clearly so visitors know what to expect as things evolve.</p>
       </div>
     </section>
 
-    <div class="scene-modal" id="sceneModal" aria-hidden="true">
-      <div class="scene-modal__backdrop" data-close="true"></div>
-      <div class="scene-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="scene-modal-title" tabindex="-1">
-        <button class="scene-modal__close" type="button" data-close="true" aria-label="Close Mental Canvas viewer">×</button>
-        <div class="scene-modal__body">
-          <div class="scene-modal__header">
-            <p class="scene-modal__kicker" id="scene-modal-status"></p>
-            <h3 class="scene-modal__title" id="scene-modal-title"></h3>
+    <div class="page-wrap">
+
+      <section class="floor-map" aria-labelledby="floor-map-title">
+        <div class="floor-map__intro">
+          <h2 id="floor-map-title">Interactive Floor Map</h2>
+          <p>Flip between floors to peek at how each gallery connects. Tap a room zone to highlight it, preview the story beat, and then launch the Mental Canvas sketch without ever leaving the page.</p>
+        </div>
+
+        <div class="floor-map__controls" role="tablist" aria-label="Museum floors">
+          <button class="floor-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="floor-1" id="floor-1-tab" data-floor-target="floor-1">Ground Floor</button>
+          <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-2" id="floor-2-tab" data-floor-target="floor-2">Upper Gallery</button>
+          <button class="floor-tab" type="button" role="tab" aria-selected="false" aria-controls="floor-3" id="floor-3-tab" data-floor-target="floor-3">Deep Archive</button>
+        </div>
+
+        <div class="floor-plan is-active" id="floor-1" role="tabpanel" aria-labelledby="floor-1-tab" tabindex="0" data-floor-label="Ground Floor">
+          <div class="floor-plan__visual" data-popup-id="floor-1-popup">
+            <img src="assets/img/floorplans/floor-1.svg" alt="Ground floor layout featuring foyer, hallway, and archive." loading="lazy" />
+            <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:33; --room-height:30;" data-room="hidden-hallway" data-title="Hidden Rooms Hallway" data-status="Prototype" data-state="prototype" data-thumb="Hidden Rooms" data-description="A corridor that teases absurd secret doors. Each hidden alcove evolves weekly based on community input." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="50" data-pop-y="32" data-pop-anchor="center" aria-controls="floor-1-popup" aria-expanded="false">
+              <span class="map-room__name">Hidden Rooms Hallway</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:50; --room-y:22; --room-width:13; --room-height:12;" data-room="entrance-foyer" data-title="Entrance Foyer" data-status="Concept" data-state="concept" data-thumb="Foyer" data-description="A light-filled welcome rotunda introducing the storyverse characters and current polls." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="64" data-pop-y="18" data-pop-anchor="right" aria-controls="floor-1-popup" aria-expanded="false">
+              <span class="map-room__name">Entrance Foyer</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:22; --room-y:56; --room-width:14; --room-height:26;" data-room="archive-nook" data-title="Archive Nook" data-status="Sketch" data-state="sketch" data-thumb="Archive" data-description="Tucked under the stairs, this nook lets visitors browse early lore documents and voice notes." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="32" data-pop-y="68" data-pop-anchor="left" aria-controls="floor-1-popup" aria-expanded="false">
+              <span class="map-room__name">Archive Nook</span>
+            </button>
+
+            <div class="floor-plan__popup" id="floor-1-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-1-popup-title" aria-describedby="floor-1-popup-description">
+              <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+              <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-1-popup-status floor-1-popup-description" aria-labelledby="floor-1-popup-title">
+                <div class="floor-plan__popup-thumb" id="floor-1-popup-thumb" aria-hidden="true"></div>
+                <div class="floor-plan__popup-body">
+                  <div class="floor-plan__popup-top">
+                    <h3 class="floor-plan__popup-title" id="floor-1-popup-title"></h3>
+                    <span class="floor-plan__popup-badge" id="floor-1-popup-badge" hidden></span>
+                  </div>
+                  <p class="floor-plan__popup-status" id="floor-1-popup-status"></p>
+                  <p class="floor-plan__popup-description" id="floor-1-popup-description"></p>
+                  <div class="floor-plan__popup-actions">
+                    <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                    <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
-          <div class="scene-modal__viewer">
-            <iframe id="scene-modal-frame" title="Mental Canvas preview" src="" allowfullscreen loading="lazy"></iframe>
-            <p class="scene-modal__fallback">If the interactive preview doesn't load, <a id="scene-modal-link" href="https://www.mentalcanvas.net/f3jccxbfejj" target="_blank" rel="noopener">open the Mental Canvas scene in a new tab</a>.</p>
+        </div>
+
+        <div class="floor-plan" id="floor-2" role="tabpanel" aria-labelledby="floor-2-tab" tabindex="0" hidden data-floor-label="Upper Gallery">
+          <div class="floor-plan__visual" data-popup-id="floor-2-popup">
+            <img src="assets/img/floorplans/floor-2.svg" alt="Upper gallery layout with garden spiral, loft, and sound lab." loading="lazy" />
+            <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:28; --room-height:32;" data-room="garden-spiral" data-title="Garden Spiral" data-status="In Progress" data-state="progress" data-thumb="Garden" data-description="A slow spiral through floating gardens with ambient storytelling beats and interactive pollen trails." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="28" data-pop-anchor="left" aria-controls="floor-2-popup" aria-expanded="false">
+              <span class="map-room__name">Garden Spiral</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:78; --room-y:32; --room-width:18; --room-height:18;" data-room="artist-loft" data-title="Artist Loft" data-status="Storyboard" data-state="storyboard" data-thumb="Loft" data-description="Peek at resident builders sketching live scenes and remixing audience prompts." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
+              <span class="map-room__name">Artist Loft</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:78; --room-y:68; --room-width:20; --room-height:20;" data-room="sound-lab" data-title="Sound Lab" data-status="Prototype" data-state="prototype" data-thumb="Sound" data-description="Test spatial audio experiments and vote on which soundscapes anchor the main exhibition." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="82" data-pop-anchor="right" aria-controls="floor-2-popup" aria-expanded="false">
+              <span class="map-room__name">Sound Lab</span>
+            </button>
+
+            <div class="floor-plan__popup" id="floor-2-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-2-popup-title" aria-describedby="floor-2-popup-description">
+              <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+              <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-2-popup-status floor-2-popup-description" aria-labelledby="floor-2-popup-title">
+                <div class="floor-plan__popup-thumb" id="floor-2-popup-thumb" aria-hidden="true"></div>
+                <div class="floor-plan__popup-body">
+                  <div class="floor-plan__popup-top">
+                    <h3 class="floor-plan__popup-title" id="floor-2-popup-title"></h3>
+                    <span class="floor-plan__popup-badge" id="floor-2-popup-badge" hidden></span>
+                  </div>
+                  <p class="floor-plan__popup-status" id="floor-2-popup-status"></p>
+                  <p class="floor-plan__popup-description" id="floor-2-popup-description"></p>
+                  <div class="floor-plan__popup-actions">
+                    <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                    <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="floor-plan" id="floor-3" role="tabpanel" aria-labelledby="floor-3-tab" tabindex="0" hidden data-floor-label="Deep Archive">
+          <div class="floor-plan__visual" data-popup-id="floor-3-popup">
+            <img src="assets/img/floorplans/floor-3.svg" alt="Deep archive layout showcasing the vault, bay, and underwater docks." loading="lazy" />
+            <button class="map-room" type="button" style="--room-x:50; --room-y:50; --room-width:30; --room-height:30;" data-room="vault" data-title="Lore Vault" data-status="Concept" data-state="concept" data-thumb="Vault" data-description="A climate-controlled vault storing relics and mysteries yet to be voted canon." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="36" data-pop-y="30" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
+              <span class="map-room__name">Lore Vault</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:28; --room-y:70; --room-width:18; --room-height:20;" data-room="submersible-bay" data-title="Submersible Bay" data-status="Prototype" data-state="prototype" data-thumb="Bay" data-description="Launch autonomous pods to scout future underwater expansions of the museum." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="40" data-pop-y="82" data-pop-anchor="left" aria-controls="floor-3-popup" aria-expanded="false">
+              <span class="map-room__name">Submersible Bay</span>
+            </button>
+            <button class="map-room" type="button" style="--room-x:78; --room-y:36; --room-width:20; --room-height:22;" data-room="under-moat" data-title="Under the Moat" data-status="Live" data-state="live" data-thumb="Moat" data-description="Descend into the museum’s submerged docks. Echoes, lanterns, and quiet machinery guide the tour." data-url="https://www.mentalcanvas.net/f3jccxbfejj" data-pop-x="78" data-pop-y="22" data-pop-anchor="right" aria-controls="floor-3-popup" aria-expanded="false">
+              <span class="map-room__name">Under the Moat</span>
+            </button>
+
+            <div class="floor-plan__popup" id="floor-3-popup" role="dialog" aria-modal="false" aria-hidden="true" tabindex="-1" aria-labelledby="floor-3-popup-title" aria-describedby="floor-3-popup-description">
+              <button class="floor-plan__popup-close" type="button" data-close-popup aria-label="Close room preview">×</button>
+              <article class="floor-plan__popup-card" tabindex="0" role="button" aria-describedby="floor-3-popup-status floor-3-popup-description" aria-labelledby="floor-3-popup-title">
+                <div class="floor-plan__popup-thumb" id="floor-3-popup-thumb" aria-hidden="true"></div>
+                <div class="floor-plan__popup-body">
+                  <div class="floor-plan__popup-top">
+                    <h3 class="floor-plan__popup-title" id="floor-3-popup-title"></h3>
+                    <span class="floor-plan__popup-badge" id="floor-3-popup-badge" hidden></span>
+                  </div>
+                  <p class="floor-plan__popup-status" id="floor-3-popup-status"></p>
+                  <p class="floor-plan__popup-description" id="floor-3-popup-description"></p>
+                  <div class="floor-plan__popup-actions">
+                    <button class="btn primary floor-plan__launch" type="button" data-launch>Launch Mental Canvas</button>
+                    <a class="btn ghost floor-plan__popup-link" data-open-new target="_blank" rel="noopener">Open in new tab</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="scene-modal" id="sceneModal" aria-hidden="true">
+        <div class="scene-modal__backdrop" data-close="true"></div>
+        <div class="scene-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="scene-modal-title" tabindex="-1">
+          <button class="scene-modal__close" type="button" data-close="true" aria-label="Close Mental Canvas viewer">×</button>
+          <div class="scene-modal__body">
+            <div class="scene-modal__header">
+              <p class="scene-modal__kicker" id="scene-modal-status"></p>
+              <h3 class="scene-modal__title" id="scene-modal-title"></h3>
+            </div>
+            <div class="scene-modal__viewer">
+              <iframe id="scene-modal-frame" title="Mental Canvas preview" src="" allowfullscreen loading="lazy"></iframe>
+              <p class="scene-modal__fallback">If the interactive preview doesn't load, <a id="scene-modal-link" href="https://www.mentalcanvas.net/f3jccxbfejj" target="_blank" rel="noopener">open the Mental Canvas scene in a new tab</a>.</p>
+            </div>
           </div>
         </div>
       </div>
