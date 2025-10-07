@@ -10,8 +10,7 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="/" aria-label="Mega-Museum home"><span class="logo-circle">M</span></a>
-    <nav>
+    <nav class="nav__group nav__group--left" aria-label="Primary navigation">
       <div class="dropdown">
         <button class="dropbtn">Visit the Museum ▾</button>
         <div class="dropdown-content">
@@ -20,9 +19,12 @@
         </div>
       </div>
       <a href="creation.html">Creation Story</a>
+    </nav>
+    <a class="brand" href="/" aria-label="Mega-Museum home"><span class="logo-circle">M</span></a>
+    <nav class="nav__group nav__group--right" aria-label="Secondary navigation">
       <a href="game.html">War Games</a>
       <a href="about.html">About</a>
-      <a class="btn primary small" href="#co-create">Free Login</a>
+      <a class="btn primary small" href="/#co-create">Free Login</a>
     </nav>
   </header>
 
