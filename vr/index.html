@@ -1,75 +1,168 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mega-Museum VR Gallery</title>
-    <meta name="description" content="Step inside the Mega-Museum VR gallery room in your browser or VR headset.">
-    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <meta charset="utf-8" />
+    <title>VR Grand Gallery</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="description" content="An atmospheric WebXR gallery you can explore in VR." />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script>
     <style>
-      body {
-        margin: 0;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: #000;
-        color: #fff;
-      }
+      :root { color-scheme: dark; }
+      html, body { margin:0; height:100%; background:#000; font-family: "Segoe UI", Roboto, sans-serif; }
       .hint {
-        position: fixed;
-        top: 12px;
-        width: 100%;
-        text-align: center;
-        font-size: 0.95rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        pointer-events: none;
+        position: fixed; top: 12px; left: 12px; padding: 8px 10px;
+        background: rgba(0,0,0,.45); color: #fff; border-radius: 8px;
+        font: 14px/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
         z-index: 10;
       }
-      .hint span {
-        background: rgba(0, 0, 0, 0.65);
-        padding: 0.4rem 0.75rem;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      a-scene {
-        height: 100vh;
-        width: 100vw;
+      .legend {
+        position: fixed; bottom: 16px; right: 16px;
+        padding: 10px 14px; background: rgba(12,14,25,.55);
+        color: #c3cbff; border: 1px solid rgba(99,115,255,.45);
+        border-radius: 12px; max-width: 220px; line-height: 1.35;
+        font-size: 13px; text-align: right; letter-spacing: 0.02em;
       }
     </style>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <div class="hint"><span>Desktop: WASD + mouse • Quest: tap ‘Enter VR’</span></div>
+    <div class="hint">Desktop: WASD + mouse • Quest: tap “Enter VR”</div>
+    <div class="legend">Highlight an artwork to reveal its story • Portal: step through the glowing ring</div>
 
-    <a-scene renderer="colorManagement: true" background="color: #000">
+    <a-scene renderer="antialias:true; colorManagement:true" fog="type:exponential; density:0.03; color:#080a14" background="color: #05060c">
       <a-assets>
-        <img id="art1" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=512&q=80" crossorigin="anonymous" alt="Abstract art" />
-        <img id="art2" src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=512&q=80" crossorigin="anonymous" alt="Gallery art" />
-        <img id="art3" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=512&q=80" crossorigin="anonymous" alt="Digital art" />
+        <img id="art-1" src="https://picsum.photos/seed/vr-1/1024/768" crossorigin="anonymous" />
+        <img id="art-2" src="https://picsum.photos/seed/vr-2/1024/768" crossorigin="anonymous" />
+        <img id="art-3" src="https://picsum.photos/seed/vr-3/1024/768" crossorigin="anonymous" />
+        <img id="floor-tex" src="https://cdn.aframe.io/a-painter/images/floor-light.jpg" crossorigin="anonymous" />
+        <audio id="ambient" src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"></audio>
       </a-assets>
 
-      <a-entity light="type: ambient; intensity: 0.4"></a-entity>
-      <a-entity light="type: directional; intensity: 0.9; castShadow: true" position="2 4 1"></a-entity>
+      <!-- ambience -->
+      <a-sound src="#ambient" autoplay="true" loop="true" volume="0.35" position="0 2 -3"></a-sound>
+      <a-entity light="type:ambient; intensity:0.55; color:#8aa1ff"></a-entity>
+      <a-entity light="type:directional; intensity:1.2; color:#ffe0bb" position="-3 5 2" animation="property: rotation; to: 0 360 0; loop: true; dur: 28000; easing: linear"></a-entity>
+      <a-entity light="type:spot; intensity:0.9; angle:35; penumbra:0.6; color:#9bc8ff" position="0 6 -3" target="#centerpiece"></a-entity>
 
-      <a-plane position="0 0 0" rotation="-90 0 0" width="12" height="12" color="#222" shadow="receive: true"></a-plane>
-
-      <a-box position="0 2 -5" depth="0.2" height="4" width="12" color="#1a1a1a"></a-box>
-      <a-box position="-6 2 0" rotation="0 90 0" depth="0.2" height="4" width="12" color="#111"></a-box>
-      <a-box position="6 2 0" rotation="0 -90 0" depth="0.2" height="4" width="12" color="#111"></a-box>
-      <a-box position="0 4 0" rotation="90 0 0" depth="0.2" height="12" width="12" color="#0d0d0d"></a-box>
-
-      <a-plane src="#art1" position="-3 2 -4.89" width="2.5" height="2.5" material="roughness: 0.2; metalness: 0.1"></a-plane>
-      <a-plane src="#art2" position="0 2 -4.89" width="2.5" height="2.5" material="roughness: 0.2; metalness: 0.1"></a-plane>
-      <a-plane src="#art3" position="3 2 -4.89" width="2.5" height="2.5" material="roughness: 0.2; metalness: 0.1"></a-plane>
-
-      <a-torus-knot position="0 1.5 -1" radius="0.9" radius-tubular="0.2" color="#ff7b54" material="metalness: 0.5; roughness: 0.2" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear" shadow="cast: true"></a-torus-knot>
-
-      <a-entity id="rig" movement-controls="fly: false; speed: 0.5" position="0 1.6 3">
-        <a-entity camera look-controls wasd-controls="acceleration: 30" position="0 0 0"></a-entity>
-        <a-entity oculus-touch-controls="hand: left"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
+      <!-- architecture -->
+      <a-plane rotation="-90 0 0" width="36" height="36" material="src: #floor-tex; repeat: 12 12; roughness:0.7; metalness:0.1; color:#11131f"></a-plane>
+      <a-ring position="0 0.01 0" rotation="-90 0 0" radius-inner="1.6" radius-outer="1.8" material="color:#14192c; opacity:0.65"></a-ring>
+      <a-entity geometry="primitive:box" position="0 0.02 0" width="6" height="0.04" depth="10" material="color:#1f2439; opacity:0.85; metalness:0.2"></a-entity>
+      <a-entity id="vault" position="0 3 -6">
+        <a-box width="12" height="6" depth="0.4" color="#181b2f" material="metalness:0.05; roughness:0.8" opacity="0.96"></a-box>
+        <a-entity geometry="primitive:cylinder" position="-5 0 0" height="6" radius="0.3" material="color:#242a4a"></a-entity>
+        <a-entity geometry="primitive:cylinder" position="5 0 0" height="6" radius="0.3" material="color:#242a4a"></a-entity>
       </a-entity>
+      <a-entity geometry="primitive:box" position="0 3 -12" width="14" height="6" depth="0.4" material="color:#121522; opacity:0.8"></a-entity>
+
+      <!-- floating lights -->
+      <a-entity geometry="primitive:sphere" position="-3 1.8 -2" material="color:#66c6ff; emissive:#66c6ff; emissiveIntensity:0.7; roughness:0.1" animation__float="property: position; dir: alternate; dur: 5000; easing: easeInOutSine; to: -3 2.2 -2"></a-entity>
+      <a-entity geometry="primitive:sphere" position="3 1.4 -4" material="color:#ffd580; emissive:#ffd580; emissiveIntensity:0.6; roughness:0.2" animation__float="property: position; dir: alternate; dur: 6000; easing: easeInOutSine; to: 3 2.1 -4"></a-entity>
+
+      <!-- particle drift -->
+      <a-entity particle-system="preset: dust; color: #6bbaff, #ffffff; particleCount: 1200; size:0.15; opacity:0.35; velocityValue:0 0.5 0" position="0 2 -3"></a-entity>
+
+      <!-- gallery wall and art -->
+      <a-entity id="gallery" position="0 0 -6">
+        <a-plane position="0 1.2 0" width="12" height="4" color="#121526" material="roughness:0.7; metalness:0.2"></a-plane>
+        <a-entity class="art-frame interactable" data-info="Concept sketch for the starship atrium — perspective layers inspired by Mental Canvas." position="-3.6 1.35 0">
+          <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#6f8bff" opacity="0.12" visible="false"></a-plane>
+          <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
+          <a-plane src="#art-1" width="2.2" height="1.5" material="shader: standard; metalness:0.1; roughness:0.4"></a-plane>
+          <a-text value="Atrium Sketch" position="0 -1.05 0" align="center" width="4" color="#dce4ff"></a-text>
+        </a-entity>
+        <a-entity class="art-frame interactable" data-info="Immersive corridor concept showing layered shadows and warm lighting cues." position="0 1.35 0">
+          <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#ff9e6e" opacity="0.12" visible="false"></a-plane>
+          <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
+          <a-plane src="#art-2" width="2.2" height="1.5" material="shader: standard; metalness:0.05; roughness:0.35"></a-plane>
+          <a-text value="Lightfall Corridor" position="0 -1.05 0" align="center" width="4" color="#ffe7d6"></a-text>
+        </a-entity>
+        <a-entity class="art-frame interactable" data-info="Portal garden study — flowing foliage with cool volumetric light." position="3.6 1.35 0">
+          <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#7df0c2" opacity="0.12" visible="false"></a-plane>
+          <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
+          <a-plane src="#art-3" width="2.2" height="1.5" material="shader: standard; metalness:0.08; roughness:0.3"></a-plane>
+          <a-text value="Garden Portal" position="0 -1.05 0" align="center" width="4" color="#d7ffee"></a-text>
+        </a-entity>
+      </a-entity>
+
+      <!-- info panel -->
+      <a-entity id="info-panel" position="0 2.4 -2.2" visible="false" look-at="#player-camera">
+        <a-plane width="3.4" height="1" color="#0b0f1b" opacity="0.82" material="roughness:0.5"></a-plane>
+        <a-plane width="3.48" height="1.08" color="#5a6dff" opacity="0.12" position="0 0 -0.02"></a-plane>
+        <a-text id="info-text" value="" width="3.1" color="#ffffff" align="center" anchor="center"></a-text>
+      </a-entity>
+
+      <!-- centerpiece sculpture -->
+      <a-entity id="centerpiece" position="0 1.4 -3">
+        <a-entity animation__spin="property: rotation; to: 0 360 0; loop: true; dur: 14000; easing: linear">
+          <a-torus-knot radius="0.7" radius-tubular="0.16" p="3" q="5" material="color:#93b7ff; metalness:0.4; roughness:0.15; emissive:#3d64ff; emissiveIntensity:0.35"></a-torus-knot>
+        </a-entity>
+        <a-ring radius-inner="0.8" radius-outer="1.2" position="0 0 0" rotation="-90 0 0" material="color:#0f1323; metalness:0.6; roughness:0.2" animation__pulse="property: scale; dir: alternate; dur: 2200; easing: easeInOutSine; to: 1.05 1 1.05"></a-ring>
+        <a-entity geometry="primitive:cylinder" height="0.2" radius="0.6" position="0 -0.4 0" material="color:#1f2338; metalness:0.6; roughness:0.4"></a-entity>
+      </a-entity>
+
+      <!-- portal -->
+      <a-entity position="0 1 -10">
+        <a-ring class="interactable" data-info="Step closer to enter the next chapter of the world." radius-inner="1.1" radius-outer="1.5" material="color:#6d8bff; emissive:#6d8bff; emissiveIntensity:0.4; shader: standard" animation__shimmer="property: material.emissiveIntensity; dir: alternate; dur: 1500; easing: easeInOutQuad; to: 1"></a-ring>
+        <a-circle radius="0.95" rotation="-90 0 0" position="0 -0.01 0" material="color:#05070e; opacity:0.8"></a-circle>
+        <a-text value="Portal to Future Rooms" position="0 2 0" align="center" width="6" color="#9fb4ff" look-at="#player-camera"></a-text>
+        <a-entity link="href: ../index.html" geometry="primitive:circle; radius:0.9" material="color:#000; opacity:0" position="0 1 0"></a-entity>
+      </a-entity>
+
+      <!-- player rig -->
+      <a-entity id="rig" position="0 1.6 3">
+        <a-entity id="player-camera" camera look-controls wasd-controls="acceleration: 20" raycaster="objects: .interactable" cursor="rayOrigin: mouse" position="0 0 0">
+          <a-entity geometry="primitive:ring; radiusInner:0.01; radiusOuter:0.015" material="color:#ffffff; shader: flat" position="0 0 -1" visible="false"></a-entity>
+        </a-entity>
+        <a-entity laser-controls="hand: left"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+
+      <!-- sky -->
+      <a-sky color="#06070f"></a-sky>
     </a-scene>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const infoPanel = document.querySelector('#info-panel');
+        const infoText = document.querySelector('#info-text');
+        const infoTargets = Array.from(document.querySelectorAll('[data-info]'));
+        const cursorReticle = document.querySelector('#player-camera > a-entity');
+
+        const toggleGlow = (entity, state) => {
+          const glow = entity.querySelector('.frame-glow');
+          if (glow) {
+            glow.setAttribute('visible', state);
+          }
+        };
+
+        infoTargets.forEach(entity => {
+          const message = entity.getAttribute('data-info');
+          entity.addEventListener('mouseenter', () => {
+            infoText.setAttribute('value', message);
+            infoPanel.setAttribute('visible', true);
+            toggleGlow(entity, true);
+          });
+          entity.addEventListener('mouseleave', () => {
+            infoPanel.setAttribute('visible', false);
+            toggleGlow(entity, false);
+          });
+        });
+
+        document.querySelectorAll('.interactable').forEach(entity => {
+          entity.addEventListener('mouseenter', () => {
+            if (cursorReticle) {
+              cursorReticle.setAttribute('visible', true);
+            }
+          });
+          entity.addEventListener('mouseleave', () => {
+            if (cursorReticle) {
+              cursorReticle.setAttribute('visible', false);
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
