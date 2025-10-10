@@ -21,34 +21,48 @@
         position: fixed; bottom: 16px; right: 16px;
         padding: 10px 14px; background: rgba(12,14,25,.55);
         color: #c3cbff; border: 1px solid rgba(99,115,255,.45);
-        border-radius: 12px; max-width: 220px; line-height: 1.35;
+        border-radius: 12px; max-width: 240px; line-height: 1.35;
         font-size: 13px; text-align: right; letter-spacing: 0.02em;
+      }
+      .legend strong {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        color: #8ea3ff;
       }
     </style>
   </head>
   <body>
     <div class="hint">Desktop: WASD + mouse • Quest: tap “Enter VR”</div>
-    <div class="legend">Highlight an artwork to reveal its story • Portal: step through the glowing ring</div>
+    <div class="legend"><strong>Gallery Guide</strong>Highlight an artwork or hologram to reveal its story • Use teleport pads to reposition • Portal ring teases future rooms</div>
 
-    <a-scene renderer="antialias:true; colorManagement:true" fog="type:exponential; density:0.03; color:#080a14" background="color: #05060c">
+    <a-scene renderer="antialias:true; colorManagement:true" fog="type:exponential; density:0.028; color:#070910" background="color: #05060c">
       <a-assets>
         <img id="art-1" src="https://picsum.photos/seed/vr-1/1024/768" crossorigin="anonymous" />
         <img id="art-2" src="https://picsum.photos/seed/vr-2/1024/768" crossorigin="anonymous" />
         <img id="art-3" src="https://picsum.photos/seed/vr-3/1024/768" crossorigin="anonymous" />
         <img id="floor-tex" src="https://cdn.aframe.io/a-painter/images/floor-light.jpg" crossorigin="anonymous" />
         <audio id="ambient" src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"></audio>
+        <audio id="chime" src="https://cdn.aframe.io/basic-guide/audio/button-click.wav"></audio>
+        <audio id="portal" src="https://cdn.aframe.io/basic-guide/audio/click.ogg"></audio>
       </a-assets>
 
       <!-- ambience -->
       <a-sound src="#ambient" autoplay="true" loop="true" volume="0.35" position="0 2 -3"></a-sound>
+      <a-entity id="sfx-chime" sound="src: #chime; volume: 0.6" position="0 2 -3"></a-entity>
+      <a-entity id="sfx-portal" sound="src: #portal; volume: 0.6" position="0 2 -3"></a-entity>
       <a-entity light="type:ambient; intensity:0.55; color:#8aa1ff"></a-entity>
       <a-entity light="type:directional; intensity:1.2; color:#ffe0bb" position="-3 5 2" animation="property: rotation; to: 0 360 0; loop: true; dur: 28000; easing: linear"></a-entity>
       <a-entity light="type:spot; intensity:0.9; angle:35; penumbra:0.6; color:#9bc8ff" position="0 6 -3" target="#centerpiece"></a-entity>
 
       <!-- architecture -->
-      <a-plane rotation="-90 0 0" width="36" height="36" material="src: #floor-tex; repeat: 12 12; roughness:0.7; metalness:0.1; color:#11131f"></a-plane>
+      <a-plane rotation="-90 0 0" width="40" height="40" material="src: #floor-tex; repeat: 14 14; roughness:0.7; metalness:0.1; color:#11131f"></a-plane>
       <a-ring position="0 0.01 0" rotation="-90 0 0" radius-inner="1.6" radius-outer="1.8" material="color:#14192c; opacity:0.65"></a-ring>
       <a-entity geometry="primitive:box" position="0 0.02 0" width="6" height="0.04" depth="10" material="color:#1f2439; opacity:0.85; metalness:0.2"></a-entity>
+      <a-entity geometry="primitive:box" position="0 0.4 0" width="4" height="0.2" depth="4" material="color:#0d111d; metalness:0.35; roughness:0.4; opacity:0.85"></a-entity>
+      <a-entity geometry="primitive:cylinder" position="0 0.55 0" height="0.4" radius="1.5" material="color:#111425; metalness:0.5; roughness:0.3"></a-entity>
       <a-entity id="vault" position="0 3 -6">
         <a-box width="12" height="6" depth="0.4" color="#181b2f" material="metalness:0.05; roughness:0.8" opacity="0.96"></a-box>
         <a-entity geometry="primitive:cylinder" position="-5 0 0" height="6" radius="0.3" material="color:#242a4a"></a-entity>
@@ -61,24 +75,28 @@
       <a-entity geometry="primitive:sphere" position="3 1.4 -4" material="color:#ffd580; emissive:#ffd580; emissiveIntensity:0.6; roughness:0.2" animation__float="property: position; dir: alternate; dur: 6000; easing: easeInOutSine; to: 3 2.1 -4"></a-entity>
 
       <!-- particle drift -->
-      <a-entity particle-system="preset: dust; color: #6bbaff, #ffffff; particleCount: 1200; size:0.15; opacity:0.35; velocityValue:0 0.5 0" position="0 2 -3"></a-entity>
+      <a-entity particle-system="preset: dust; color: #6bbaff, #ffffff; particleCount: 1600; size:0.13; opacity:0.35; velocityValue:0 0.55 0" position="0 2 -3"></a-entity>
+      <a-entity particle-system="preset: snow; color: #89c9ff; particleCount: 260; size:0.08; opacity:0.3; velocityValue:0 0.2 0" position="0 3 -6"></a-entity>
 
       <!-- gallery wall and art -->
       <a-entity id="gallery" position="0 0 -6">
         <a-plane position="0 1.2 0" width="12" height="4" color="#121526" material="roughness:0.7; metalness:0.2"></a-plane>
-        <a-entity class="art-frame interactable" data-info="Concept sketch for the starship atrium — perspective layers inspired by Mental Canvas." position="-3.6 1.35 0">
+        <a-plane position="0 2.6 0" width="9" height="0.2" color="#2b3050" material="metalness:0.3; roughness:0.4"></a-plane>
+        <a-entity geometry="primitive:cylinder" height="0.3" radius="0.15" position="-4.8 0.6 0" material="color:#1b1f34"></a-entity>
+        <a-entity geometry="primitive:cylinder" height="0.3" radius="0.15" position="4.8 0.6 0" material="color:#1b1f34"></a-entity>
+        <a-entity class="art-frame interactable" data-info="Concept sketch for the starship atrium — perspective layers inspired by Mental Canvas." data-title="Atrium Sketch" data-img="#art-1" position="-3.6 1.35 0">
           <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#6f8bff" opacity="0.12" visible="false"></a-plane>
           <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
           <a-plane src="#art-1" width="2.2" height="1.5" material="shader: standard; metalness:0.1; roughness:0.4"></a-plane>
           <a-text value="Atrium Sketch" position="0 -1.05 0" align="center" width="4" color="#dce4ff"></a-text>
         </a-entity>
-        <a-entity class="art-frame interactable" data-info="Immersive corridor concept showing layered shadows and warm lighting cues." position="0 1.35 0">
+        <a-entity class="art-frame interactable" data-info="Immersive corridor concept showing layered shadows and warm lighting cues." data-title="Lightfall Corridor" data-img="#art-2" position="0 1.35 0">
           <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#ff9e6e" opacity="0.12" visible="false"></a-plane>
           <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
           <a-plane src="#art-2" width="2.2" height="1.5" material="shader: standard; metalness:0.05; roughness:0.35"></a-plane>
           <a-text value="Lightfall Corridor" position="0 -1.05 0" align="center" width="4" color="#ffe7d6"></a-text>
         </a-entity>
-        <a-entity class="art-frame interactable" data-info="Portal garden study — flowing foliage with cool volumetric light." position="3.6 1.35 0">
+        <a-entity class="art-frame interactable" data-info="Portal garden study — flowing foliage with cool volumetric light." data-title="Garden Portal" data-img="#art-3" position="3.6 1.35 0">
           <a-plane class="frame-glow" position="0 0 -0.02" width="2.4" height="1.7" color="#7df0c2" opacity="0.12" visible="false"></a-plane>
           <a-box position="0 0 -0.05" width="2.5" height="1.85" depth="0.05" color="#0b0d18" material="roughness:0.5; metalness:0.4"></a-box>
           <a-plane src="#art-3" width="2.2" height="1.5" material="shader: standard; metalness:0.08; roughness:0.3"></a-plane>
@@ -86,11 +104,28 @@
         </a-entity>
       </a-entity>
 
+      <!-- ceiling ribs -->
+      <a-entity position="0 4.8 -6">
+        <a-torus radius="6" radius-tubular="0.12" arc="120" rotation="0 0 90" material="color:#1d2238; metalness:0.4; roughness:0.3"></a-torus>
+        <a-torus radius="6" radius-tubular="0.12" arc="120" rotation="0 0 -90" material="color:#1d2238; metalness:0.4; roughness:0.3"></a-torus>
+        <a-entity geometry="primitive:cylinder" height="12" radius="0.08" rotation="0 0 20" position="-2 0 0" material="color:#2a3152"></a-entity>
+        <a-entity geometry="primitive:cylinder" height="12" radius="0.08" rotation="0 0 -20" position="2 0 0" material="color:#2a3152"></a-entity>
+        <a-entity light="type:spot; intensity:0.65; angle:40; penumbra:0.8; color:#7fa9ff" position="0 0 2" rotation="-45 0 0"></a-entity>
+      </a-entity>
+
       <!-- info panel -->
       <a-entity id="info-panel" position="0 2.4 -2.2" visible="false" look-at="#player-camera">
         <a-plane width="3.4" height="1" color="#0b0f1b" opacity="0.82" material="roughness:0.5"></a-plane>
         <a-plane width="3.48" height="1.08" color="#5a6dff" opacity="0.12" position="0 0 -0.02"></a-plane>
         <a-text id="info-text" value="" width="3.1" color="#ffffff" align="center" anchor="center"></a-text>
+      </a-entity>
+
+      <!-- holographic storyteller -->
+      <a-entity id="story-holo" class="interactable" data-info="Activate the hologram for behind-the-scenes narration." position="-4 1 -3">
+        <a-cylinder radius="0.4" height="0.12" position="0 0 0" material="color:#101320; metalness:0.5"></a-cylinder>
+        <a-cone radius-bottom="0.38" radius-top="0.1" height="0.6" position="0 0.35 0" material="color:#1f2742; opacity:0.8; shader: standard"></a-cone>
+        <a-entity id="holo-emitter" geometry="primitive:icosahedron; radius:0.22" position="0 0.75 0" material="color:#6bb2ff; emissive:#6bb2ff; emissiveIntensity:0.7; metalness:0.1; roughness:0.1" animation__pulse="property: scale; dir: alternate; dur: 1600; to: 1.2 1.2 1.2"></a-entity>
+        <a-text value="Story Hologram" position="0 1.25 0" align="center" width="4" color="#9fb4ff"></a-text>
       </a-entity>
 
       <!-- centerpiece sculpture -->
@@ -102,18 +137,49 @@
         <a-entity geometry="primitive:cylinder" height="0.2" radius="0.6" position="0 -0.4 0" material="color:#1f2338; metalness:0.6; roughness:0.4"></a-entity>
       </a-entity>
 
+      <!-- teleport pads -->
+      <a-entity position="-3 0.01 -1.5" class="interactable teleport-pad" data-teleport="-3 1.6 -1.5" data-info="Teleport to the observatory alcove.">
+        <a-cylinder radius="0.55" height="0.02" color="#1c233a"></a-cylinder>
+        <a-ring radius-inner="0.15" radius-outer="0.4" rotation="-90 0 0" position="0 0.01 0" material="color:#7da9ff; emissive:#7da9ff; emissiveIntensity:0.3" animation__blink="property: material.emissiveIntensity; dir: alternate; dur: 1200; to: 0.8"></a-ring>
+        <a-text value="Teleport" position="0 0.3 0" align="center" width="3" color="#b3c5ff"></a-text>
+      </a-entity>
+      <a-entity position="3 0.01 -4.5" class="interactable teleport-pad" data-teleport="3 1.6 -4.5" data-info="Jump closer to the gallery wall.">
+        <a-cylinder radius="0.55" height="0.02" color="#1c233a"></a-cylinder>
+        <a-ring radius-inner="0.15" radius-outer="0.4" rotation="-90 0 0" position="0 0.01 0" material="color:#7da9ff; emissive:#7da9ff; emissiveIntensity:0.3" animation__blink="property: material.emissiveIntensity; dir: alternate; dur: 1200; to: 0.8"></a-ring>
+        <a-text value="Teleport" position="0 0.3 0" align="center" width="3" color="#b3c5ff"></a-text>
+      </a-entity>
+
       <!-- portal -->
-      <a-entity position="0 1 -10">
-        <a-ring class="interactable" data-info="Step closer to enter the next chapter of the world." radius-inner="1.1" radius-outer="1.5" material="color:#6d8bff; emissive:#6d8bff; emissiveIntensity:0.4; shader: standard" animation__shimmer="property: material.emissiveIntensity; dir: alternate; dur: 1500; easing: easeInOutQuad; to: 1"></a-ring>
+      <a-entity id="portal-ring" position="0 1 -10" class="interactable" data-action="portal" data-info="Step closer to preview the next chapter of the world.">
+        <a-ring radius-inner="1.1" radius-outer="1.5" material="color:#6d8bff; emissive:#6d8bff; emissiveIntensity:0.4; shader: standard" animation__shimmer="property: material.emissiveIntensity; dir: alternate; dur: 1500; easing: easeInOutQuad; to: 1"></a-ring>
         <a-circle radius="0.95" rotation="-90 0 0" position="0 -0.01 0" material="color:#05070e; opacity:0.8"></a-circle>
         <a-text value="Portal to Future Rooms" position="0 2 0" align="center" width="6" color="#9fb4ff" look-at="#player-camera"></a-text>
-        <a-entity link="href: ../index.html" geometry="primitive:circle; radius:0.9" material="color:#000; opacity:0" position="0 1 0"></a-entity>
+      </a-entity>
+
+      <!-- portal preview window -->
+      <a-entity id="portal-preview" position="0 2.4 -7" visible="false">
+        <a-plane width="4" height="2.3" color="#0a0f1d" opacity="0.88"></a-plane>
+        <a-plane width="4.12" height="2.42" color="#5b7bff" opacity="0.15" position="0 0 -0.02"></a-plane>
+        <a-text id="portal-text" value="" position="0 0.8 0.01" align="center" width="5" color="#c5d7ff"></a-text>
+        <a-text value="Coming soon: Garden Observatory" position="0 0 0.01" align="center" width="5" color="#86ffe0"></a-text>
+        <a-text value="Click again to close" position="0 -0.9 0.01" align="center" width="4" color="#8ea3ff"></a-text>
       </a-entity>
 
       <!-- player rig -->
       <a-entity id="rig" position="0 1.6 3">
         <a-entity id="player-camera" camera look-controls wasd-controls="acceleration: 20" raycaster="objects: .interactable" cursor="rayOrigin: mouse" position="0 0 0">
           <a-entity geometry="primitive:ring; radiusInner:0.01; radiusOuter:0.015" material="color:#ffffff; shader: flat" position="0 0 -1" visible="false"></a-entity>
+          <!-- in-headset detail card -->
+          <a-entity id="detail-card" visible="false" position="0 -0.1 -1.5" rotation="0 0 0">
+            <a-plane color="#05070f" opacity="0.92" width="1.8" height="2.4"></a-plane>
+            <a-plane color="#6a82ff" opacity="0.2" width="1.86" height="2.46" position="0 0 -0.01"></a-plane>
+            <a-text id="detail-title" value="" position="0 0.9 0.01" align="center" width="2.4" color="#e1e7ff"></a-text>
+            <a-image id="detail-image" src="" position="0 0.1 0.01" width="1.5" height="1.1"></a-image>
+            <a-text id="detail-body" value="" position="0 -0.95 0.01" align="center" width="2.2" color="#cbd4ff"></a-text>
+            <a-plane id="detail-close" class="interactable" position="0 -1.25 0.01" width="1.2" height="0.32" color="#1b233a" material="roughness:0.3; metalness:0.2">
+              <a-text value="Close" align="center" width="2.4" color="#9fb4ff" position="0 0 0.01"></a-text>
+            </a-plane>
+          </a-entity>
         </a-entity>
         <a-entity laser-controls="hand: left"></a-entity>
         <a-entity laser-controls="hand: right"></a-entity>
@@ -125,10 +191,26 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        const sceneEl = document.querySelector('a-scene');
         const infoPanel = document.querySelector('#info-panel');
         const infoText = document.querySelector('#info-text');
         const infoTargets = Array.from(document.querySelectorAll('[data-info]'));
         const cursorReticle = document.querySelector('#player-camera > a-entity');
+        const rig = document.querySelector('#rig');
+        const teleportPads = Array.from(document.querySelectorAll('[data-teleport]'));
+        const detailCard = document.querySelector('#detail-card');
+        const detailTitle = document.querySelector('#detail-title');
+        const detailBody = document.querySelector('#detail-body');
+        const detailImage = document.querySelector('#detail-image');
+        const detailClose = document.querySelector('#detail-close');
+        const portalPreview = document.querySelector('#portal-preview');
+        const portalRing = document.querySelector('#portal-ring');
+        const portalText = document.querySelector('#portal-text');
+        const holoEmitter = document.querySelector('#holo-emitter');
+        const storyHolo = document.querySelector('#story-holo');
+        const sfxChime = document.querySelector('#sfx-chime');
+        const sfxPortal = document.querySelector('#sfx-portal');
+        const tempVec = new THREE.Vector3();
 
         const toggleGlow = (entity, state) => {
           const glow = entity.querySelector('.frame-glow');
@@ -137,16 +219,53 @@
           }
         };
 
+        const playSfx = (entity) => {
+          if (entity && entity.components && entity.components.sound) {
+            entity.components.sound.stopSound();
+            entity.components.sound.playSound();
+          }
+        };
+
+        const showDetailCard = (title, body, imgSrc) => {
+          detailTitle.setAttribute('value', title || '');
+          detailBody.setAttribute('value', body || '');
+          if (imgSrc) {
+            detailImage.setAttribute('src', imgSrc);
+            detailImage.setAttribute('visible', true);
+          } else {
+            detailImage.setAttribute('visible', false);
+          }
+          detailCard.setAttribute('visible', true);
+          infoPanel.setAttribute('visible', false);
+        };
+
+        const hideDetailCard = () => {
+          detailCard.setAttribute('visible', false);
+        };
+
         infoTargets.forEach(entity => {
           const message = entity.getAttribute('data-info');
+          const title = entity.getAttribute('data-title');
+          const imgSrc = entity.getAttribute('data-img');
           entity.addEventListener('mouseenter', () => {
-            infoText.setAttribute('value', message);
+            if (entity.object3D) {
+              entity.object3D.getWorldPosition(tempVec);
+              const hoverPosition = `${tempVec.x} ${tempVec.y + 1.2} ${tempVec.z}`;
+              infoPanel.setAttribute('position', hoverPosition);
+            }
+            infoText.setAttribute('value', message || '');
             infoPanel.setAttribute('visible', true);
             toggleGlow(entity, true);
           });
           entity.addEventListener('mouseleave', () => {
             infoPanel.setAttribute('visible', false);
             toggleGlow(entity, false);
+          });
+          entity.addEventListener('click', () => {
+            if (title && imgSrc) {
+              showDetailCard(title, message, imgSrc);
+              playSfx(sfxChime);
+            }
           });
         });
 
@@ -162,6 +281,53 @@
             }
           });
         });
+
+        teleportPads.forEach(pad => {
+          pad.addEventListener('click', () => {
+            const coords = pad.getAttribute('data-teleport');
+            if (!coords || !rig) return;
+            const [x, y, z] = coords.split(' ').map(Number);
+            rig.setAttribute('position', `${x} ${y} ${z}`);
+            hideDetailCard();
+            playSfx(sfxChime);
+          });
+        });
+
+        if (detailClose) {
+          detailClose.addEventListener('click', (evt) => {
+            evt.stopPropagation();
+            hideDetailCard();
+          });
+        }
+
+        if (portalRing) {
+          let portalOpen = false;
+          portalRing.addEventListener('click', () => {
+            portalOpen = !portalOpen;
+            portalPreview.setAttribute('visible', portalOpen);
+            portalText.setAttribute('value', portalOpen ? 'A shimmering gate hums to life, promising a lush hidden observatory beyond.' : '');
+            playSfx(sfxPortal);
+          });
+        }
+
+        if (storyHolo) {
+          storyHolo.addEventListener('click', () => {
+            const narration = 'The Grand Gallery began as layered storyboards before becoming a walkable world. Hover over portals to see where the tale branches next.';
+            showDetailCard('Narrator Note', narration, '#art-2');
+            playSfx(sfxChime);
+            if (holoEmitter) {
+              holoEmitter.setAttribute('animation__pulse', 'property: scale; dir: alternate; dur: 900; to: 1.35 1.35 1.35');
+            }
+          });
+        }
+
+        if (sceneEl) {
+          sceneEl.addEventListener('click', (evt) => {
+            if (detailCard.getAttribute('visible') && !evt.target.closest('#detail-card')) {
+              hideDetailCard();
+            }
+          });
+        }
       });
     </script>
   </body>
