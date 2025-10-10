@@ -463,7 +463,7 @@ header.nav:focus-within + .hero .hero-video video{ filter:blur(8px) saturate(80%
 .steps li::before{content:""; position:absolute; left:-7px; top:18px; width:10px; height:10px; background:var(--brand); border-radius:50%}
 .steps span{display:inline-block; min-width:64px; font-weight:700; margin-right:6px}
 
-/* ========== Free Login area (polls) ========== */
+/* ========== Patreon Supporter area (polls) ========== */
 .cocreate{padding:40px 22px 80px}
 .cocreate-card{max-width:1000px; margin:0 auto}
 .gate{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:end; margin-top:10px}
