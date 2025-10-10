@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>VR Grand Gallery 2.0</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="description" content="A richly interactive WebXR gallery with living frescoes and mood portals." />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; height: 100%; background: #000; font-family: "Segoe UI", Roboto, sans-serif; }
+      .hud {
+        position: fixed;
+        z-index: 10;
+        color: #f5f7ff;
+        font: 14px/1.3 "Segoe UI", Roboto, sans-serif;
+        backdrop-filter: blur(10px);
+        background: rgba(10, 14, 28, 0.45);
+        border: 1px solid rgba(108, 140, 255, 0.35);
+        border-radius: 10px;
+        padding: 10px 14px;
+        box-shadow: 0 8px 20px rgba(10, 14, 25, 0.25);
+      }
+      .hud strong { text-transform: uppercase; font-size: 11px; letter-spacing: 0.18em; display: block; margin-bottom: 6px; color: #8cabff; }
+      .hud.hint { top: 16px; left: 16px; }
+      .hud.map { bottom: 18px; right: 18px; max-width: 260px; text-align: right; }
+      @media (max-width: 640px) {
+        .hud { font-size: 12px; padding: 8px 10px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hud hint"><strong>Controls</strong>Desktop: WASD + mouse · Mobile VR: tap “Enter VR” · Teleport pads + controllers are supported.</div>
+    <div class="hud map"><strong>Story World</strong>Living Frescoes · Docent Sphere · Mood Chambers · Portal Vista → Garden Observatory</div>
+
+    <a-scene renderer="antialias:true; colorManagement:true" background="color: #04060b" fog="type:exponential; density:0.022; color:#060913">
+      <a-assets>
+        <img id="art-entry" src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1200&q=80" crossorigin="anonymous" />
+        <img id="art-corridor" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" crossorigin="anonymous" />
+        <img id="art-garden" src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=80" crossorigin="anonymous" />
+        <img id="floor-tiles" src="https://cdn.aframe.io/a-painter/images/floor-light.jpg" crossorigin="anonymous" />
+        <audio id="ambience" src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"></audio>
+        <audio id="docent-voice" src="https://cdn.aframe.io/basic-guide/audio/button-click.wav"></audio>
+        <audio id="portal-tone" src="https://cdn.aframe.io/basic-guide/audio/click.ogg"></audio>
+      </a-assets>
+
+      <!-- atmosphere -->
+      <a-entity id="ambientLight" light="type:ambient; intensity:0.6; color:#7d9cff"></a-entity>
+      <a-entity id="directionalLight" light="type:directional; intensity:1.1; color:#ffe2b3; castShadow:true" position="2 5 1">
+        <a-animation attribute="rotation" to="0 360 0" dur="32000" repeat="indefinite" easing="linear"></a-animation>
+      </a-entity>
+      <a-entity id="ceilingLight" light="type:spot; intensity:0.8; angle:40; penumbra:0.6; color:#9fc5ff" position="0 6 -4" target="#centerpiece"></a-entity>
+      <a-sound src="#ambience" autoplay="true" loop="true" volume="0.35" position="0 2 -3"></a-sound>
+
+      <!-- sky layers -->
+      <a-entity id="sky-dome" geometry="primitive:sphere; radius:60" material="color:#081024; side:back"></a-entity>
+      <a-ring id="horizon-glow" rotation="-90 0 0" radius-inner="26" radius-outer="30" position="0 0 0" material="color:#2b4a7c; opacity:0.55"></a-ring>
+
+      <!-- floor + architecture -->
+      <a-plane rotation="-90 0 0" width="50" height="50" material="src:#floor-tiles; repeat:18 18; roughness:0.8; metalness:0.15; color:#14182d"></a-plane>
+      <a-entity geometry="primitive:box" position="0 0.4 -4" width="6" height="0.4" depth="6" material="color:#0e1424; opacity:0.9"></a-entity>
+      <a-entity geometry="primitive:cylinder" position="0 0.65 -4" radius="2.4" height="0.4" material="color:#141b33; metalness:0.5; roughness:0.4"></a-entity>
+      <a-entity geometry="primitive:torus" position="0 4.8 -4" radius="7" radius-tubular="0.2" rotation="90 0 0" material="color:#1b233e; metalness:0.5; roughness:0.3"></a-entity>
+      <a-entity id="vaulted-beams" position="0 3 -4">
+        <a-entity geometry="primitive:box" width="16" height="0.3" depth="0.4" material="color:#1a2139" position="0 2.6 0"></a-entity>
+        <a-entity geometry="primitive:box" width="16" height="0.3" depth="0.4" material="color:#1a2139" position="0 1.4 0"></a-entity>
+        <a-entity geometry="primitive:cylinder" radius="0.22" height="4" rotation="0 0 18" position="-5 1.8 0" material="color:#253057"></a-entity>
+        <a-entity geometry="primitive:cylinder" radius="0.22" height="4" rotation="0 0 -18" position="5 1.8 0" material="color:#253057"></a-entity>
+      </a-entity>
+
+      <!-- particle ambiance -->
+      <a-entity particle-system="preset: dust; particleCount: 1600; color: #5ea6ff, #ffffff; opacity:0.32; size:0.12; velocityValue:0 0.5 0" position="0 2 -4"></a-entity>
+
+      <!-- living fresco wall -->
+      <a-entity id="fresco-wall" position="0 0 -10">
+        <a-box width="16" height="5.4" depth="0.3" position="0 2.6 0" material="color:#101524; metalness:0.05; roughness:0.85"></a-box>
+        <a-plane width="14" height="3.8" position="0 2.4 0.02" color="#19243e"></a-plane>
+        <a-plane id="fresco-layer" width="12" height="3" position="0 2.4 0.04" material="src:#art-entry; shader:standard; opacity:0.95"></a-plane>
+        <a-plane id="fresco-glow" width="12.2" height="3.2" position="0 2.4 0.02" color="#6f9dff" opacity="0.15"></a-plane>
+        <a-entity class="story-node" position="-4.4 2.1 0.18" data-title="Entry Fresco" data-body="The story world begins as layered sketches suspended in space. Approach to watch the concept bloom." data-img="#art-entry">
+          <a-ring radius-inner="0.3" radius-outer="0.4" rotation="0 0 0" material="color:#88b0ff; emissive:#88b0ff; emissiveIntensity:0.4"></a-ring>
+          <a-sphere radius="0.22" color="#1a2340" material="emissive:#88b0ff; emissiveIntensity:0.9"></a-sphere>
+        </a-entity>
+        <a-entity class="story-node" position="0 1.8 0.18" data-title="Corridor Blueprint" data-body="Pan across the neon blueprint to map the branching paths through the narrative corridor." data-img="#art-corridor">
+          <a-ring radius-inner="0.3" radius-outer="0.4" material="color:#ffad7a; emissive:#ffad7a; emissiveIntensity:0.4"></a-ring>
+          <a-sphere radius="0.22" color="#2a1510" material="emissive:#ffad7a; emissiveIntensity:0.8"></a-sphere>
+        </a-entity>
+        <a-entity class="story-node" position="4.4 2.1 0.18" data-title="Garden Vista" data-body="A shimmering gateway reveals the bioluminescent garden planned for the next chapter." data-img="#art-garden">
+          <a-ring radius-inner="0.3" radius-outer="0.4" material="color:#7cffc5; emissive:#7cffc5; emissiveIntensity:0.4"></a-ring>
+          <a-sphere radius="0.22" color="#0f2c24" material="emissive:#7cffc5; emissiveIntensity:0.8"></a-sphere>
+        </a-entity>
+      </a-entity>
+
+      <!-- sculptural centerpiece -->
+      <a-entity id="centerpiece" position="0 1.5 -4">
+        <a-entity animation__spin="property: rotation; to: 0 360 0; loop: true; dur: 14000; easing: linear">
+          <a-torus-knot radius="0.8" radius-tubular="0.16" p="3" q="5" material="color:#8cb6ff; metalness:0.45; roughness:0.2; emissive:#3553ff; emissiveIntensity:0.4"></a-torus-knot>
+        </a-entity>
+        <a-ring radius-inner="0.9" radius-outer="1.3" rotation="-90 0 0" material="color:#10182d; emissive:#2e4aff; emissiveIntensity:0.25" animation__pulse="property: scale; dir: alternate; dur: 2600; easing: easeInOutSine; to: 1.06 1 1.06"></a-ring>
+        <a-entity geometry="primitive:cylinder" height="0.2" radius="0.7" position="0 -0.45 0" material="color:#1a2034; metalness:0.55; roughness:0.35"></a-entity>
+      </a-entity>
+
+      <!-- docent + portal vista -->
+      <a-entity id="docent" class="interactable docent" position="-5 1.2 -3" data-title="Holographic Docent" data-body="Welcome! I can narrate the lore of each chamber and chart the path ahead. Activate me to queue the story briefing." data-img="#art-corridor">
+        <a-cylinder radius="0.5" height="0.12" material="color:#11172b; metalness:0.6"></a-cylinder>
+        <a-cone radius-bottom="0.46" radius-top="0.12" height="0.7" position="0 0.41 0" material="color:#1f2a46; opacity:0.85"></a-cone>
+        <a-entity id="docent-core" geometry="primitive:icosahedron; radius:0.25" position="0 0.88 0" material="color:#82b6ff; emissive:#82b6ff; emissiveIntensity:0.8" animation__breath="property: scale; dir: alternate; dur: 1800; easing: easeInOutSine; to: 1.3 1.3 1.3"></a-entity>
+        <a-text value="Docent" position="0 1.35 0" width="4" align="center" color="#9fb7ff"></a-text>
+        <a-sound id="docent-audio" src="#docent-voice" positional="true" distanceModel="inverse" loop="false" volume="0.65"></a-sound>
+      </a-entity>
+
+      <a-entity id="portal-plinth" class="interactable portal" position="5 0.1 -5" data-title="Portal Vista" data-body="Peer through the vista window to preview the Garden Observatory. Click to energise the portal and bathe the hall in aurora light." data-img="#art-garden">
+        <a-cylinder radius="0.6" height="0.1" material="color:#131a30; metalness:0.4"></a-cylinder>
+        <a-torus radius="0.85" radius-tubular="0.08" rotation="90 0 0" position="0 0.5 0" material="color:#74f2d6; emissive:#74f2d6; emissiveIntensity:0.6"></a-torus>
+        <a-plane id="portal-window" width="2.4" height="1.6" position="0 1.2 0" material="color:#071018; opacity:0.92"></a-plane>
+        <a-plane id="portal-preview" width="2.25" height="1.35" position="0 1.2 0.02" material="src:#art-garden; shader:standard; opacity:0.95"></a-plane>
+        <a-text value="Portal Preview" position="0 2.1 0" align="center" width="4" color="#8ef8de"></a-text>
+        <a-sound id="portal-sound" src="#portal-tone" positional="true" distanceModel="linear" loop="false" volume="0.7"></a-sound>
+      </a-entity>
+
+      <!-- mood chambers -->
+      <a-entity id="mood-dawn" class="interactable mood-pad" position="-2 0.01 -1.2" data-mood="dawn" data-title="Dawn Briefing" data-body="Amber sunrise light reveals the architectural details of the Grand Gallery." data-img="#art-entry" data-teleport="-2 1.6 -1.2">
+        <a-cylinder radius="0.55" height="0.02" color="#1c233a"></a-cylinder>
+        <a-ring radius-inner="0.16" radius-outer="0.45" rotation="-90 0 0" position="0 0.01 0" material="color:#ffc37a; emissive:#ffc37a; emissiveIntensity:0.3" animation__blink="property: material.emissiveIntensity; dir: alternate; dur: 1400; to: 0.8"></a-ring>
+        <a-text value="Dawn" position="0 0.32 0" align="center" width="3" color="#ffdcb1"></a-text>
+      </a-entity>
+      <a-entity id="mood-twilight" class="interactable mood-pad" position="0 0.01 1" data-mood="twilight" data-title="Twilight Resonance" data-body="Cool indigo gradients wrap the hall, ideal for meditative strolls." data-img="#art-corridor" data-teleport="0 1.6 1">
+        <a-cylinder radius="0.55" height="0.02" color="#1c233a"></a-cylinder>
+        <a-ring radius-inner="0.16" radius-outer="0.45" rotation="-90 0 0" position="0 0.01 0" material="color:#7da6ff; emissive:#7da6ff; emissiveIntensity:0.35" animation__blink="property: material.emissiveIntensity; dir: alternate; dur: 1600; to: 0.9"></a-ring>
+        <a-text value="Twilight" position="0 0.32 0" align="center" width="3" color="#bcd6ff"></a-text>
+      </a-entity>
+      <a-entity id="mood-starlight" class="interactable mood-pad" position="2 0.01 -1.2" data-mood="starlight" data-title="Starlight Overture" data-body="An aurora shimmer breathes through the space hinting at the garden beyond." data-img="#art-garden" data-teleport="2 1.6 -1.2">
+        <a-cylinder radius="0.55" height="0.02" color="#1c233a"></a-cylinder>
+        <a-ring radius-inner="0.16" radius-outer="0.45" rotation="-90 0 0" position="0 0.01 0" material="color:#6cffec; emissive:#6cffec; emissiveIntensity:0.4" animation__blink="property: material.emissiveIntensity; dir: alternate; dur: 1800; to: 0.95"></a-ring>
+        <a-text value="Starlight" position="0 0.32 0" align="center" width="3" color="#d4fff8"></a-text>
+      </a-entity>
+
+      <!-- info panel and detail card -->
+      <a-entity id="hover-panel" position="0 2 -3" visible="false" look-at="#player-camera">
+        <a-plane width="3.4" height="1" color="#0b0f1c" opacity="0.86"></a-plane>
+        <a-plane width="3.5" height="1.1" position="0 0 -0.02" color="#6a82ff" opacity="0.16"></a-plane>
+        <a-text id="hover-text" value="" align="center" width="3.2" color="#eef1ff"></a-text>
+      </a-entity>
+
+      <!-- camera rig -->
+      <a-entity id="rig" position="0 1.6 3">
+        <a-entity id="player-camera" camera look-controls wasd-controls="acceleration: 20" cursor="rayOrigin: mouse" raycaster="objects: .interactable">
+          <a-entity id="cursor-ring" geometry="primitive:ring; radiusInner:0.01; radiusOuter:0.015" material="color:#ffffff; shader: flat" position="0 0 -1" visible="false"></a-entity>
+          <a-entity id="detail-card" position="0 -0.05 -1.6" visible="false">
+            <a-plane color="#05070f" opacity="0.92" width="2.1" height="2.8"></a-plane>
+            <a-plane color="#6a82ff" opacity="0.18" width="2.18" height="2.88" position="0 0 -0.02"></a-plane>
+            <a-text id="detail-title" value="" position="0 1.15 0.01" align="center" width="2.4" color="#e1e9ff"></a-text>
+            <a-image id="detail-image" src="" position="0 0.3 0.01" width="1.7" height="1.2"></a-image>
+            <a-text id="detail-body" value="" position="0 -0.9 0.01" align="center" width="2" color="#cbd4ff"></a-text>
+            <a-plane id="detail-close" class="interactable" position="0 -1.25 0.02" width="1.4" height="0.36" color="#1b223b" material="roughness:0.3; metalness:0.2">
+              <a-text value="Close" align="center" width="2.6" color="#9fb4ff" position="0 0 0.01"></a-text>
+            </a-plane>
+          </a-entity>
+        </a-entity>
+        <a-entity laser-controls="hand: left"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+
+      <!-- sky aurora overlay hidden initially -->
+      <a-entity id="aurora-band" geometry="primitive:ring; radius-inner:18; radius-outer:25" rotation="-90 0 0" material="color:#63ffd9; opacity:0.0" position="0 6 -4"></a-entity>
+
+      <a-sky color="#06070f"></a-sky>
+    </a-scene>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sceneEl = document.querySelector('a-scene');
+        const hoverPanel = document.querySelector('#hover-panel');
+        const hoverText = document.querySelector('#hover-text');
+        const detailCard = document.querySelector('#detail-card');
+        const detailTitle = document.querySelector('#detail-title');
+        const detailBody = document.querySelector('#detail-body');
+        const detailImage = document.querySelector('#detail-image');
+        const detailClose = document.querySelector('#detail-close');
+        const cursorRing = document.querySelector('#cursor-ring');
+        const rig = document.querySelector('#rig');
+        const storyNodes = Array.from(document.querySelectorAll('.story-node, .docent, .portal, .mood-pad'));
+        const docentAudio = document.querySelector('#docent-audio');
+        const portalSound = document.querySelector('#portal-sound');
+        const ambient = document.querySelector('#ambientLight');
+        const directional = document.querySelector('#directionalLight');
+        const skyDome = document.querySelector('#sky-dome');
+        const auroraBand = document.querySelector('#aurora-band');
+        const horizonGlow = document.querySelector('#horizon-glow');
+        const frescoLayer = document.querySelector('#fresco-layer');
+        const frescoGlow = document.querySelector('#fresco-glow');
+        const tempVec = new THREE.Vector3();
+
+        const moods = {
+          dawn: {
+            sky: '#102137',
+            ambient: '#9cbaff',
+            directional: '#ffd6a3',
+            fog: { color: '#0b1220', density: 0.018 },
+            horizon: '#ffb26f',
+            aurora: 0
+          },
+          twilight: {
+            sky: '#090e1c',
+            ambient: '#7c8cff',
+            directional: '#8acbff',
+            fog: { color: '#070b16', density: 0.024 },
+            horizon: '#5d7dff',
+            aurora: 0.25
+          },
+          starlight: {
+            sky: '#050812',
+            ambient: '#6de7ff',
+            directional: '#9cffec',
+            fog: { color: '#04070f', density: 0.02 },
+            horizon: '#67ffe3',
+            aurora: 0.6
+          }
+        };
+
+        const updateMood = moodKey => {
+          const mood = moods[moodKey];
+          if (!mood) return;
+          skyDome.setAttribute('material', 'color', mood.sky);
+          ambient.setAttribute('light', 'color', mood.ambient);
+          directional.setAttribute('light', 'color', mood.directional);
+          sceneEl.setAttribute('fog', `type:exponential; density:${mood.fog.density}; color:${mood.fog.color}`);
+          horizonGlow.setAttribute('material', 'color', mood.horizon);
+          auroraBand.setAttribute('material', 'opacity', mood.aurora);
+        };
+
+        const showHover = (el) => {
+          const body = el.getAttribute('data-body');
+          if (!body) return;
+          if (el.object3D) {
+            el.object3D.getWorldPosition(tempVec);
+            const hoverPosition = `${tempVec.x} ${tempVec.y + 1.2} ${tempVec.z}`;
+            hoverPanel.setAttribute('position', hoverPosition);
+          }
+          hoverText.setAttribute('value', body);
+          hoverPanel.setAttribute('visible', true);
+        };
+
+        const hideHover = () => {
+          hoverPanel.setAttribute('visible', false);
+        };
+
+        const showDetail = (el) => {
+          const title = el.getAttribute('data-title');
+          const body = el.getAttribute('data-body');
+          const img = el.getAttribute('data-img');
+          detailTitle.setAttribute('value', title || '');
+          detailBody.setAttribute('value', body || '');
+          if (img) {
+            detailImage.setAttribute('src', img);
+            detailImage.setAttribute('visible', true);
+          } else {
+            detailImage.setAttribute('visible', false);
+          }
+          detailCard.setAttribute('visible', true);
+          hideHover();
+        };
+
+        const hideDetail = () => {
+          detailCard.setAttribute('visible', false);
+        };
+
+        const animateFresco = () => {
+          frescoLayer.setAttribute('animation__reveal', 'property: material.opacity; from: 0.2; to: 1; dur: 2000; easing: easeInOutQuad');
+          frescoGlow.setAttribute('animation__pulse', 'property: material.opacity; dir: alternate; dur: 1800; to: 0.3; loop: true');
+        };
+
+        storyNodes.forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            cursorRing.setAttribute('visible', true);
+            showHover(el);
+          });
+          el.addEventListener('mouseleave', () => {
+            cursorRing.setAttribute('visible', false);
+            hideHover();
+          });
+          el.addEventListener('click', () => {
+            const moodTarget = el.getAttribute('data-mood');
+            if (moodTarget) {
+              updateMood(moodTarget);
+            }
+            showDetail(el);
+            if (el.classList.contains('docent') && docentAudio && docentAudio.components.sound) {
+              docentAudio.components.sound.stopSound();
+              docentAudio.components.sound.playSound();
+            }
+            if (el.classList.contains('portal') && portalSound && portalSound.components.sound) {
+              portalSound.components.sound.stopSound();
+              portalSound.components.sound.playSound();
+              auroraBand.setAttribute('animation__aurora', 'property: material.opacity; to: 0.75; dur: 1200; dir: alternate; loop: 4');
+            }
+            if (el.classList.contains('story-node')) {
+              animateFresco();
+            }
+          });
+        });
+
+        if (detailClose) {
+          detailClose.addEventListener('click', (evt) => {
+            evt.stopPropagation();
+            hideDetail();
+          });
+        }
+
+        if (sceneEl) {
+          sceneEl.addEventListener('click', (evt) => {
+            if (detailCard.getAttribute('visible')) {
+              const target = evt.target;
+              if (!target || !target.closest || !target.closest('#detail-card')) {
+                hideDetail();
+              }
+            }
+          });
+        }
+
+        // Default mood
+        updateMood('twilight');
+        animateFresco();
+
+        // Teleport pads reposition rig using data-position attribute
+        document.querySelectorAll('.mood-pad').forEach(pad => {
+          pad.addEventListener('click', () => {
+            if (!rig) return;
+            const position = pad.getAttribute('data-teleport');
+            if (position) {
+              const [x, y, z] = position.split(' ').map(Number);
+              rig.setAttribute('position', `${x} ${y} ${z}`);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
