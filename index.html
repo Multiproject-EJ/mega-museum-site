@@ -11,6 +11,40 @@
 </head>
 <body class="has-hero">
 
+  <div class="construction-overlay" id="constructionOverlay" role="dialog" aria-modal="true" aria-labelledby="constructionTitle" tabindex="-1" hidden>
+    <div class="construction-overlay__backdrop" aria-hidden="true"></div>
+    <div class="construction-overlay__dialog">
+      <svg class="construction-overlay__icon" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="constructionIconTitle constructionIconDesc">
+        <title id="constructionIconTitle">Under construction icon</title>
+        <desc id="constructionIconDesc">Hard hat resting on striped construction barrier</desc>
+        <defs>
+          <linearGradient id="constructionHatGradient" x1="10%" y1="0%" x2="90%" y2="100%">
+            <stop stop-color="#fde68a" offset="0%" />
+            <stop stop-color="#facc15" offset="100%" />
+          </linearGradient>
+          <linearGradient id="constructionBarrierGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop stop-color="#1e293b" offset="0%" />
+            <stop stop-color="#0f172a" offset="100%" />
+          </linearGradient>
+        </defs>
+        <g fill="none" fill-rule="evenodd">
+          <circle cx="48" cy="48" r="46" fill="rgba(15,23,42,0.45)" />
+          <g transform="translate(16 20)">
+            <path d="M20 41h24c1.657 0 3 1.343 3 3v7H17v-7c0-1.657 1.343-3 3-3Z" fill="#94a3b8" />
+            <rect x="7" y="18" width="50" height="16" rx="4" fill="url(#constructionBarrierGradient)" stroke="#1e40af" stroke-width="2" />
+            <path d="m9 30 8-12h6L15 30H9Zm14 0 8-12h6l-8 12h-6Zm20-12h6l-8 12h-6l8-12Zm8 0h6l-8 12h-6l8-12Z" fill="#f97316" opacity="0.85" />
+            <path d="M32 0c9.941 0 18 8.059 18 18v1H14v-1C14 8.059 22.059 0 32 0Z" fill="url(#constructionHatGradient)" stroke="#f59e0b" stroke-width="2" />
+            <path d="M32 3c7.18 0 13 5.82 13 13v1H19v-1c0-7.18 5.82-13 13-13Z" fill="rgba(234,179,8,0.35)" />
+            <path d="M27 6h10l2 12H25l2-12Z" fill="#fcd34d" />
+          </g>
+        </g>
+      </svg>
+      <h2 id="constructionTitle">Site under construction</h2>
+      <p>We're still polishing the Mega-Museum experience. You can peek inside, but expect dust and surprises along the way.</p>
+      <a href="#" id="constructionContinue" class="construction-overlay__continue">Continue →</a>
+    </div>
+  </div>
+
   <!-- NAV -->
   <header class="nav">
     <nav class="nav__group nav__group--left" aria-label="Primary navigation">
@@ -264,6 +298,57 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var overlay = document.getElementById('constructionOverlay');
+      var continueLink = document.getElementById('constructionContinue');
+      if (!overlay || !continueLink) {
+        return;
+      }
+
+      var storageKey = 'megaMuseumSeenConstruction';
+      var hasSeen = false;
+
+      try {
+        hasSeen = window.localStorage.getItem(storageKey) === 'true';
+      } catch (err) {
+        hasSeen = false;
+      }
+
+      if (!hasSeen) {
+        overlay.removeAttribute('hidden');
+        document.body.classList.add('construction-active');
+        window.setTimeout(function () {
+          overlay.classList.remove('construction-overlay--hidden');
+          overlay.classList.add('construction-overlay--visible');
+          try {
+            if (typeof overlay.focus === 'function') {
+              overlay.focus({ preventScroll: true });
+            }
+          } catch (err) {
+            overlay.focus();
+          }
+        }, 10);
+      }
+
+      continueLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        try {
+          window.localStorage.setItem(storageKey, 'true');
+        } catch (err) {
+          // Ignore write errors (e.g., private mode)
+        }
+
+        overlay.classList.remove('construction-overlay--visible');
+        overlay.classList.add('construction-overlay--hidden');
+
+        window.setTimeout(function () {
+          overlay.setAttribute('hidden', 'true');
+          document.body.classList.remove('construction-active');
+        }, 400);
+      });
+    })();
+  </script>
   <script src="assets/main.js"></script>
 </body>
 </html>
