@@ -14,12 +14,16 @@
   <div class="construction-overlay" id="constructionOverlay" role="dialog" aria-modal="true" aria-labelledby="constructionTitle" tabindex="-1" hidden>
     <div class="construction-overlay__backdrop" aria-hidden="true"></div>
     <div class="construction-overlay__dialog">
-      <svg class="construction-overlay__icon" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="constructionIconTitle constructionIconDesc">
-        <title id="constructionIconTitle">Under construction icon</title>
-        <desc id="constructionIconDesc">Hard hat resting on striped construction barrier</desc>
-        <defs>
-          <linearGradient id="constructionHatGradient" x1="10%" y1="0%" x2="90%" y2="100%">
-            <stop stop-color="#fde68a" offset="0%" />
+      <div class="construction-overlay__icon-wrap">
+        <a href="#" id="constructionContinue" class="construction-overlay__continue">
+          <span class="sr-only">Continue to the Mega-Museum site</span>
+        </a>
+        <svg class="construction-overlay__icon" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="constructionIconTitle constructionIconDesc">
+          <title id="constructionIconTitle">Under construction icon</title>
+          <desc id="constructionIconDesc">Hard hat resting on striped construction barrier</desc>
+          <defs>
+            <linearGradient id="constructionHatGradient" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop stop-color="#fde68a" offset="0%" />
             <stop stop-color="#facc15" offset="100%" />
           </linearGradient>
           <linearGradient id="constructionBarrierGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -38,10 +42,10 @@
             <path d="M27 6h10l2 12H25l2-12Z" fill="#fcd34d" />
           </g>
         </g>
-      </svg>
+        </svg>
+      </div>
       <h2 id="constructionTitle">Site under construction</h2>
       <p>We're still polishing the Mega-Museum experience. You can peek inside, but expect dust and surprises along the way.</p>
-      <a href="#" id="constructionContinue" class="construction-overlay__continue">Continue →</a>
     </div>
   </div>
 
