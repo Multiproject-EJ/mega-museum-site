@@ -7,9 +7,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg" />
+  <meta name="theme-color" content="#020617" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Start inside simple prototype rooms. Return to see them transform. Vote on what gets built next." />
+  <script defer src="assets/pwa.js"></script>
 </head>
-<body class="has-hero">
+<body class="has-hero" data-page="home">
 
   <div class="construction-overlay" id="constructionOverlay" role="dialog" aria-modal="true" aria-labelledby="constructionTitle" tabindex="-1" hidden>
     <div class="construction-overlay__backdrop" aria-hidden="true"></div>
@@ -69,6 +75,73 @@
       <a class="btn primary small" href="/#co-create">Follow</a>
     </nav>
   </header>
+
+  <nav class="mobile-quick-nav" aria-label="Mega-Museum quick navigation">
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--home" href="index.html" aria-current="page">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🏛️</span>
+      <span class="mobile-quick-nav__label">Lobby</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--rooms" href="rooms.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🗺️</span>
+      <span class="mobile-quick-nav__label">Rooms</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--vote" href="/#co-create">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🎛️</span>
+      <span class="mobile-quick-nav__label">Vote</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--game" href="game.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🎮</span>
+      <span class="mobile-quick-nav__label">Game</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--about" href="about.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🛰️</span>
+      <span class="mobile-quick-nav__label">About</span>
+    </a>
+  </nav>
+
+  <section class="mobile-hud" aria-label="Mega-Museum handheld command center">
+    <header class="mobile-hud__status">
+      <span class="mobile-hud__signal" data-mobile-status>Signal: MUSEUM-NET</span>
+      <span class="mobile-hud__clock" id="mobileClock" aria-label="Current time">00:00</span>
+    </header>
+
+    <div class="mobile-hud__card">
+      <div class="mobile-hud__badge">Season 01</div>
+      <h1 class="mobile-hud__title">Launch into the Mega-Museum storyverse.</h1>
+      <p class="mobile-hud__copy">Unlock evolving rooms, cast your vote on canon, and play prototype missions built for the smallest screens first.</p>
+      <div class="mobile-hud__actions">
+        <a class="btn primary" href="rooms.html">Enter Rooms</a>
+        <a class="btn ghost" href="/#co-create">Join the Crew</a>
+      </div>
+    </div>
+
+    <div class="mobile-hud__carousel" role="list">
+      <a class="mobile-hud__slide" href="rooms.html" data-mobile-slide role="listitem">
+        <span class="mobile-hud__slide-index">01</span>
+        <span class="mobile-hud__slide-body">
+          <strong>Tour the Museum</strong>
+          <span>Swipe through prototype rooms and unlock new wings.</span>
+        </span>
+        <span class="mobile-hud__slide-icon" aria-hidden="true">↗</span>
+      </a>
+      <a class="mobile-hud__slide" href="/#co-create" data-mobile-slide role="listitem">
+        <span class="mobile-hud__slide-index">02</span>
+        <span class="mobile-hud__slide-body">
+          <strong>Vote on Canon</strong>
+          <span>Decide which characters, props, and scenes become official.</span>
+        </span>
+        <span class="mobile-hud__slide-icon" aria-hidden="true">★</span>
+      </a>
+      <a class="mobile-hud__slide" href="game.html" data-mobile-slide role="listitem">
+        <span class="mobile-hud__slide-index">03</span>
+        <span class="mobile-hud__slide-body">
+          <strong>Play War Games</strong>
+          <span>Test prototype missions and earn intel for the crew.</span>
+        </span>
+        <span class="mobile-hud__slide-icon" aria-hidden="true">⚡</span>
+      </a>
+    </div>
+  </section>
 
   <!-- HERO -->
   <section class="hero">

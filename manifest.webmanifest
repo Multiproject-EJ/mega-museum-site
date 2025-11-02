@@ -1,0 +1,19 @@
+{
+  "name": "Mega-Museum Mobile",
+  "short_name": "MegaMuseum",
+  "description": "A phone-first command center for the evolving Mega-Museum universe.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
