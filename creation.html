@@ -7,7 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg" />
+  <meta name="theme-color" content="#020617" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="The Mega-Museum Cinema — watch the Patreon Supporter story unfold in video form. Vote on what gets made next." />
+  <script defer src="assets/pwa.js"></script>
 
   <!-- Page-specific styles (kept here to keep this page self-contained) -->
   <style>
@@ -91,7 +97,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page="creation">
   <!-- NAV -->
   <header class="nav">
     <nav class="nav__group nav__group--left" aria-label="Primary navigation">
@@ -112,6 +118,29 @@
       <a class="btn primary small" href="/#co-create">Follow</a>
     </nav>
   </header>
+
+  <nav class="mobile-quick-nav" aria-label="Mega-Museum quick navigation">
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--home" href="index.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🏛️</span>
+      <span class="mobile-quick-nav__label">Lobby</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--rooms" href="rooms.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🗺️</span>
+      <span class="mobile-quick-nav__label">Rooms</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--vote" href="/#co-create">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🎛️</span>
+      <span class="mobile-quick-nav__label">Vote</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--game" href="game.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🎮</span>
+      <span class="mobile-quick-nav__label">Game</span>
+    </a>
+    <a class="mobile-quick-nav__item mobile-quick-nav__item--about" href="about.html">
+      <span class="mobile-quick-nav__icon" aria-hidden="true">🛰️</span>
+      <span class="mobile-quick-nav__label">About</span>
+    </a>
+  </nav>
 
   <main class="page-wrap narrow">
     <h1 class="page-title">The Creation Story — Cinema</h1>
